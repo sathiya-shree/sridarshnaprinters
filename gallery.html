@@ -2,111 +2,82 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gallery | Sridarshna Printers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery - Sridarshna Printers</title>
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #fefefe;
+      background-color: #f9f9fb;
       color: #333;
+      line-height: 1.6;
     }
-
     header {
-      background-color: #2c2c2c;
-      color: #fff;
-      padding: 20px 0;
+      background: linear-gradient(to right, #004e92, #000428);
+      color: white;
+      padding: 20px;
       text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-
-    nav {
-      margin-top: 10px;
+    header h1 {
+      margin-bottom: 10px;
     }
-
     nav a {
-      color: #ddd;
-      margin: 0 15px;
+      color: #f0f0f0;
+      margin: 0 12px;
       text-decoration: none;
-      transition: color 0.3s ease;
+      font-weight: bold;
     }
-
-    nav a.active,
     nav a:hover {
-      color: #ffc107;
+      text-decoration: underline;
     }
-
-    .gallery-section {
-      padding: 50px 20px;
+    section {
+      padding: 40px 20px;
       max-width: 1000px;
       margin: auto;
-      text-align: center;
     }
-
-    .gallery-section h2 {
-      color: #222;
-      font-size: 2.2em;
-      margin-bottom: 40px;
+    section h2 {
+      color: #003366;
+      margin-bottom: 20px;
     }
-
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
     }
-
-    .gallery-item {
-      background-color: #fff;
-      border: 2px solid #f0f0f0;
-      border-radius: 12px;
-      padding: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease;
-    }
-
-    .gallery-item:hover {
-      transform: scale(1.03);
-      border-color: #ffc107;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .gallery-item img {
+    .gallery-grid img {
       width: 100%;
-      border-radius: 8px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
     footer {
-      background-color: #2c2c2c;
-      color: #ccc;
       text-align: center;
+      background: #003366;
+      color: white;
       padding: 15px;
-      margin-top: 50px;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Sridarshna Printers</h1>
+    <h1>Gallery</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
-      <a href="gallery.html" class="active">Gallery</a>
+      <a href="gallery.html">Gallery</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <main class="gallery-section">
-    <h2>Our Work Gallery</h2>
+  <section>
+    <h2>Our Work Samples</h2>
     <div class="gallery-grid">
-      <div class="gallery-item"><img src="images/sample1.jpg" alt="Work Sample 1"></div>
-      <div class="gallery-item"><img src="images/sample2.jpg" alt="Work Sample 2"></div>
-      <div class="gallery-item"><img src="images/sample3.jpg" alt="Work Sample 3"></div>
-      <div class="gallery-item"><img src="images/sample4.jpg" alt="Work Sample 4"></div>
-      <!-- Add more images as needed -->
-    </div>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Sridarshna Printers. All rights reserved.</p>
-  </footer>
-</body>
-</html>
+      <img src="images/print1

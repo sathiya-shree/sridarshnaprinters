@@ -2,13 +2,105 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PixelPrint Studio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sridarshna Printers</title>
+  <style>
+    /* === CSS Styling === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9fb;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(to right, #004e92, #000428);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin-bottom: 10px;
+    }
+    nav a {
+      color: #f0f0f0;
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .banner {
+      position: relative;
+    }
+    .banner img {
+      width: 100%;
+      max-height: 350px;
+      object-fit: cover;
+      border-bottom: 4px solid #003366;
+    }
+    .banner h2 {
+      position: absolute;
+      bottom: 20px;
+      left: 30px;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    section h2 {
+      color: #003366;
+      margin-bottom: 20px;
+    }
+    .about p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    .highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: space-between;
+    }
+    .card {
+      flex: 1 1 280px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h3 {
+      color: #004e92;
+      margin-bottom: 10px;
+    }
+    footer {
+      text-align: center;
+      background: #003366;
+      color: white;
+      padding: 15px;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <h1>PixelPrint Studio</h1>
+    <h1>Sridarshna Printers</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
@@ -16,20 +108,37 @@
       <a href="contact.html">Contact</a>
     </nav>
   </header>
-  <section class="banner">
-    <img src="images/banner.jpg" alt="Printing Banner">
-    <h2>Your One-Stop Printing & Design Solution</h2>
+
+  <div class="banner">
+    <img src="images/banner.jpg" alt="Printing Banner" />
+    <h2>Professional Printing & Creative Designing</h2>
+  </div>
+
+  <section class="about">
+    <h2>Welcome to Sridarshna Printers</h2>
+    <p>
+      We bring your ideas to life with vibrant prints and creative designs. From business cards to brochures, logos to large format prints, our team delivers excellence with every order. With years of experience and a passion for design, we make your brand stand out.
+    </p>
   </section>
-  <section>
-    <h3>Why Choose Us?</h3>
-    <ul>
-      <li>Affordable Pricing</li>
-      <li>Custom Design Solutions</li>
-      <li>Fast Turnaround</li>
-    </ul>
+
+  <section class="highlights">
+    <div class="card">
+      <h3>Premium Quality Prints</h3>
+      <p>We use high-grade materials and the latest printing technology to ensure stunning results every time.</p>
+    </div>
+    <div class="card">
+      <h3>Creative Graphic Design</h3>
+      <p>From logos to flyers, our design team crafts visuals that capture attention and communicate your message.</p>
+    </div>
+    <div class="card">
+      <h3>Fast & Reliable Service</h3>
+      <p>We value your time. Expect quick turnarounds and dependable customer support on every order.</p>
+    </div>
   </section>
+
   <footer>
-    <p>&copy; 2025 PixelPrint Studio</p>
+    &copy; 2025 Sridarshna Printers | Designed with ❤️
   </footer>
+
 </body>
 </html>

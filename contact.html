@@ -2,26 +2,87 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Contact - PixelPrint Studio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact | Sridarshna Printers</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fefefe;
+      color: #333;
+    }
+
+    header {
+      background-color: #2c2c2c;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #ddd;
+      margin: 0 15px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a.active,
+    nav a:hover {
+      color: #ffc107;
+    }
+
+    .contact-section {
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .contact-section h2 {
+      font-size: 2em;
+      margin-bottom: 30px;
+      color: #222;
+    }
+
+    .contact-section p {
+      font-size: 1.1em;
+      margin: 15px 0;
+      color: #444;
+    }
+
+    footer {
+      background-color: #2c2c2c;
+      color: #ccc;
+      text-align: center;
+      padding: 15px;
+      margin-top: 50px;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Contact Us</h1>
+    <h1>Sridarshna Printers</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="active">Contact</a>
     </nav>
   </header>
-  <section>
-    <p>Email: contact@pixelprint.com</p>
-    <p>Phone: +91 9876543210</p>
-    <p>Location: Coimbatore, Tamil Nadu</p>
-  </section>
+
+  <main class="contact-section">
+    <h2>Get in Touch</h2>
+    <p><strong>Email:</strong> contact@pixelprint.com</p>
+    <p><strong>Phone:</strong> +91 9876543210</p>
+    <p><strong>Location:</strong> Coimbatore, Tamil Nadu</p>
+  </main>
+
   <footer>
-    <p>&copy; 2025 PixelPrint Studio</p>
+    <p>&copy; 2025 Sridarshna Printers. All rights reserved.</p>
   </footer>
 </body>
 </html>

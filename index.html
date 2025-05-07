@@ -5,32 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sridarshna Printers</title>
   <style>
-    /* === CSS Styling === */
+    /* === General Styling === */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
     }
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #f9f9fb;
       color: #333;
       line-height: 1.6;
-      scroll-behavior: smooth;
     }
+
     header {
       background: linear-gradient(to right, #004e92, #000428);
       color: white;
       padding: 20px;
       text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     header h1 {
       margin-bottom: 10px;
     }
     nav a {
       color: #f0f0f0;
-      margin: 0 12px;
+      margin: 0 15px;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.3s ease;
@@ -41,23 +46,13 @@
     }
 
     .banner {
-      position: relative;
-      animation: fadeUp 1s ease-out both;
+      animation: scrollFade 3s ease-in-out infinite alternate;
     }
     .banner img {
       width: 100%;
       max-height: 350px;
       object-fit: cover;
       border-bottom: 4px solid #003366;
-    }
-    .banner h2 {
-      position: absolute;
-      bottom: 20px;
-      left: 30px;
-      color: white;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 10px 20px;
-      border-radius: 8px;
     }
 
     section {
@@ -134,12 +129,42 @@
     }
     .contact-info, .social-links {
       flex: 1 1 250px;
+      text-align: left;
     }
 
-    /* Fade-up animation */
+    .contact-details {
+      margin-top: 10px;
+      font-size: 15px;
+      color: #ccc;
+    }
+
+    /* Work With Us Button */
+    .work-btn {
+      display: inline-block;
+      background: #ffd700;
+      color: #003366;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease, transform 0.2s ease;
+      margin-top: 20px;
+    }
+    .work-btn:hover {
+      background: #ffcc00;
+      transform: translateY(-2px);
+    }
+
+    /* Fade-up Animation */
     @keyframes fadeUp {
-      0% { opacity: 0; transform: translateY(20px); }
+      0% { opacity: 0; transform: translateY(30px); }
       100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Scroll pulse effect */
+    @keyframes scrollFade {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-5px); }
     }
 
     /* Responsive */
@@ -163,7 +188,7 @@
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
+      <a href="#footer">Contact</a>
     </nav>
   </header>
 
@@ -176,6 +201,7 @@
     <p>
       We bring your ideas to life with vibrant prints and creative designs. From business cards to brochures, logos to large format prints, our team delivers excellence with every order. With years of experience and a passion for design, we make your brand stand out.
     </p>
+    <a href="#footer" class="work-btn">Work With Us</a>
   </section>
 
   <section class="highlights">
@@ -193,18 +219,19 @@
     </div>
   </section>
 
-  <footer>
+  <footer id="footer">
     <div class="footer-container">
       <div class="contact-info">
-        <h3>Work with Me</h3>
-        <p>Contact</p>
-        <p><a href="mailto:hello@sridarshnaprinters.com">hello@sridarshnaprinters.com</a></p>
-        <p>M–F 10AM–6PM GMT</p>
-        <p>S/S NOT ONLINE</p>
+        <h3>Contact</h3>
+        <div class="contact-details">
+          <p><strong>Email:</strong> contact@pixelprint.com</p>
+          <p><strong>Phone:</strong> +91 9876543210</p>
+          <p><strong>Location:</strong> Coimbatore, Tamil Nadu</p>
+          <p>Available: Mon–Sat 10AM–7PM GMT</p>
+        </div>
       </div>
       <div class="social-links">
         <h3>Social</h3>
-        <a href="https://twitter.com" target="_blank">Twitter</a>
         <a href="https://facebook.com" target="_blank">Facebook</a>
         <a href="https://linkedin.com" target="_blank">LinkedIn</a>
         <a href="https://instagram.com" target="_blank">Instagram</a>

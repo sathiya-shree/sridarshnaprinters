@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sridarshna Printers</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    /* === CSS Styling === */
+    /* === Global Reset === */
     * {
       margin: 0;
       padding: 0;
@@ -16,85 +17,147 @@
       background-color: #f9f9fb;
       color: #333;
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
+
+    /* === Header === */
     header {
       background: linear-gradient(to right, #004e92, #000428);
       color: white;
       padding: 20px;
       text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      animation: slideDown 1s ease-out;
     }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
     header h1 {
       margin-bottom: 10px;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
     }
+
     nav a {
       color: #f0f0f0;
-      margin: 0 12px;
+      margin: 0 14px;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.3s ease;
     }
     nav a:hover {
-      text-decoration: underline;
+      color: #ffd700;
     }
+
+    /* === Banner === */
     .banner {
       position: relative;
+      overflow: hidden;
     }
+
     .banner img {
       width: 100%;
-      max-height: 350px;
+      max-height: 380px;
       object-fit: cover;
-      border-bottom: 4px solid #003366;
+      animation: zoomIn 3s ease forwards;
     }
+
+    @keyframes zoomIn {
+      0% { transform: scale(1.1); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
     .banner h2 {
       position: absolute;
       bottom: 20px;
       left: 30px;
       color: white;
       background: rgba(0, 0, 0, 0.5);
-      padding: 10px 20px;
+      padding: 12px 24px;
       border-radius: 8px;
+      font-size: 1.8rem;
     }
+
+    /* === Sections === */
     section {
-      padding: 40px 20px;
+      padding: 50px 20px;
       max-width: 1000px;
       margin: auto;
+      animation: fadeIn 1.5s ease;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     section h2 {
       color: #003366;
       margin-bottom: 20px;
+      font-size: 2rem;
     }
+
     .about p {
       font-size: 1.1rem;
       margin-bottom: 20px;
     }
+
+    /* === Highlights Cards === */
     .highlights {
       display: flex;
       flex-wrap: wrap;
       gap: 30px;
       justify-content: space-between;
     }
+
     .card {
       flex: 1 1 280px;
       background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: transform 0.4s ease, box-shadow 0.3s ease;
+      position: relative;
     }
+
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
+
     .card h3 {
       color: #004e92;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
+
+    /* === Footer === */
     footer {
       text-align: center;
       background: #003366;
       color: white;
-      padding: 15px;
-      margin-top: 30px;
+      padding: 25px 15px;
+      margin-top: 40px;
     }
+
+    .social-icons {
+      margin-top: 15px;
+    }
+
+    .social-icons a {
+      color: #fff;
+      margin: 0 10px;
+      font-size: 1.3rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: #ffd700;
+      transform: scale(1.2);
+    }
+
   </style>
 </head>
 <body>
@@ -111,6 +174,7 @@
 
   <div class="banner">
     <img src="images/banner.jpg" alt="Printing Banner" />
+    <h2>Your Vision, Our Print</h2>
   </div>
 
   <section class="about">
@@ -136,7 +200,13 @@
   </section>
 
   <footer>
-    &copy; 2025 Sridarshna Printers
+    &copy; 2025 Sridarshna Printers<br />
+    <div class="social-icons">
+      <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="mailto:info@sridarshnaprinters.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    </div>
   </footer>
 
 </body>

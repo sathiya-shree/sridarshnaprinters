@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sridarshna Printers</title>
+  <title>Sri Darshna Printers</title>
   <style>
     * {
       margin: 0;
@@ -31,7 +31,7 @@
     }
 
     header h1 {
-      margin-bottom: 10px;
+      margin-bottom: 20px; /* Increased margin to create space */
       animation: nameEffect 1.5s ease;
     }
 
@@ -39,6 +39,8 @@
       font-size: 1.2rem;
       color: #f0f0f0;
       font-weight: lighter;
+      margin-top: 10px; /* Added space above the phrase */
+      animation: fadeInUp 1.5s ease;
     }
 
     /* Name effect */
@@ -48,6 +50,12 @@
       100% { transform: translateY(0); opacity: 1; }
     }
 
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Navigation */
     nav a {
       color: #f0f0f0;
       margin: 0 12px;
@@ -219,7 +227,7 @@
   </header>
 
   <div class="banner">
-    <img src="computer.jpg" alt="design" />
+    <img src="design.jpeg" alt="design" />
   </div>
 
   <section class="about">
@@ -268,9 +276,9 @@
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding-top: 20px;">
         <a href="#footer" class="work-btn">Work With Us</a>
       </div>
-      
-      <div>  
-        <p style="text-align: center; color: #bbb; margin-top: 30px;">&copy; 2025 Sridarshna Printers. All rights reserved.</p>
+
+      <div style="text-align: center; margin-top: 40px;">
+        <p>&copy; 2025 Sridarshna Printers. All rights reserved.</p>
       </div>
     </div>
   </footer>

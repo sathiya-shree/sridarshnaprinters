@@ -32,12 +32,15 @@
       animation: fadeInDown 1s ease;
     }
 
-   header h1 {
-      margin-bottom: 20px;
-      animation: nameEffect 1.5s ease;
-      font-size: 2.5rem;
-      color: #fff; /* Removed neon text-shadow */
-    }
+ header h1 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 3rem;
+  font-weight: 500;
+  color: #ffffff;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+  animation: nameEffect 1.8s ease-in-out forwards;
+  opacity: 0;
+}
 
     header h2 {
       font-size: 1.5rem;
@@ -58,26 +61,7 @@
   -moz-animation: glow 2s ease-in-out infinite alternate;
   animation: glow 2s ease-in-out infinite alternate;
 }
-.aurora-effect {
-  font-size: 3rem;
-  color: #fff;
-  font-family: 'Pacifico', cursive;
-  text-transform: uppercase;
-  animation: glow 1.5s ease-in-out infinite alternate;
-}
 
-/* Aurora Glow keyframes */
-@keyframes glow {
-  0% {
-    text-shadow: 0 0 5px #ff007d, 0 0 10px #ff007d, 0 0 20px #ff007d, 0 0 30px #ff007d, 0 0 40px #ff007d, 0 0 50px #ff007d, 0 0 75px #ff007d;
-  }
-  50% {
-    text-shadow: 0 0 10px #ff007d, 0 0 20px #ff007d, 0 0 30px #ff007d, 0 0 40px #ff007d, 0 0 50px #ff007d, 0 0 60px #ff007d, 0 0 80px #ff007d;
-  }
-  100% {
-    text-shadow: 0 0 15px #ff007d, 0 0 25px #ff007d, 0 0 35px #ff007d, 0 0 45px #ff007d, 0 0 55px #ff007d, 0 0 65px #ff007d, 0 0 90px #ff007d;
-  }
-}
     @keyframes nameEffect {
       0% { transform: translateY(-30px); opacity: 0; }
       50% { transform: translateY(15px); opacity: 0.5; }
@@ -219,6 +203,20 @@
     .work-btn:hover {
       background: #e6b800;
     }
+    @keyframes nameEffect {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  60% {
+    opacity: 0.5;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-20px); }
@@ -262,7 +260,7 @@
   <header>
     <div style="display: flex; align-items: center; justify-content: center; position: relative;">
       <img src="logo.png" alt="Logo" style="height: 40px; position: absolute; left: 20px;" />
-      <h1 class="aurora-effect">Sri Darshna Printers</h1>
+      <h1>Sri Darshna Printers</h1>
     </div>
     <p class="glowing-text">Printing your imagination, one design at a time.</p>
     <nav>

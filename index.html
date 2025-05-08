@@ -46,7 +46,26 @@
       animation: fadeInUp 1.5s ease;
       font-family: 'Quicksand', sans-serif;
     }
+.aurora-effect {
+  font-size: 3rem;
+  color: #fff;
+  font-family: 'Pacifico', cursive;
+  text-transform: uppercase;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
 
+/* Aurora Glow keyframes */
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px #ff007d, 0 0 10px #ff007d, 0 0 20px #ff007d, 0 0 30px #ff007d, 0 0 40px #ff007d, 0 0 50px #ff007d, 0 0 75px #ff007d;
+  }
+  50% {
+    text-shadow: 0 0 10px #ff007d, 0 0 20px #ff007d, 0 0 30px #ff007d, 0 0 40px #ff007d, 0 0 50px #ff007d, 0 0 60px #ff007d, 0 0 80px #ff007d;
+  }
+  100% {
+    text-shadow: 0 0 15px #ff007d, 0 0 25px #ff007d, 0 0 35px #ff007d, 0 0 45px #ff007d, 0 0 55px #ff007d, 0 0 65px #ff007d, 0 0 90px #ff007d;
+  }
+}
     @keyframes nameEffect {
       0% { transform: translateY(-30px); opacity: 0; }
       50% { transform: translateY(15px); opacity: 0.5; }
@@ -231,7 +250,7 @@
   <header>
     <div style="display: flex; align-items: center; justify-content: center; position: relative;">
       <img src="logo.png" alt="Logo" style="height: 40px; position: absolute; left: 20px;" />
-      <h1 style="margin: 0;">Sri Darshna Printers</h1>
+      <h1 class="aurora-effect">Sri Darshna Printers</h1>
     </div>
     <h2 style="font-family: 'Quicksand', sans-serif;">Printing your imagination, one design at a time.</h2>
     <nav>

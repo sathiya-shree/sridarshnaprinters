@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sri Darshna Printers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -20,7 +21,6 @@
       line-height: 1.6;
     }
 
-    /* Header */
     header {
       background: linear-gradient(to right, #004e92, #000428);
       color: white;
@@ -31,7 +31,7 @@
     }
 
     header h1 {
-      margin-bottom: 20px; /* Increased margin to create space */
+      margin-bottom: 20px;
       animation: nameEffect 1.5s ease;
     }
 
@@ -39,11 +39,11 @@
       font-size: 1.2rem;
       color: #f0f0f0;
       font-weight: lighter;
-      margin-top: 10px; /* Added space above the phrase */
+      margin-top: 10px;
       animation: fadeInUp 1.5s ease;
+      font-family: 'Pacifico', cursive;
     }
 
-    /* Name effect */
     @keyframes nameEffect {
       0% { transform: translateY(-30px); opacity: 0; }
       50% { transform: translateY(15px); opacity: 0.5; }
@@ -55,7 +55,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Navigation */
     nav a {
       color: #f0f0f0;
       margin: 0 12px;
@@ -69,7 +68,6 @@
       color: #ffcc00;
     }
 
-    /* Banner */
     .banner {
       position: relative;
       animation: fadeIn 2s ease-in-out;
@@ -110,7 +108,6 @@
       margin-bottom: 20px;
     }
 
-    /* Highlights */
     .highlights {
       display: flex;
       flex-wrap: wrap;
@@ -137,7 +134,6 @@
       margin-bottom: 10px;
     }
 
-    /* Footer */
     footer {
       background: #003366;
       color: white;
@@ -185,7 +181,6 @@
       background: #e6b800;
     }
 
-    /* Animations */
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -201,11 +196,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     @media (max-width: 768px) {
       .footer-container {
         flex-direction: column;
@@ -216,7 +206,10 @@
 <body>
 
   <header>
-    <h1><img src="logo.png" alt="Logo" style="height: 40px; vertical-align: middle; margin-right: 10px;" />Sridarshna Printers</h1>
+    <h1>
+      <img src="logo.png" alt="Logo" style="height: 40px; vertical-align: middle; margin-right: 10px;" />
+      Sridarshna Printers
+    </h1>
     <h2>Printing your imagination, one design at a time.</h2>
     <nav>
       <a href="index.html">Home</a>
@@ -272,15 +265,16 @@
         <a href="https://linkedin.com" target="_blank">LinkedIn</a>
         <a href="https://instagram.com" target="_blank">Instagram</a>
       </div>
+    </div>
 
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; padding-top: 20px;">
-        <a href="#footer" class="work-btn">Work With Us</a>
-      </div>
+    <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; padding-top: 20px;">
+      <a href="#footer" class="work-btn">Work With Us</a>
+    </div>
 
-      <div style="text-align: center; margin-top: 40px;">
-        <p>&copy; 2025 Sridarshna Printers. All rights reserved.</p>
-      </div>
+    <div style="text-align: center; margin-top: 20px;">
+      <p>&copy; 2025 Sridarshna Printers. All rights reserved.</p>
     </div>
   </footer>
+
 </body>
 </html>

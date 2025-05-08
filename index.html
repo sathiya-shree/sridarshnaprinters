@@ -35,15 +35,15 @@
       animation: nameEffect 1.5s ease;
     }
 
-  header h2 {
-  font-size: 1.2rem;
-  color: #f0f0f0;
-  font-weight: lighter;
-  margin-top: 10px;
-  margin-bottom: 20px; /* adds space below the phrase */
-  animation: fadeInUp 1.5s ease;
-  font-family: 'Georgia', serif; /* or any other font you prefer */
-}
+    header h2 {
+      font-size: 1.2rem;
+      color: #f0f0f0;
+      font-weight: lighter;
+      margin-top: 10px;
+      margin-bottom: 30px; /* Adds space between phrase and nav */
+      animation: fadeInUp 1.5s ease;
+      font-family: 'Pacifico', cursive; /* Font changed */
+    }
 
     @keyframes nameEffect {
       0% { transform: translateY(-30px); opacity: 0; }
@@ -55,9 +55,10 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-nav {
-  margin-top: 10px;
-}
+
+    nav {
+      margin-top: 10px;
+    }
     nav a {
       color: #f0f0f0;
       margin: 0 12px;
@@ -204,15 +205,26 @@ nav {
         flex-direction: column;
       }
     }
+
+    /* Social links color changed to white */
+    .social-section a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .social-section a:hover {
+      color: #ffcc00;
+    }
   </style>
 </head>
 <body>
 
   <header>
-  <div style="display: flex; align-items: center; justify-content: center; position: relative;">
-  <img src="logo.png" alt="Logo" style="height: 40px; position: absolute; left: 20px;" />
-  <h1 style="margin: 0;">Sri Darshna Printers</h1>
-</div>
+    <div style="display: flex; align-items: center; justify-content: center; position: relative;">
+      <img src="logo.png" alt="Logo" style="height: 40px; position: absolute; left: 20px;" />
+      <h1 style="margin: 0;">Sri Darshna Printers</h1>
+    </div>
     <h2>Printing your imagination, one design at a time.</h2>
     <nav>
       <a href="index.html">Home</a>
@@ -261,22 +273,28 @@ nav {
         </div>
       </div>
 
-    <div class="social-section">
-  <h2>Social</h2>
-  <ul>
-    <li><a href="https://linkedin.com/in/yourname" target="_blank">LinkedIn</a></li>
-    <li><a href="https://github.com/yourname" target="_blank">GitHub</a></li>
-    <li><a href="https://instagram.com/yourname" target="_blank">Instagram</a></li>
-  </ul>
-</div>
+      <div class="social-section">
+        <h2>Social</h2>
+        <ul>
+          <li><a href="https://linkedin.com/in/yourname" target="_blank">LinkedIn</a></li>
+          <li><a href="https://github.com/yourname" target="_blank">GitHub</a></li>
+          <li><a href="https://instagram.com/yourname" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+
     <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; padding-top: 20px;">
       <a href="#footer" class="work-btn">Work With Us</a>
     </div>
 
-    <div style="text-align: center; margin-top: 20px;">
-      <p>&copy; 2025 Sridarshna Printers. All rights reserved.</p>
+    <div style="width: 100%; text-align: center; margin-top: 30px;">
+      <p>&copy; <span id="year">2025</span> Sri Darshna Printers. All rights reserved.</p>
     </div>
   </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>

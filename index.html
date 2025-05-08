@@ -40,9 +40,9 @@
       color: #f0f0f0;
       font-weight: lighter;
       margin-top: 10px;
-      margin-bottom: 30px; /* Adds space between phrase and nav */
+      margin-bottom: 30px;
       animation: fadeInUp 1.5s ease;
-      font-family: 'Quicksand', sans-serif; /* Font changed */
+      font-family: 'Quicksand', sans-serif;
     }
 
     @keyframes nameEffect {
@@ -204,9 +204,12 @@
       .footer-container {
         flex-direction: column;
       }
+
+      .footer-container .social-section {
+        transform: none;
+      }
     }
 
-    /* Social links color changed to white */
     .social-section a {
       color: #fff;
       text-decoration: none;
@@ -217,9 +220,9 @@
       color: #ffcc00;
     }
 
-   .footer-container .social-section {
-  transform: translateX(-30px);
-}
+    .footer-container .social-section {
+      transform: translateX(-50px);
+    }
 
   </style>
 </head>
@@ -269,22 +272,18 @@
     <div class="footer-container">
       <div class="contact-info">
         <h3>Contact</h3>
-        <div class="contact-details">
-          <p><strong>Email:</strong> contact@pixelprint.com</p>
-          <p><strong>Phone:</strong> +91 9876543210</p>
-          <p><strong>Location:</strong> Coimbatore, Tamil Nadu</p>
-          <p>Available: Mon–Fri 10AM–6PM GMT</p>
-          <p>Sat/Sun: Not Online</p>
-        </div>
+        <p><strong>Email:</strong> contact@pixelprint.com</p>
+        <p><strong>Phone:</strong> +91 9876543210</p>
+        <p><strong>Location:</strong> Coimbatore, Tamil Nadu</p>
+        <p>Available: Mon–Fri 10AM–6PM GMT</p>
+        <p>Sat/Sun: Not Online</p>
       </div>
 
       <div class="social-section">
-        <h2>Social</h2>
-        <ul>
-          <li><a href="https://linkedin.com/in/yourname" target="_blank">LinkedIn</a></li>
-          <li><a href="https://github.com/yourname" target="_blank">GitHub</a></li>
-          <li><a href="https://instagram.com/yourname" target="_blank">Instagram</a></li>
-        </ul>
+        <h3>Social</h3>
+        <p><a href="https://linkedin.com/in/yourname" target="_blank">LinkedIn</a></p>
+        <p><a href="https://github.com/yourname" target="_blank">GitHub</a></p>
+        <p><a href="https://instagram.com/yourname" target="_blank">Instagram</a></p>
       </div>
     </div>
 

@@ -10,7 +10,12 @@
       padding: 0;
       box-sizing: border-box;
     }
+    html, body {
+      height: 100%;
+    }
     body {
+      display: flex;
+      flex-direction: column;
       font-family: 'Segoe UI', sans-serif;
       background-color: #f9f9fb;
       color: #333;
@@ -39,6 +44,7 @@
       padding: 40px 20px;
       max-width: 800px;
       margin: auto;
+      flex: 1;
     }
     section h2 {
       color: #003366;
@@ -53,7 +59,6 @@
       background: #003366;
       color: white;
       padding: 15px;
-      margin-top: 30px;
     }
   </style>
 </head>

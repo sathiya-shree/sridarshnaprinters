@@ -32,15 +32,15 @@
       animation: fadeInDown 1s ease;
     }
 
- header h1 {
-  font-family: 'Quicksand', sans-serif;
-  font-size: 3rem;
-  font-weight: 500;
-  color: #ffffff;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
-  animation: nameEffect 1.8s ease-in-out forwards;
-  opacity: 0;
-}
+    header h1 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 3rem;
+      font-weight: 500;
+      color: #ffffff;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+      animation: nameEffect 1.8s ease-in-out forwards;
+      opacity: 0;
+    }
 
     header h2 {
       font-size: 1.5rem;
@@ -51,16 +51,15 @@
       animation: fadeInUp 1.5s ease;
       font-family: 'Quicksand', sans-serif;
     }
+
     .glowing-text {
-  font-family: 'Codystar', cursive;
-  font-size: 2rem;
-  color: #fff;
-  text-align: center;
-  margin-top: 30px;
-  -webkit-animation: glow 2s ease-in-out infinite alternate;
-  -moz-animation: glow 2s ease-in-out infinite alternate;
-  animation: glow 2s ease-in-out infinite alternate;
-}
+      font-family: 'Codystar', cursive;
+      font-size: 2rem;
+      color: #fff;
+      text-align: center;
+      margin-top: 30px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
 
     @keyframes nameEffect {
       0% { transform: translateY(-30px); opacity: 0; }
@@ -205,45 +204,24 @@
     }
 
     .tagline {
-  font-family: 'Merriweather', serif; /* Adds elegance */
-  font-size: 1.4rem;
-  font-weight: 400;
-  color: #f0f0f0;
-  margin-top: 10px;
-  padding: 0 20px;
-  text-align: center;
-  letter-spacing: 0.5px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  padding-top: 10px;
-  opacity: 0;
-  animation: fadeInTagline 2s ease forwards 0.5s;
-}
+      font-family: 'Merriweather', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: #f0f0f0;
+      margin-top: 10px;
+      padding: 0 20px;
+      text-align: center;
+      letter-spacing: 0.5px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 10px;
+      opacity: 0;
+      animation: fadeInTagline 2s ease forwards 0.5s;
+    }
 
     @keyframes fadeInTagline {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-    @keyframes nameEffect {
-  0% {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  60% {
-    opacity: 0.5;
-    transform: translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-20px); }
@@ -321,45 +299,28 @@
     </div>
     <div class="card">
       <h3>Fast & Reliable Service</h3>
-      <p>We value your time. Expect quick turnarounds and dependable customer support on every order.</p>
+      <p>We respect your deadlines and are committed to delivering top-quality prints on time, every time.</p>
     </div>
   </section>
 
-  <footer id="footer">
+  <footer>
     <div class="footer-container">
       <div class="contact-info">
-        <h3>Contact</h3>
-        <div class="contact-details">
-          <p><strong>Email:</strong> contact@pixelprint.com</p>
-          <p><strong>Phone:</strong> +91 9876543210</p>
-          <p><strong>Location:</strong> Coimbatore, Tamil Nadu</p>
-          <p>Available: Mon–Fri 10AM–6PM GMT</p>
-          <p>Sat/Sun: Not Online</p>
-        </div>
+        <h3>Contact Us</h3>
+        <p>Email: info@darshnaprinters.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Address: 123, Printing Lane, Coimbatore, Tamil Nadu</p>
       </div>
 
       <div class="social-section">
-        <h2>Social</h2>
-        <ul>
-          <li><a href="https://linkedin.com/in/yourname" target="_blank">LinkedIn</a></li>
-          <li><a href="https://github.com/yourname" target="_blank">GitHub</a></li>
-          <li><a href="https://instagram.com/yourname" target="_blank">Instagram</a></li>
-        </ul>
+        <h3>Follow Us</h3>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
       </div>
     </div>
-
-    <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; padding-top: 20px;">
-      <a href="#footer" class="work-btn">Work With Us</a>
-    </div>
-
-    <div style="width: 100%; text-align: center; margin-top: 30px;">
-      <p>&copy; <span id="year">2025</span> Sri Darshna Printers. All rights reserved.</p>
-    </div>
+    <p style="text-align:center; margin-top: 20px;">&copy; 2025 Sri Darshna Printers. All rights reserved.</p>
   </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 
 </body>
 </html>

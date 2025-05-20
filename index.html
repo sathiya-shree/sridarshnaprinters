@@ -4,14 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sri Darshna Printers</title>
-
-  <!-- AOS Animate On Scroll Library -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
   <style>
+    :root {
+      --dark-blue: #0a1f44;
+      --medium-blue: #1e3a8a;
+      --accent-blue: #3b82f6;
+      --light-bg: #f9f9f9;
+      --white: #ffffff;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -20,206 +22,222 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #e0f7fa, #e1f5fe);
-      color: #0d1b2a;
-      overflow-x: hidden;
+      background-color: var(--light-bg);
+      color: #333;
     }
 
     header {
-      background: linear-gradient(to right, #1565c0, #1e88e5);
-      color: #e3f2fd;
+      background-color: var(--dark-blue);
+      color: var(--white);
       padding: 20px 40px;
       text-align: center;
-      animation: fadeIn 2s ease;
     }
 
     header h1 {
+      margin: 0;
       font-size: 2.5rem;
-      color: #bbdefb;
+    }
+
+    .tagline {
+      margin-top: 5px;
+      font-weight: 300;
+      font-size: 1rem;
+      color: #ddd;
     }
 
     nav {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 15px 0;
-      background: #0d47a1;
+      margin-top: 15px;
     }
 
     nav a {
-      color: #bbdefb;
+      color: var(--white);
       text-decoration: none;
+      margin: 0 15px;
       font-weight: 500;
-      transition: color 0.3s ease;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--accent-blue);
+      transition: 0.3s;
     }
 
     nav a:hover {
-      color: #ffffff;
+      color: var(--accent-blue);
     }
 
-    .welcome {
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .banner img {
+      width: 100%;
+      height: auto;
+      max-height: 500px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about {
+      padding: 60px 20px;
       text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(to right, #2196f3, #42a5f5);
-      color: white;
-      animation: fadeInSlide 2s ease;
+      background-color: var(--white);
     }
 
-    .welcome h2 {
-      font-size: 2.5rem;
+    .about h2 {
+      font-size: 2rem;
       margin-bottom: 20px;
-      color: #e3f2fd;
+      color: var(--medium-blue);
     }
 
-    .welcome p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: auto;
+    .about p {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.1rem;
       line-height: 1.6;
     }
 
     .highlights {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 30px;
       padding: 60px 20px;
-      background: #0d47a1;
-      flex-wrap: wrap;
+      background-color: var(--light-bg);
     }
 
-    .highlights .card {
-      background: linear-gradient(to bottom right, #2196f3, #64b5f6);
+    .card {
+      background-color: var(--white);
       padding: 30px;
-      border-radius: 15px;
-      width: 280px;
-      color: #fff;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      max-width: 300px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-top: 5px solid var(--accent-blue);
     }
 
-    .highlights .card:hover {
+    .card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     }
 
-    .highlights h3 {
-      margin-bottom: 15px;
-      font-size: 24px;
+    .card h3 {
+      margin-top: 0;
+      color: var(--medium-blue);
     }
 
-    .highlights p {
-      font-size: 16px;
+    .card p {
+      font-size: 0.95rem;
       line-height: 1.5;
     }
 
     footer {
-      background: linear-gradient(-45deg, #1565c0, #1e88e5, #1565c0, #1e88e5);
-      background-size: 400% 400%;
-      animation: gradientFooter 12s ease infinite;
-      padding: 40px 20px;
-      color: white;
-      text-align: center;
+      background-color: var(--dark-blue);
+      color: #ccc;
+      padding: 40px 20px 20px;
     }
 
     .footer-container {
       display: flex;
-      justify-content: space-around;
       flex-wrap: wrap;
-      max-width: 1000px;
-      margin: auto;
-      gap: 40px;
-      padding-bottom: 20px;
+      justify-content: space-around;
+      gap: 30px;
     }
 
-    .contact-info, .social-section {
-      flex: 1 1 300px;
-      text-align: left;
+    .footer-container div {
+      max-width: 300px;
     }
 
-    .contact-info h3, .social-section h3 {
+    footer h3 {
+      font-size: 1.2rem;
       margin-bottom: 15px;
-      font-size: 22px;
+      color: var(--white);
     }
 
+    footer p,
     footer a {
-      color: #bbdefb;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #ccc;
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: color 0.3s;
     }
 
     footer a:hover {
-      color: #ffffff;
-      text-decoration: underline;
+      color: var(--accent-blue);
     }
 
     .copyright {
-      font-size: 14px;
-      opacity: 0.7;
-      margin-top: 20px;
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #999;
     }
 
-    /* Animations */
-    @keyframes gradientFooter {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    @keyframes fadeInSlide {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
+    @media (max-width: 768px) {
+      .highlights {
+        flex-direction: column;
+        align-items: center;
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Sri Darshna Printers</h1>
+    <div style="display: flex; align-items: center; justify-content: center; position: relative;">
+      <img src="logo.png" alt="Logo" style="height: 40px; position: absolute; left: 20px;" />
+      <h1>Sri Darshna Printers</h1>
+    </div>
+    <h2 class="tagline">Printing your imagination, one design at a time.</h2>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
   </header>
 
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Services</a>
-    <a href="#">Portfolio</a>
-    <a href="#">Contact</a>
-  </nav>
+  <div class="banner">
+    <img src="computer.jpg" alt="Design Banner" />
+  </div>
 
-  <section class="welcome" data-aos="fade-up">
-    <h2>Welcome to <span style="color:#bbdefb;">Sri Darshna Printers</span></h2>
+  <section class="about">
+    <h2>Welcome to Sri Darshna Printers</h2>
     <p>
-      We bring your ideas to life with vibrant prints and creative designs. From business cards to brochures,
-      logos to large format prints, our team delivers excellence with every order. With years of experience
-      and a passion for design, we make your brand stand out.
+      We bring your ideas to life with vibrant prints and creative designs. From business cards to brochures, logos to large format prints, our team delivers excellence with every order. With years of experience and a passion for design, we make your brand stand out.
     </p>
   </section>
 
   <section class="highlights">
-    <div class="card" data-aos="zoom-in">
+    <div class="card">
       <h3>Premium Quality Prints</h3>
       <p>We use high-grade materials and the latest printing technology to ensure stunning results every time.</p>
     </div>
-    <div class="card" data-aos="zoom-in" data-aos-delay="100">
+    <div class="card">
       <h3>Creative Graphic Design</h3>
       <p>From logos to flyers, our design team crafts visuals that capture attention and communicate your message.</p>
     </div>
-    <div class="card" data-aos="zoom-in" data-aos-delay="200">
+    <div class="card">
       <h3>Fast & Reliable Service</h3>
       <p>We respect your deadlines and are committed to delivering top-quality prints on time, every time.</p>
     </div>
   </section>
 
-  <footer data-aos="fade-up">
+  <footer>
     <div class="footer-container">
       <div class="contact-info">
         <h3>Contact Us</h3>
@@ -239,10 +257,5 @@
     </div>
   </footer>
 
-  <!-- AOS Script -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1000 });
-  </script>
 </body>
 </html>

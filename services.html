@@ -14,22 +14,25 @@
 
     body {
       font-family: 'Quicksand', sans-serif;
-      background-color: #ffffff;
-      color: #002366;
+      background-color: #f9f9fb;
+      color: #333;
       line-height: 1.6;
     }
 
     header {
-      background-color: #002366;
-      color: #ffffff;
+      background: linear-gradient(to right, #000000, #1a1a1a);
+      color: white;
       padding: 20px;
       text-align: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     header h1 {
+      font-family: 'Quicksand', sans-serif;
       font-size: 3rem;
       font-weight: 500;
+      color: #ffffff;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
     }
 
     nav {
@@ -37,16 +40,17 @@
     }
 
     nav a {
-      color: #ffffff;
-      margin: 0 15px;
+      color: #f0f0f0;
+      margin: 0 12px;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.3s ease, text-shadow 0.3s ease;
+      font-family: 'Quicksand', sans-serif;
     }
 
     nav a:hover {
       color: #ffc107;
-      text-shadow: 0 0 6px #ffc107;
+      text-shadow: 0 0 5px #ffc107, 0 0 10px #ffc107;
     }
 
     .services-section {
@@ -57,47 +61,50 @@
     }
 
     .services-section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 50px;
-      color: #002366;
+      color: #000000;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 500;
     }
 
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 30px;
+      gap: 25px;
       padding: 0 10px;
     }
 
     .service-card {
-      background-color: #ffffff;
-      border: 2px solid #002366;
+      background-color: #fff;
+      border: 2px solid #f0f0f0;
       padding: 20px;
       border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 35, 102, 0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .service-card:hover {
       border-color: #ffc107;
-      box-shadow: 0 6px 15px rgba(0, 35, 102, 0.2);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transform: translateY(-5px);
     }
 
     .service-card h3 {
       font-size: 1.3em;
-      color: #002366;
-      margin-bottom: 12px;
+      color: #000000;
+      margin-bottom: 10px;
+      font-weight: 500;
     }
 
     .service-card p {
       font-size: 0.95rem;
-      color: #444;
+      color: #555;
     }
 
     footer {
-      background-color: #001b47;
-      color: #ffffff;
+      background-color: #222;
+      color: #ccc;
       padding: 40px 20px 20px;
       margin-top: 60px;
     }
@@ -116,13 +123,16 @@
     footer h3 {
       font-size: 1.2rem;
       margin-bottom: 15px;
-      color: #ffffff;
+      color: #fff;
+      font-weight: 500;
     }
 
     footer a, footer p {
-      color: #dddddd;
+      color: #ccc;
       font-size: 0.95rem;
+      line-height: 1.6;
       text-decoration: none;
+      font-family: 'Quicksand', sans-serif;
     }
 
     footer a:hover {
@@ -132,7 +142,7 @@
     .copyright {
       text-align: center;
       font-size: 0.85rem;
-      color: #cccccc;
+      color: #999;
       margin-top: 30px;
     }
 

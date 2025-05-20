@@ -3,87 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact - Sri Darshna Printers</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet"/>
+  <title>Contact Us | Sri Darshna Printers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Quicksand', sans-serif;
-    }
-    body {
-      background-color: #fdfdfd;
-      color: #333;
-    }
-    header {
-      background-color: #3f51b5;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .logo-nav {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .logo {
-      height: 60px;
-    }
-    nav {
-      margin-top: 0.5rem;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 1rem;
-      font-weight: bold;
-    }
-    nav a.active, nav a:hover {
-      text-decoration: underline;
-    }
-    main {
-      padding: 2rem;
-    }
-    .contact-info {
-      line-height: 1.8;
-    }
-    footer {
-      background-color: #3f51b5;
-      color: white;
+    .contact-section {
+      background-color: var(--white);
+      padding: 60px 20px;
       text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
+    }
+
+    .contact-section form {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .contact-section input,
+    .contact-section textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    .contact-section button {
+      background-color: var(--accent-blue);
+      color: var(--white);
+      padding: 10px 20px;
+      border: none;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .contact-section button:hover {
+      background-color: var(--medium-blue);
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo-nav">
-      <img src="images/logo.png" alt="Sri Darshna Printers Logo" class="logo"/>
+    <div style="display: flex; align-items: center; justify-content: center; position: relative;">
+      <img src="logo.png" alt="Logo" style="height: 40px; position: absolute; left: 20px;" />
       <h1>Sri Darshna Printers</h1>
     </div>
+    <h2 class="tagline">Printing your imagination, one design at a time.</h2>
     <nav>
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html" class="active">Contact</a>
+      <a href="gallery.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <main>
-    <h2>Contact Us</h2>
-    <div class="contact-info">
-      <p><strong>Address:</strong> 61/1A, Palani Road, Udumalpet - 642126</p>
-      <p><strong>Phone:</strong> +91 9486455466</p>
-      <p><strong>Email:</strong> sdsprinters@gmail.com</p>
-    </div>
-  </main>
+  <section class="contact-section">
+    <h2>Get in Touch</h2>
+    <p>Have a question or need a quote? Fill out the form and we’ll get back to you shortly.</p>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <input type="text" placeholder="Subject" />
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
 
   <footer>
-    <p>&copy; 2025 Sri Darshna Printers. All rights reserved.</p>
+    <div class="footer-container">
+      <div>
+        <h3>Contact Us</h3>
+        <p>Email: info@sridarshnaprinters.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Address: 123 Printing Street, Coimbatore, Tamil Nadu</p>
+      </div>
+      <div>
+        <h3>Follow Us</h3>
+        <a href="#">Facebook</a><br>
+        <a href="#">Instagram</a><br>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Sri Darshna Printers. All rights reserved.</p>
+    </div>
   </footer>
 </body>
 </html>

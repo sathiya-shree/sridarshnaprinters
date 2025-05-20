@@ -3,77 +3,104 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Our Portfolio | Sri Darshna Printers</title>
+  <title>Our Portfolio - Sri Darshna Printers</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css">
   <style>
-    .gallery {
+    :root {
+      --dark-blue: #0a1f44;
+      --medium-blue: #1e3a8a;
+      --accent-blue: #3b82f6;
+      --light-bg: #f9f9f9;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-bg);
+      color: #333;
+    }
+
+    header, footer {
+      background-color: var(--dark-blue);
+      color: var(--white);
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav a {
+      color: var(--white);
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--accent-blue);
+    }
+
+    h1 {
+      color: var(--medium-blue);
+      text-align: center;
+      margin: 40px 0 20px;
+    }
+
+    .gallery-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 20px;
-      padding: 60px 20px;
-      background-color: var(--white);
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
     }
 
-    .gallery img {
+    .gallery-container img {
       width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
     }
 
-    .gallery img:hover {
+    .gallery-container img:hover {
       transform: scale(1.05);
+    }
+
+    footer p {
+      font-size: 0.85rem;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div style="display: flex; align-items: center; justify-content: center; position: relative;">
-      <img src="logo.png" alt="Logo" style="height: 40px; position: absolute; left: 20px;" />
-      <h1>Sri Darshna Printers</h1>
-    </div>
-    <h2 class="tagline">Printing your imagination, one design at a time.</h2>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="gallery.html">Portfolio</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <section class="about">
-    <h2>Our Portfolio</h2>
-    <p>Take a glimpse at our finest works – where imagination meets precision printing.</p>
-  </section>
+<header>
+  <h1>Sri Darshna Printers</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-  <section class="gallery">
-    <img src="gallery1.jpg" alt="Sample Work 1" />
-    <img src="gallery2.jpg" alt="Sample Work 2" />
-    <img src="gallery3.jpg" alt="Sample Work 3" />
-    <img src="gallery4.jpg" alt="Sample Work 4" />
-    <img src="gallery5.jpg" alt="Sample Work 5" />
-    <img src="gallery6.jpg" alt="Sample Work 6" />
-  </section>
+<h1>Our Portfolio</h1>
+<div class="gallery-container">
+  <img src="portfolio1.jpg" alt="Business Cards Sample">
+  <img src="portfolio2.jpg" alt="Wedding Invitation Sample">
+  <img src="portfolio3.jpg" alt="Banner Print">
+  <img src="portfolio4.jpg" alt="Flyer Design">
+  <img src="portfolio5.jpg" alt="Brochure Sample">
+  <img src="portfolio6.jpg" alt="Custom Packaging">
+</div>
 
-  <footer>
-    <div class="footer-container">
-      <div>
-        <h3>Contact Us</h3>
-        <p>Email: info@sridarshnaprinters.com</p>
-        <p>Phone: +91 98765 43210</p>
-        <p>Address: 123 Printing Street, Coimbatore, Tamil Nadu</p>
-      </div>
-      <div>
-        <h3>Follow Us</h3>
-        <a href="#">Facebook</a><br>
-        <a href="#">Instagram</a><br>
-        <a href="#">Twitter</a>
-      </div>
-    </div>
-    <div class="copyright">
-      <p>&copy; 2025 Sri Darshna Printers. All rights reserved.</p>
-    </div>
-  </footer>
+<footer>
+  <p>&copy; 2025 Sri Darshna Printers. All rights reserved.</p>
+</footer>
+
 </body>
 </html>

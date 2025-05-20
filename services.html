@@ -3,75 +3,128 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Our Services | Sri Darshna Printers</title>
+  <title>Our Services - Sri Darshna Printers</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --dark-blue: #0a1f44;
+      --medium-blue: #1e3a8a;
+      --accent-blue: #3b82f6;
+      --light-bg: #f9f9f9;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-bg);
+      color: #333;
+    }
+
+    header, footer {
+      background-color: var(--dark-blue);
+      color: var(--white);
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav a {
+      color: var(--white);
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--accent-blue);
+    }
+
+    h1, h2 {
+      color: var(--medium-blue);
+      margin-bottom: 20px;
+    }
+
+    .service-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 60px 20px;
+    }
+
+    .service-card {
+      background: var(--white);
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      width: 300px;
+      transition: 0.3s;
+      border-top: 5px solid var(--accent-blue);
+    }
+
+    .service-card:hover {
+      transform: scale(1.03);
+    }
+
+    .service-card h3 {
+      color: var(--medium-blue);
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    footer p {
+      font-size: 0.85rem;
+      color: #ccc;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div style="display: flex; align-items: center; justify-content: center; position: relative;">
-      <img src="logo.png" alt="Logo" style="height: 40px; position: absolute; left: 20px;" />
-      <h1>Sri Darshna Printers</h1>
-    </div>
-    <h2 class="tagline">Printing your imagination, one design at a time.</h2>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="gallery.html">Portfolio</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <section class="about">
-    <h2>Our Services</h2>
-    <p>We offer a wide range of customized printing and design services to cater to every business and personal need.</p>
-  </section>
+<header>
+  <h1>Sri Darshna Printers</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="gallery.html">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-  <section class="highlights">
-    <div class="card">
-      <h3>Business Cards</h3>
-      <p>Make a lasting impression with our professionally crafted business cards.</p>
-    </div>
-    <div class="card">
-      <h3>Brochures & Flyers</h3>
-      <p>Catch eyes and hearts with engaging promotional materials.</p>
-    </div>
-    <div class="card">
-      <h3>Logo Design</h3>
-      <p>Stand out with a unique and memorable brand identity.</p>
-    </div>
-    <div class="card">
-      <h3>Posters & Banners</h3>
-      <p>Vibrant, high-quality visuals for events, promotions, and displays.</p>
-    </div>
-    <div class="card">
-      <h3>Invitation Cards</h3>
-      <p>From weddings to corporate events – invite with elegance and charm.</p>
-    </div>
-    <div class="card">
-      <h3>Customized Gifts</h3>
-      <p>Print your memories on mugs, t-shirts, calendars, and more!</p>
-    </div>
-  </section>
+<section class="service-list">
+  <div class="service-card">
+    <h3>Offset & Digital Printing</h3>
+    <p>High-volume offset printing for bulk orders and sharp digital printing for vibrant, crisp details.</p>
+  </div>
+  <div class="service-card">
+    <h3>Graphic Design</h3>
+    <p>From logos to banners, our designers turn your vision into reality with professional creativity.</p>
+  </div>
+  <div class="service-card">
+    <h3>Business Stationery</h3>
+    <p>Visiting cards, envelopes, and letterheads that match your branding and leave a lasting impression.</p>
+  </div>
+  <div class="service-card">
+    <h3>Wedding & Event Cards</h3>
+    <p>Elegant invitation cards tailored for every celebration with premium finish and design.</p>
+  </div>
+  <div class="service-card">
+    <h3>Large Format Printing</h3>
+    <p>Posters, banners, standees, and signage printed in high resolution for indoor and outdoor use.</p>
+  </div>
+</section>
 
-  <footer>
-    <div class="footer-container">
-      <div>
-        <h3>Contact Us</h3>
-        <p>Email: info@sridarshnaprinters.com</p>
-        <p>Phone: +91 98765 43210</p>
-        <p>Address: 123 Printing Street, Coimbatore, Tamil Nadu</p>
-      </div>
-      <div>
-        <h3>Follow Us</h3>
-        <a href="#">Facebook</a><br>
-        <a href="#">Instagram</a><br>
-        <a href="#">Twitter</a>
-      </div>
-    </div>
-    <div class="copyright">
-      <p>&copy; 2025 Sri Darshna Printers. All rights reserved.</p>
-    </div>
-  </footer>
+<footer>
+  <p>&copy; 2025 Sri Darshna Printers. All rights reserved.</p>
+</footer>
+
 </body>
 </html>

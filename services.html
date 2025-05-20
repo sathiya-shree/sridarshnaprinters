@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Our Services | Sri Darshna Printers</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
   <style>
-    /* Reset and Base Styles */
     * {
       margin: 0;
       padding: 0;
@@ -20,9 +19,8 @@
       line-height: 1.6;
     }
 
-    /* Header */
     header {
-      background: linear-gradient(to right, #004e92, #000428);
+      background: linear-gradient(to right, #000000, #1a1a1a);
       color: white;
       padding: 20px;
       text-align: center;
@@ -31,9 +29,14 @@
 
     header h1 {
       font-family: 'Quicksand', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 600;
-      margin-bottom: 10px;
+      font-size: 3rem;
+      font-weight: 500;
+      color: #ffffff;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    nav {
+      margin-top: 10px;
     }
 
     nav a {
@@ -41,15 +44,14 @@
       margin: 0 12px;
       text-decoration: none;
       font-weight: bold;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
     }
 
-    nav a.active,
     nav a:hover {
       color: #ffc107;
+      text-shadow: 0 0 5px #ffc107, 0 0 10px #ffc107;
     }
 
-    /* Services Section */
     .services-section {
       padding: 50px 20px;
       max-width: 1200px;
@@ -58,7 +60,7 @@
     }
 
     .services-section h2 {
-      color: #003366;
+      color: #000000;
       font-size: 2.2em;
       margin-bottom: 40px;
     }
@@ -77,9 +79,6 @@
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.6s forwards;
     }
 
     .service-card:hover {
@@ -88,15 +87,9 @@
       transform: translateY(-5px);
     }
 
-    .service-card img {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 15px;
-    }
-
     .service-card h3 {
       font-size: 1.2em;
-      color: #004e92;
+      color: #000000;
       margin-bottom: 10px;
     }
 
@@ -105,28 +98,12 @@
       color: #555;
     }
 
-    /* Footer */
     footer {
-      background: #003366;
+      background: #000000;
       color: white;
       text-align: center;
-      padding: 20px;
+      padding: 15px;
       margin-top: 50px;
-    }
-
-    /* Animations */
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .services-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      }
     }
   </style>
 </head>
@@ -144,71 +121,19 @@
   <main class="services-section">
     <h2>Our Printing & Designing Services</h2>
     <div class="services-grid">
-      <div class="service-card">
-        <img src="images/flex-printing.png" alt="Flex Printing Icon">
-        <h3>Flex Printing</h3>
-        <p>High-quality flex banners for all your advertising needs.</p>
-      </div>
-      <div class="service-card">
-        <img src="images/visiting-cards.png" alt="Visiting Cards Icon">
-        <h3>Multi-color Visiting Cards</h3>
-        <p>Professional and vibrant visiting cards to make a lasting impression.</p>
-      </div>
-      <div class="service-card">
-        <img src="images/brochures.png" alt="Brochures Icon">
-        <h3>Brochures</h3>
-        <p>Informative and visually appealing brochures for your business.</p>
-      </div>
-      <div class="service-card">
-        <img src="images/posters.png" alt="Posters Icon">
-        <h3>Posters</h3>
-        <p>Eye-catching posters to promote your events and products.</p>
-      </div>
-      <div class="service-card">
-        <img src="images/notices.png" alt="Notices Icon">
-        <h3>Notices</h3>
-        <p>Clear and concise notices for effective communication.</p>
-      </div>
-      <div class="service-card">
-        <img src="images/invitations.png" alt="Invitations Icon">
-        <h3>Invitations</h3>
-        <p>Elegant invitation cards for all occasions.</p>
-      </div>
-      <div class="service-card">
-        <img src="images/name-plates.png" alt="Name Plates Icon">
-        <h3>Name Plates</h3>
-        <p>Customized name plates for offices and homes.</p>
-      </div>
-      <div class="service-card">
-        <img src="images/sunpacks.png" alt="Sunpacks Icon">
-        <h3>Sunpacks</h3>
-        <p>Durable sunpack boards for outdoor advertising.</p>
-      </div>
-      <div class="service-card">
-        <img src="images/labels.png" alt="Labels Icon">
-        <h3>Labels</h3>
-        <p>High-quality labels for products and packaging.</p>
-      </div>
-      <div class="service-card">
-        <img src="images/book-work.png" alt="Book Work Icon">
-        <h3>Book Work</h3>
-        <p>Comprehensive book printing and binding services.</p>
-      </div>
-      <div class="service-card">
-        <img src="images/id-cards.png" alt="ID Cards Icon">
-        <h3>ID Cards</h3>
-        <p>Personalized ID cards for schools, companies, and events.</p>
-      </div>
-      <div class="service-card">
-        <img src="images/stickers.png" alt="Stickers Icon">
-        <h3>Stickers</h3>
-        <p>Custom stickers in various sizes and designs.</p>
-      </div>
-      <div class="service-card">
-        <img src="images/covers.png" alt="Covers Icon">
-        <h3>Covers</h3>
-        <p>Protective and decorative covers for books and documents.</p>
-      </div>
+      <div class="service-card"><h3>Flex Printing</h3></div>
+      <div class="service-card"><h3>Multi-color Visiting Cards</h3></div>
+      <div class="service-card"><h3>Brochures</h3></div>
+      <div class="service-card"><h3>Posters</h3></div>
+      <div class="service-card"><h3>Notices</h3></div>
+      <div class="service-card"><h3>Invitations</h3></div>
+      <div class="service-card"><h3>Name Plates</h3></div>
+      <div class="service-card"><h3>Sunpacks</h3></div>
+      <div class="service-card"><h3>Labels</h3></div>
+      <div class="service-card"><h3>Book Work</h3></div>
+      <div class="service-card"><h3>ID Cards</h3></div>
+      <div class="service-card"><h3>Stickers</h3></div>
+      <div class="service-card"><h3>Covers</h3></div>
     </div>
   </main>
 

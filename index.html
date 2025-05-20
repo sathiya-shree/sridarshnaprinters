@@ -2,29 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sri Darshna Printers</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --primary-dark: #1e3a8a;
-      --primary-light: #e0e7ff;
-      --text-muted: #94a3b8;
-      --footer-text: #cbd5e1;
-      --highlight-bg: #e2e8f0;
-      --accent: #ffce00;
-    }
+  <!-- Particles.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
+  <style>
     body {
       margin: 0;
       font-family: 'Quicksand', sans-serif;
       background-color: #f9f9f9;
-      color: var(--primary-dark);
+      color: #333;
+      position: relative;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
     }
 
     header {
-      background-color: var(--primary-dark);
+      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
       color: white;
       padding: 20px 40px;
       text-align: center;
@@ -40,15 +44,17 @@
       margin-top: 5px;
       font-weight: 300;
       font-size: 1rem;
-      color: var(--primary-light);
+      color: #eee;
     }
 
     nav {
       margin-top: 15px;
+      opacity: 0;
+      animation: navFade 1s ease-in-out 1.5s forwards;
     }
 
     nav a {
-      color: var(--primary-light);
+      color: #f0f0f0;
       text-decoration: none;
       margin: 0 15px;
       font-weight: 500;
@@ -63,12 +69,12 @@
       height: 2px;
       bottom: -4px;
       left: 0;
-      background-color: var(--accent);
+      background-color: #fff;
       transition: 0.3s;
     }
 
     nav a:hover {
-      color: var(--accent);
+      color: #ffce00;
     }
 
     nav a:hover::after {
@@ -87,12 +93,13 @@
       padding: 60px 20px;
       text-align: center;
       background-color: #fff;
+      animation: fadeUp 1.2s ease-out;
     }
 
     .about h2 {
       font-size: 2rem;
       margin-bottom: 20px;
-      color: var(--primary-dark);
+      color: #222;
     }
 
     .about p {
@@ -108,26 +115,26 @@
       justify-content: center;
       gap: 30px;
       padding: 60px 20px;
-      background-color: var(--highlight-bg);
+      background-color: #eaf2ff;
     }
 
     .card {
       background-color: white;
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       max-width: 300px;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
 
     .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 6px 20px rgba(30, 58, 138, 0.2);
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
 
     .card h3 {
       margin-top: 0;
-      color: var(--primary-dark);
+      color: #333;
     }
 
     .card p {
@@ -136,8 +143,8 @@
     }
 
     footer {
-      background-color: var(--primary-dark);
-      color: var(--footer-text);
+      background-color: #1e1e1e;
+      color: #ccc;
       padding: 40px 20px 20px;
     }
 
@@ -161,13 +168,13 @@
     footer p, footer a {
       font-size: 0.95rem;
       line-height: 1.6;
-      color: var(--footer-text);
+      color: #ccc;
       text-decoration: none;
       transition: color 0.3s;
     }
 
     footer a:hover {
-      color: var(--accent);
+      color: #ffce00;
     }
 
     footer p:last-child {
@@ -178,7 +185,24 @@
       text-align: center;
       margin-top: 30px;
       font-size: 0.9rem;
-      color: var(--text-muted);
+      color: #999;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes navFade {
+      to {
+        opacity: 1;
+      }
     }
 
     @media (max-width: 768px) {
@@ -198,6 +222,9 @@
 
 <body>
 
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+
   <header>
     <div style="display: flex; align-items: center; justify-content: center; position: relative;">
       <img src="logo.png" alt="Logo" style="height: 40px; position: absolute; left: 20px;" />
@@ -214,7 +241,7 @@
   </header>
 
   <div class="banner">
-    <img src="pexels.jpg" alt="Design Banner" />
+    <img src="computer.jpg" alt="Design Banner" />
   </div>
 
   <section class="about">
@@ -258,6 +285,63 @@
       <p>&copy; 2025 Sri Darshna Printers. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- Initialize Particles.js -->
+  <script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 40,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          }
+        },
+        "opacity": {
+          "value": 0.3,
+          "random": true
+        },
+        "size": {
+          "value": 3,
+          "random": true
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.2,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out"
+        }
+      },
+      "interactivity": {
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
 
 </body>
 </html>

@@ -2,36 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sri Darshna Printers</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
+      margin: 0;
       font-family: 'Quicksand', sans-serif;
       background-color: #f9f9f9;
       color: #333;
     }
+
     header {
       background-color: #333;
       color: white;
       padding: 20px 40px;
       text-align: center;
     }
+
     header h1 {
       margin: 0;
       font-size: 2.5rem;
     }
+
     .tagline {
       margin-top: 5px;
       font-weight: 300;
       font-size: 1rem;
       color: #ddd;
     }
+
     nav {
       margin-top: 15px;
     }
+
     nav a {
       color: #f0f0f0;
       text-decoration: none;
@@ -40,6 +45,7 @@
       position: relative;
       transition: color 0.3s;
     }
+
     nav a::after {
       content: "";
       position: absolute;
@@ -50,12 +56,15 @@
       background-color: #fff;
       transition: 0.3s;
     }
+
     nav a:hover {
       color: #ffce00;
     }
+
     nav a:hover::after {
       width: 100%;
     }
+
     .banner img {
       width: 100%;
       height: auto;
@@ -63,26 +72,36 @@
       object-fit: cover;
       display: block;
     }
-    section {
+
+    .about {
       padding: 60px 20px;
-    }
-    .about, .services-section, .gallery, .contact {
       text-align: center;
+      background-color: #fff;
     }
-    .about p, .services-section p {
+
+    .about h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    .about p {
       max-width: 800px;
-      margin: auto;
+      margin: 0 auto;
       font-size: 1.1rem;
       line-height: 1.6;
     }
-    .highlights, .services-grid {
+
+    .highlights {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 30px;
-      padding-top: 30px;
+      padding: 60px 20px;
+      background-color: #f0f0f0;
     }
-    .card, .service-card {
+
+    .card {
       background-color: white;
       padding: 30px;
       border-radius: 10px;
@@ -90,46 +109,74 @@
       max-width: 300px;
       transition: transform 0.3s, box-shadow 0.3s;
     }
-    .card:hover, .service-card:hover {
+
+    .card:hover {
       transform: translateY(-10px);
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     }
-    .gallery img {
-      width: 300px;
-      margin: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    .card h3 {
+      margin-top: 0;
+      color: #333;
     }
+
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
     footer {
       background-color: #222;
       color: #ccc;
       padding: 40px 20px 20px;
     }
+
     .footer-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
       gap: 30px;
     }
-    footer a {
+
+    .footer-container div {
+      max-width: 300px;
+    }
+
+    footer h3 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    footer p, footer a {
+      font-size: 0.95rem;
+      line-height: 1.6;
       color: #ccc;
       text-decoration: none;
       transition: color 0.3s;
     }
+
     footer a:hover {
       color: #ffce00;
     }
+
+    footer p:last-child {
+      margin-bottom: 0;
+    }
+
     footer .copyright {
       text-align: center;
       margin-top: 30px;
       font-size: 0.9rem;
       color: #999;
     }
+
     @media (max-width: 768px) {
-      .highlights, .services-grid {
+      .highlights {
         flex-direction: column;
         align-items: center;
       }
+
       .footer-container {
         flex-direction: column;
         align-items: center;
@@ -147,95 +194,54 @@
       <h1>Sri Darshna Printers</h1>
     </div>
     <h2 class="tagline">Printing your imagination, one design at a time.</h2>
+
     <nav>
-      <a href="#home">Home</a>
-      <a href="#services">Services</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <section id="home">
-    <div class="banner">
-      <img src="computer.jpg" alt="Design Banner" />
-    </div>
-    <div class="about">
-      <h2>Welcome to Sri Darshna Printers</h2>
-      <p>We bring your ideas to life with vibrant prints and creative designs. From business cards to brochures, logos to large format prints, our team delivers excellence with every order. With years of experience and a passion for design, we make your brand stand out.</p>
-    </div>
-    <div class="highlights">
-      <div class="card">
-        <h3>Premium Quality Prints</h3>
-        <p>We use high-grade materials and the latest printing technology to ensure stunning results every time.</p>
-      </div>
-      <div class="card">
-        <h3>Creative Graphic Design</h3>
-        <p>From logos to flyers, our design team crafts visuals that capture attention and communicate your message.</p>
-      </div>
-      <div class="card">
-        <h3>Fast & Reliable Service</h3>
-        <p>We respect your deadlines and are committed to delivering top-quality prints on time, every time.</p>
-      </div>
-    </div>
-  </section>
+  <div class="banner">
+    <img src="computer.jpg" alt="Design Banner" />
+  </div>
 
-  <section id="services" class="services-section">
-    <h2>Our Services</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Business Card Printing</h3>
-        <p>Custom and professional designs with high-quality finishes.</p>
-      </div>
-      <div class="service-card">
-        <h3>Logo Design</h3>
-        <p>Unique brand identities tailored to your business goals.</p>
-      </div>
-      <div class="service-card">
-        <h3>Flyers & Brochures</h3>
-        <p>Creative promotional material to spread your message effectively.</p>
-      </div>
-      <div class="service-card">
-        <h3>Large Format Prints</h3>
-        <p>Banners, posters, and more with vivid color and clarity.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="gallery" class="gallery">
-    <h2>Gallery</h2>
-    <p>Take a look at some of our recent work.</p>
-    <div>
-      <img src="gallery1.jpg" alt="Sample 1" />
-      <img src="gallery2.jpg" alt="Sample 2" />
-      <img src="gallery3.jpg" alt="Sample 3" />
-    </div>
-  </section>
-
-  <section id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <p>Email: info@sridarshnaprinters.com</p>
-    <p>Phone: +91 98765 43210</p>
-    <p>Address: 123 Printing Street, Coimbatore, Tamil Nadu</p>
+  <section class="about">
+    <h2>Welcome to Sri Darshna Printers</h2>
     <p>
-      <a href="#">Facebook</a> |
-      <a href="#">Instagram</a> |
-      <a href="#">Twitter</a>
+      We bring your ideas to life with vibrant prints and creative designs. From business cards to brochures, logos to large format prints, our team delivers excellence with every order. With years of experience and a passion for design, we make your brand stand out.
     </p>
+  </section>
+
+  <section class="highlights">
+    <div class="card">
+      <h3>Premium Quality Prints</h3>
+      <p>We use high-grade materials and the latest printing technology to ensure stunning results every time.</p>
+    </div>
+    <div class="card">
+      <h3>Creative Graphic Design</h3>
+      <p>From logos to flyers, our design team crafts visuals that capture attention and communicate your message.</p>
+    </div>
+    <div class="card">
+      <h3>Fast & Reliable Service</h3>
+      <p>We respect your deadlines and are committed to delivering top-quality prints on time, every time.</p>
+    </div>
   </section>
 
   <footer>
     <div class="footer-container">
-      <div>
-        <h3>Reach Us</h3>
+      <div class="contact-info">
+        <h3>Contact Us</h3>
         <p>Email: info@sridarshnaprinters.com</p>
         <p>Phone: +91 98765 43210</p>
-        <p>123 Printing Street, Coimbatore</p>
+        <p>Address: 123 Printing Street, Coimbatore, Tamil Nadu</p>
       </div>
-      <div>
+      <div class="social-section">
         <h3>Follow Us</h3>
-        <p><a href="#">Facebook</a></p>
-        <p><a href="#">Instagram</a></p>
-        <p><a href="#">Twitter</a></p>
+        <a href="#">Facebook</a><br>
+        <a href="#">Instagram</a><br>
+        <a href="#">Twitter</a>
       </div>
     </div>
     <div class="copyright">

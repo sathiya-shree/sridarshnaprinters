@@ -16,85 +16,131 @@
       background-color: #f9f9fb;
       color: #333;
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
 
     header {
       background: linear-gradient(to right, #004e92, #000428);
       color: white;
-      padding: 20px;
+      padding: 25px 15px;
       text-align: center;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     header h1 {
       margin-bottom: 10px;
+      font-size: 2.2em;
     }
 
     nav a {
       color: #f0f0f0;
-      margin: 0 12px;
+      margin: 0 15px;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 500;
+      transition: color 0.3s ease;
     }
 
     nav a.active,
     nav a:hover {
-      text-decoration: underline;
       color: #ffc107;
+      text-decoration: underline;
     }
 
     .services-section {
-      padding: 50px 20px;
+      padding: 60px 20px;
       max-width: 1200px;
       margin: auto;
       text-align: center;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .services-section h2 {
       color: #003366;
-      font-size: 2.2em;
+      font-size: 2.5em;
       margin-bottom: 40px;
     }
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-      padding: 0 10px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 0 15px;
     }
 
     .service-card {
       background-color: #fff;
-      border: 2px solid #f0f0f0;
-      padding: 20px;
       border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 25px 20px;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+      transition: all 0.4s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,193,7,0.05), rgba(0,78,146,0.07));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 0;
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
     }
 
     .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
       border-color: #ffc107;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transform: translateY(-5px);
     }
 
     .service-card h3 {
       font-size: 1.2em;
       color: #004e92;
-      margin-bottom: 10px;
-    }
-
-    .service-card p {
-      font-size: 0.95em;
-      color: #555;
+      position: relative;
+      z-index: 1;
     }
 
     footer {
-      background: #003366;
-      color: white;
+      background: #002c4a;
+      color: #f0f0f0;
       text-align: center;
-      padding: 15px;
-      margin-top: 50px;
+      padding: 20px;
+      margin-top: 60px;
+      font-size: 0.95em;
+    }
+
+    footer p {
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .services-section h2 {
+        font-size: 1.8em;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 8px;
+      }
     }
   </style>
 </head>
@@ -130,6 +176,8 @@
 
   <footer>
     <p>&copy; 2025 Sridarshna Printers. All rights reserved.</p>
+    <p>Follow us on Facebook | Instagram | Twitter</p>
+    <p>Contact: +91-1234567890 | Email: info@sridarshnaprinters.com</p>
   </footer>
 </body>
 </html>

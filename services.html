@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Our Services - Sri Darshna Printers</title>
+  <title>Our Services | Sri Darshna Printers</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -26,105 +26,252 @@
       color: #333;
     }
 
-    header, footer {
+    header {
       background-color: var(--dark-blue);
       color: var(--white);
-      padding: 20px;
+      padding: 20px 40px;
       text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .tagline {
+      margin-top: 5px;
+      font-weight: 300;
+      font-size: 1rem;
+      color: #ddd;
+    }
+
+    nav {
+      margin-top: 15px;
     }
 
     nav a {
       color: var(--white);
-      margin: 0 15px;
       text-decoration: none;
+      margin: 0 15px;
       font-weight: 500;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--accent-blue);
+      transition: 0.3s;
     }
 
     nav a:hover {
       color: var(--accent-blue);
     }
 
-    h1, h2 {
-      color: var(--medium-blue);
-      margin-bottom: 20px;
+    nav a:hover::after {
+      width: 100%;
     }
 
-    .service-list {
+    .services-section {
+      padding: 60px 20px;
+      background-color: #f9f9f9;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .services-section h2 {
+      font-size: 2.5rem;
+      color: var(--medium-blue);
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .services-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 30px;
-      padding: 60px 20px;
     }
 
     .service-card {
-      background: var(--white);
+      background: #fff;
       padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      width: 300px;
-      transition: 0.3s;
-      border-top: 5px solid var(--accent-blue);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      width: 280px;
+      animation: slideUp 0.8s ease forwards;
+      transform: translateY(40px);
+      opacity: 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .service-card:hover {
-      transform: scale(1.03);
+      transform: translateY(-10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
     }
 
     .service-card h3 {
       color: var(--medium-blue);
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
     .service-card p {
-      font-size: 0.95rem;
-      line-height: 1.5;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #444;
     }
 
-    footer p {
-      font-size: 0.85rem;
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .service-card:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    .service-card:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+
+    .service-card:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    .service-card:nth-child(4) {
+      animation-delay: 0.8s;
+    }
+
+    footer {
+      background-color: var(--dark-blue);
       color: #ccc;
+      padding: 40px 20px 20px;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 30px;
+    }
+
+    .footer-container div {
+      max-width: 300px;
+    }
+
+    footer h3 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: var(--white);
+    }
+
+    footer p,
+    footer a {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: var(--accent-blue);
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+    @media (max-width: 768px) {
+      .services-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Sri Darshna Printers</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="services.html">Services</a>
-    <a href="gallery.html">Portfolio</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+  <header>
+    <div style="display: flex; align-items: center; justify-content: center; position: relative;">
+      <img src="logo.png" alt="Logo" style="height: 40px; position: absolute; left: 20px;" />
+      <h1>Sri Darshna Printers</h1>
+    </div>
+    <h2 class="tagline">Printing your imagination, one design at a time.</h2>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-<section class="service-list">
-  <div class="service-card">
-    <h3>Offset & Digital Printing</h3>
-    <p>High-volume offset printing for bulk orders and sharp digital printing for vibrant, crisp details.</p>
-  </div>
-  <div class="service-card">
-    <h3>Graphic Design</h3>
-    <p>From logos to banners, our designers turn your vision into reality with professional creativity.</p>
-  </div>
-  <div class="service-card">
-    <h3>Business Stationery</h3>
-    <p>Visiting cards, envelopes, and letterheads that match your branding and leave a lasting impression.</p>
-  </div>
-  <div class="service-card">
-    <h3>Wedding & Event Cards</h3>
-    <p>Elegant invitation cards tailored for every celebration with premium finish and design.</p>
-  </div>
-  <div class="service-card">
-    <h3>Large Format Printing</h3>
-    <p>Posters, banners, standees, and signage printed in high resolution for indoor and outdoor use.</p>
-  </div>
-</section>
+  <section class="services-section">
+    <h2>Our Services</h2>
+    <div class="services-container">
+      <div class="service-card">
+        <h3>Offset & Digital Printing</h3>
+        <p>High-quality printing for brochures, leaflets, posters, and more with vibrant results.</p>
+      </div>
+      <div class="service-card">
+        <h3>Custom Graphic Design</h3>
+        <p>Stand out with creative logos, marketing materials, and brand identity design.</p>
+      </div>
+      <div class="service-card">
+        <h3>Large Format Printing</h3>
+        <p>Banners, vinyls, and hoardings printed with perfect clarity and detail.</p>
+      </div>
+      <div class="service-card">
+        <h3>Business Stationery</h3>
+        <p>Design and print of visiting cards, letterheads, envelopes, and other office essentials.</p>
+      </div>
+    </div>
+  </section>
 
-<footer>
-  <p>&copy; 2025 Sri Darshna Printers. All rights reserved.</p>
-</footer>
+  <footer>
+    <div class="footer-container">
+      <div class="contact-info">
+        <h3>Contact Us</h3>
+        <p>Email: info@sridarshnaprinters.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Address: 123 Printing Street, Coimbatore, Tamil Nadu</p>
+      </div>
+      <div class="social-section">
+        <h3>Follow Us</h3>
+        <a href="#">Facebook</a><br>
+        <a href="#">Instagram</a><br>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2025 Sri Darshna Printers. All rights reserved.</p>
+    </div>
+  </footer>
 
 </body>
 </html>

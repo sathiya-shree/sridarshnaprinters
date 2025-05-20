@@ -4,191 +4,166 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sri Darshna Printers</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
 
-  <!-- Particles.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <!-- AOS Animate On Scroll Library -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
 
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Quicksand', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-      position: relative;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      top: 0;
-      left: 0;
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #eef2f3, #8e9eab);
+      color: #222;
+      overflow-x: hidden;
     }
 
     header {
-      background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+      background: #0f2027;
       color: white;
       padding: 20px 40px;
       text-align: center;
-      position: relative;
+      animation: fadeIn 2s ease;
     }
 
     header h1 {
-      margin: 0;
       font-size: 2.5rem;
     }
 
-    .tagline {
-      margin-top: 5px;
-      font-weight: 300;
-      font-size: 1rem;
-      color: #eee;
-    }
-
     nav {
-      margin-top: 15px;
-      opacity: 0;
-      animation: navFade 1s ease-in-out 1.5s forwards;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px 0;
+      background: rgba(0,0,0,0.8);
     }
 
     nav a {
-      color: #f0f0f0;
+      color: #fff;
       text-decoration: none;
-      margin: 0 15px;
       font-weight: 500;
-      position: relative;
-      transition: color 0.3s;
-    }
-
-    nav a::after {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -4px;
-      left: 0;
-      background-color: #fff;
-      transition: 0.3s;
+      transition: color 0.3s ease;
     }
 
     nav a:hover {
-      color: #ffce00;
+      color: #00ffff;
     }
 
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    .banner img {
-      width: 100%;
-      height: auto;
-      max-height: 500px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .about {
-      padding: 60px 20px;
+    .welcome {
       text-align: center;
-      background-color: #fff;
-      animation: fadeUp 1.2s ease-out;
+      padding: 80px 20px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      animation: fadeInSlide 2s ease;
     }
 
-    .about h2 {
+    .welcome h2 {
       font-size: 2rem;
       margin-bottom: 20px;
-      color: #222;
     }
 
-    .about p {
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 1.1rem;
+    .welcome p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: auto;
       line-height: 1.6;
     }
 
     .highlights {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
       gap: 30px;
       padding: 60px 20px;
-      background-color: #eaf2ff;
+      background: #112d4e;
+      flex-wrap: wrap;
     }
 
-    .card {
-      background-color: white;
+    .highlights .card {
+      background: #1e3c72;
       padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      max-width: 300px;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border-radius: 15px;
+      width: 280px;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    .highlights .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     }
 
-    .card h3 {
-      margin-top: 0;
-      color: #333;
+    .highlights h3 {
+      margin-bottom: 15px;
+      font-size: 24px;
     }
 
-    .card p {
-      font-size: 0.95rem;
+    .highlights p {
+      font-size: 16px;
       line-height: 1.5;
     }
 
     footer {
-      background-color: #1e1e1e;
-      color: #ccc;
-      padding: 40px 20px 20px;
+      background: linear-gradient(-45deg, #1e3c72, #2a5298, #1e3c72, #2a5298);
+      background-size: 400% 400%;
+      animation: gradientFooter 12s ease infinite;
+      padding: 40px 20px;
+      color: white;
+      text-align: center;
     }
 
     .footer-container {
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-around;
-      gap: 30px;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: auto;
+      gap: 40px;
+      padding-bottom: 20px;
     }
 
-    .footer-container div {
-      max-width: 300px;
+    .contact-info, .social-section {
+      flex: 1 1 300px;
+      text-align: left;
     }
 
-    footer h3 {
-      font-size: 1.2rem;
+    .contact-info h3, .social-section h3 {
       margin-bottom: 15px;
-      color: #fff;
+      font-size: 22px;
     }
 
-    footer p, footer a {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: #ccc;
+    footer a {
+      color: #a0c8f0;
       text-decoration: none;
-      transition: color 0.3s;
+      transition: color 0.3s ease;
     }
 
     footer a:hover {
-      color: #ffce00;
+      color: #fff;
+      text-decoration: underline;
     }
 
-    footer p:last-child {
-      margin-bottom: 0;
+    .copyright {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-top: 20px;
     }
 
-    footer .copyright {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 0.9rem;
-      color: #999;
+    /* Animations */
+    @keyframes gradientFooter {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    @keyframes fadeUp {
+    @keyframes fadeInSlide {
       from {
         opacity: 0;
         transform: translateY(30px);
@@ -199,74 +174,50 @@
       }
     }
 
-    @keyframes navFade {
-      to {
-        opacity: 1;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .highlights {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .footer-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- Particle Background -->
-  <div id="particles-js"></div>
-
   <header>
-    <div style="display: flex; align-items: center; justify-content: center; position: relative;">
-      <img src="logo.png" alt="Logo" style="height: 40px; position: absolute; left: 20px;" />
-      <h1>Sri Darshna Printers</h1>
-    </div>
-    <h2 class="tagline">Printing your imagination, one design at a time.</h2>
-
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <h1>Sri Darshna Printers</h1>
   </header>
 
-  <div class="banner">
-    <img src="computer.jpg" alt="Design Banner" />
-  </div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Services</a>
+    <a href="#">Portfolio</a>
+    <a href="#">Contact</a>
+  </nav>
 
-  <section class="about">
+  <section class="welcome" data-aos="fade-up">
     <h2>Welcome to Sri Darshna Printers</h2>
     <p>
-      We bring your ideas to life with vibrant prints and creative designs. From business cards to brochures, logos to large format prints, our team delivers excellence with every order. With years of experience and a passion for design, we make your brand stand out.
+      We bring your ideas to life with vibrant prints and creative designs. From business cards to brochures,
+      logos to large format prints, our team delivers excellence with every order. With years of experience
+      and a passion for design, we make your brand stand out.
     </p>
   </section>
 
   <section class="highlights">
-    <div class="card">
+    <div class="card" data-aos="zoom-in">
       <h3>Premium Quality Prints</h3>
       <p>We use high-grade materials and the latest printing technology to ensure stunning results every time.</p>
     </div>
-    <div class="card">
+    <div class="card" data-aos="zoom-in" data-aos-delay="100">
       <h3>Creative Graphic Design</h3>
       <p>From logos to flyers, our design team crafts visuals that capture attention and communicate your message.</p>
     </div>
-    <div class="card">
+    <div class="card" data-aos="zoom-in" data-aos-delay="200">
       <h3>Fast & Reliable Service</h3>
       <p>We respect your deadlines and are committed to delivering top-quality prints on time, every time.</p>
     </div>
   </section>
 
-  <footer>
+  <footer data-aos="fade-up">
     <div class="footer-container">
       <div class="contact-info">
         <h3>Contact Us</h3>
@@ -286,62 +237,10 @@
     </div>
   </footer>
 
-  <!-- Initialize Particles.js -->
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
-    particlesJS("particles-js", {
-      "particles": {
-        "number": {
-          "value": 40,
-          "density": {
-            "enable": true,
-            "value_area": 800
-          }
-        },
-        "color": {
-          "value": "#ffffff"
-        },
-        "shape": {
-          "type": "circle",
-          "stroke": {
-            "width": 0,
-            "color": "#000000"
-          }
-        },
-        "opacity": {
-          "value": 0.3,
-          "random": true
-        },
-        "size": {
-          "value": 3,
-          "random": true
-        },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#ffffff",
-          "opacity": 0.2,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 2,
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "out_mode": "out"
-        }
-      },
-      "interactivity": {
-        "events": {
-          "onhover": {
-            "enable": true,
-            "mode": "repulse"
-          }
-        }
-      },
-      "retina_detect": true
-    });
+    AOS.init({ duration: 1000 });
   </script>
-
 </body>
 </html>

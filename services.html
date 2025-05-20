@@ -4,197 +4,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Our Services | Sri Darshna Printers</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Quicksand', sans-serif;
-      background-color: #f9f9fb;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    header {
-      background: linear-gradient(to right, #000000, #1a1a1a);
-      color: white;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    header h1 {
-      font-family: 'Quicksand', sans-serif;
-      font-size: 3rem;
-      font-weight: 500;
-      color: #ffffff;
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    nav {
-      margin-top: 10px;
-    }
-
-    nav a {
-      color: #f0f0f0;
-      margin: 0 12px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-      font-family: 'Quicksand', sans-serif;
-    }
-
-    nav a:hover {
-      color: #ffc107;
-      text-shadow: 0 0 5px #ffc107, 0 0 10px #ffc107;
-    }
-
-    .services-section {
-      padding: 60px 20px;
-      max-width: 1200px;
-      margin: auto;
-      text-align: center;
-    }
-
-    .services-section h2 {
-      color: #000000;
-      font-size: 2.5em;
-      margin-bottom: 40px;
-      font-family: 'Quicksand', sans-serif;
-      font-weight: 500;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-      padding: 0 10px;
-    }
-
-    .service-card {
-      background-color: #fff;
-      border: 2px solid #f0f0f0;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .service-card:hover {
-      border-color: #ffc107;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transform: translateY(-5px);
-    }
-
-    .service-card h3 {
-      font-size: 1.3em;
-      color: #000000;
-      margin-bottom: 10px;
-      font-weight: 500;
-    }
-
-    .service-card p {
-      font-size: 0.95rem;
-      color: #555;
-    }
-
-    footer {
-      background-color: #222;
-      color: #ccc;
-      padding: 40px 20px 20px;
-      margin-top: 60px;
-    }
-
-    .footer-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      gap: 30px;
-    }
-
-    .footer-container div {
-      max-width: 300px;
-    }
-
-    footer h3 {
-      font-size: 1.2rem;
-      margin-bottom: 15px;
-      color: #fff;
-      font-weight: 500;
-    }
-
-    footer a, footer p {
-      color: #ccc;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      text-decoration: none;
-      font-family: 'Quicksand', sans-serif;
-    }
-
-    footer a:hover {
-      color: #ffc107;
-    }
-
-    .copyright {
-      text-align: center;
-      font-size: 0.85rem;
-      color: #999;
-      margin-top: 30px;
-    }
-
-    @media (max-width: 768px) {
-      .footer-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
   <header>
-    <h1>Sri Darshna Printers</h1>
+    <div style="display: flex; align-items: center; justify-content: center; position: relative;">
+      <img src="logo.png" alt="Logo" style="height: 40px; position: absolute; left: 20px;" />
+      <h1>Sri Darshna Printers</h1>
+    </div>
+    <h2 class="tagline">Printing your imagination, one design at a time.</h2>
     <nav>
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
-      <a href="gallery.html">Gallery</a>
+      <a href="gallery.html">Portfolio</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <section class="services-section">
+  <section class="about">
     <h2>Our Services</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Offset Printing</h3>
-        <p>High-volume print jobs with sharp and consistent quality—ideal for books, magazines, and brochures.</p>
-      </div>
-      <div class="service-card">
-        <h3>Digital Printing</h3>
-        <p>Perfect for small batches and urgent needs—quick turnaround without compromising quality.</p>
-      </div>
-      <div class="service-card">
-        <h3>Graphic Designing</h3>
-        <p>Creative and custom-made designs that reflect your brand’s identity and values.</p>
-      </div>
-      <div class="service-card">
-        <h3>Large Format Printing</h3>
-        <p>Banners, posters, and signage that grab attention and create impact.</p>
-      </div>
-      <div class="service-card">
-        <h3>Business Stationery</h3>
-        <p>Custom letterheads, envelopes, business cards, and more to establish your business presence.</p>
-      </div>
-      <div class="service-card">
-        <h3>Wedding & Invitation Cards</h3>
-        <p>Elegant and customized invitations for all your special occasions.</p>
-      </div>
+    <p>We offer a wide range of customized printing and design services to cater to every business and personal need.</p>
+  </section>
+
+  <section class="highlights">
+    <div class="card">
+      <h3>Business Cards</h3>
+      <p>Make a lasting impression with our professionally crafted business cards.</p>
+    </div>
+    <div class="card">
+      <h3>Brochures & Flyers</h3>
+      <p>Catch eyes and hearts with engaging promotional materials.</p>
+    </div>
+    <div class="card">
+      <h3>Logo Design</h3>
+      <p>Stand out with a unique and memorable brand identity.</p>
+    </div>
+    <div class="card">
+      <h3>Posters & Banners</h3>
+      <p>Vibrant, high-quality visuals for events, promotions, and displays.</p>
+    </div>
+    <div class="card">
+      <h3>Invitation Cards</h3>
+      <p>From weddings to corporate events – invite with elegance and charm.</p>
+    </div>
+    <div class="card">
+      <h3>Customized Gifts</h3>
+      <p>Print your memories on mugs, t-shirts, calendars, and more!</p>
     </div>
   </section>
 
@@ -217,6 +73,5 @@
       <p>&copy; 2025 Sri Darshna Printers. All rights reserved.</p>
     </div>
   </footer>
-
 </body>
 </html>

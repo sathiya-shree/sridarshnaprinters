@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sri Darshna Printers</title>
+  <title>Home | Sri Darshna Printers</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -77,71 +77,104 @@
       width: 100%;
     }
 
-    .banner img {
-      width: 100%;
-      height: auto;
-      max-height: 500px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .about {
+    section {
       padding: 60px 20px;
       text-align: center;
-      background-color: var(--white);
     }
 
-    .about h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
+    h2.section-title {
+      font-size: 2.2rem;
       color: var(--medium-blue);
+      margin-bottom: 40px;
     }
 
-    .about p {
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-      line-height: 1.6;
+    .services-overview,
+    .why-choose-us,
+    .testimonials {
+      background-color: #fff;
     }
 
-    .highlights {
+    .cards {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 30px;
-      padding: 60px 20px;
-      background-color: var(--light-bg);
     }
 
     .card {
-      background-color: var(--white);
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      max-width: 300px;
-      transition: transform 0.3s, box-shadow 0.3s;
-      border-top: 5px solid var(--accent-blue);
+      background: #f4f4f4;
+      padding: 25px;
+      border-radius: 12px;
+      width: 260px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
     }
 
     .card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      width: 50px;
+      margin-bottom: 15px;
     }
 
     .card h3 {
-      margin-top: 0;
       color: var(--medium-blue);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
     }
 
     .card p {
       font-size: 0.95rem;
-      line-height: 1.5;
+      line-height: 1.6;
+    }
+
+    .testimonial {
+      background-color: #f0f4ff;
+      border-left: 4px solid var(--accent-blue);
+      padding: 20px;
+      margin: 15px auto;
+      max-width: 500px;
+      border-radius: 8px;
+    }
+
+    .testimonial p {
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    .cta {
+      background-color: var(--medium-blue);
+      color: white;
+      padding: 40px 20px;
+      border-radius: 12px;
+    }
+
+    .cta h2 {
+      margin-bottom: 15px;
+      font-size: 2rem;
+    }
+
+    .cta a {
+      background-color: var(--accent-blue);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+
+    .cta a:hover {
+      background-color: #2563eb;
     }
 
     footer {
       background-color: var(--dark-blue);
       color: #ccc;
       padding: 40px 20px 20px;
+      margin-top: 40px;
     }
 
     .footer-container {
@@ -182,7 +215,7 @@
     }
 
     @media (max-width: 768px) {
-      .highlights {
+      .cards {
         flex-direction: column;
         align-items: center;
       }
@@ -211,32 +244,84 @@
     </nav>
   </header>
 
-  <div class="banner">
-    <img src="pexels.jpg" alt="Design Banner" />
-  </div>
-
-  <section class="about">
-    <h2>Welcome to Sri Darshna Printers</h2>
-    <p>
-      We bring your ideas to life with vibrant prints and creative designs. From business cards to brochures, logos to large format prints, our team delivers excellence with every order. With years of experience and a passion for design, we make your brand stand out.
-    </p>
+  <!-- Quick Services Overview -->
+  <section class="services-overview">
+    <h2 class="section-title">What We Offer</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="icons/print.png" alt="Printing">
+        <h3>Offset & Digital Printing</h3>
+        <p>Vibrant brochures, posters, and flyers with top-tier printing quality.</p>
+      </div>
+      <div class="card">
+        <img src="icons/design.png" alt="Design">
+        <h3>Graphic Design</h3>
+        <p>Creative logo and branding designs tailored for your business.</p>
+      </div>
+      <div class="card">
+        <img src="icons/banner.png" alt="Banner">
+        <h3>Large Format Printing</h3>
+        <p>High-resolution banners, hoardings, and vinyls for events and ads.</p>
+      </div>
+      <div class="card">
+        <img src="icons/stationery.png" alt="Stationery">
+        <h3>Business Stationery</h3>
+        <p>Prints for visiting cards, envelopes, letterheads, and more.</p>
+      </div>
+    </div>
   </section>
 
-  <section class="highlights">
-    <div class="card">
-      <h3>Premium Quality Prints</h3>
-      <p>We use high-grade materials and the latest printing technology to ensure stunning results every time.</p>
-    </div>
-    <div class="card">
-      <h3>Creative Graphic Design</h3>
-      <p>From logos to flyers, our design team crafts visuals that capture attention and communicate your message.</p>
-    </div>
-    <div class="card">
-      <h3>Fast & Reliable Service</h3>
-      <p>We respect your deadlines and are committed to delivering top-quality prints on time, every time.</p>
+  <!-- Why Choose Us -->
+  <section class="why-choose-us">
+    <h2 class="section-title">Why Choose Us</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="icons/speed.png" alt="Fast Turnaround">
+        <h3>Fast Turnaround</h3>
+        <p>Quick and efficient service without compromising on quality.</p>
+      </div>
+      <div class="card">
+        <img src="icons/price.png" alt="Affordable">
+        <h3>Affordable Pricing</h3>
+        <p>Competitive pricing to suit all budgets, big or small.</p>
+      </div>
+      <div class="card">
+        <img src="icons/custom.png" alt="Custom Design">
+        <h3>Custom Design Support</h3>
+        <p>We help you create eye-catching, personalized print materials.</p>
+      </div>
+      <div class="card">
+        <img src="icons/eco.png" alt="Eco Friendly">
+        <h3>Eco-Friendly Printing</h3>
+        <p>We use sustainable materials and processes to protect the planet.</p>
+      </div>
     </div>
   </section>
 
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <h2 class="section-title">What Our Clients Say</h2>
+    <div class="testimonial">
+      <p>"I was blown away by the print quality and customer service. Highly recommend!"</p>
+      <strong>- Rajesh K.</strong>
+    </div>
+    <div class="testimonial">
+      <p>"Professional team, timely delivery, and perfect results every time."</p>
+      <strong>- Priya M.</strong>
+    </div>
+    <div class="testimonial">
+      <p>"They turned our rough sketches into stunning posters. Great experience!"</p>
+      <strong>- Aravind S.</strong>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta">
+    <h2>Need a print partner you can rely on?</h2>
+    <a href="contact.html">Let’s Talk</a>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <div class="footer-container">
       <div class="contact-info">

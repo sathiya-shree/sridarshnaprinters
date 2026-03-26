@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import logo from "./assets/logo-sri.jpg";
+import logo from "./assets/logo-sri-darsh.jpg";
 
 /*cards*/
 import b1 from "./assets/IMG-20260321-WA0024.jpg";

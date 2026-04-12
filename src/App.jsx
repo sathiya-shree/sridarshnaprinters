@@ -955,7 +955,7 @@ export default function SriDarshna() {
               <span style={{ width:24, height:1, background:"var(--gold2)", display:"block" }}/>
               Get in Touch
             </div>
-            <h2 className="sec-h2" style={{ color:"#fff", textAlign:"center" }}>Request a <em style={{ color:"var(--gold2)" }}>Contact Us</em></h2>
+            <h2 className="sec-h2" style={{ color:"#fff", textAlign:"center" }}><em style={{ color:"var(--gold2)" }}>Get in Touch</em></h2>
             <div className="sec-divider" style={{ margin:"18px auto", background:"linear-gradient(90deg,var(--gold2),var(--gold3))" }}/>
           </Reveal>
           <div className="contact-grid">

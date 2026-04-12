@@ -555,7 +555,7 @@ export default function SriDarshna() {
           ))}
         </div>
         <div style={{ display:"flex", alignItems:"center", gap:12 }}>
-          <button className="nav-cta nd" onClick={() => go("contact")}>Get a Quote</button>
+          <button className="nav-cta nd" onClick={() => go("contact")}>Contact Us</button>
           <a href="tel:+919842262124" className="nd" style={{ fontFamily:"'Space Mono',monospace", fontSize:12, fontWeight:700, color: navUp ? "var(--gold)" : "var(--gold2)", textDecoration:"none", letterSpacing:".04em" }}>9842262124</a>
           <button className={`hamburger ${mobileMenu ? "open" : ""}`} onClick={() => setMobileMenu(m => !m)} style={{ display:"none" }} id="ham">
             <span className="ham-line"/><span className="ham-line"/><span className="ham-line"/>
@@ -605,7 +605,7 @@ export default function SriDarshna() {
               Premium printing for every need — from visiting cards to giant flex boards. Quality you can see, prices you will love. Serving Coimbatore since 1999.
             </p>
             <div className="hero-btns" style={{ animation:"hup .9s .55s both" }}>
-              <button className="btn-primary" onClick={() => go("contact")}>Get a Free Quote</button>
+              <button className="btn-primary" onClick={() => go("contact")}>Contact Us</button>
               <button className="btn-ghost" onClick={() => go("gallery")}>View Our Work</button>
             </div>
           </div>
@@ -858,7 +858,7 @@ export default function SriDarshna() {
                   ))}
                 </div>
                 <div style={{ marginTop:32, display:"flex", gap:14, flexWrap:"wrap" }}>
-                  <button className="btn-primary" onClick={() => go("contact")}>Get a Free Quote</button>
+                  <button className="btn-primary" onClick={() => go("contact")}>Contact Us</button>
                   <a href="https://wa.me/919842735737" target="_blank" rel="noopener noreferrer"
                     style={{ display:"inline-flex", alignItems:"center", gap:8, padding:"15px 28px", background:"#22c55e", color:"#fff", textDecoration:"none", fontFamily:"'Syne',sans-serif", fontSize:12, fontWeight:800, letterSpacing:".1em", textTransform:"uppercase", transition:"background .25s" }}
                     onMouseOver={e=>e.currentTarget.style.background="#16a34a"}
@@ -955,7 +955,7 @@ export default function SriDarshna() {
               <span style={{ width:24, height:1, background:"var(--gold2)", display:"block" }}/>
               Get in Touch
             </div>
-            <h2 className="sec-h2" style={{ color:"#fff", textAlign:"center" }}>Request a <em style={{ color:"var(--gold2)" }}>Free Quote</em></h2>
+            <h2 className="sec-h2" style={{ color:"#fff", textAlign:"center" }}>Request a <em style={{ color:"var(--gold2)" }}>Contact Us</em></h2>
             <div className="sec-divider" style={{ margin:"18px auto", background:"linear-gradient(90deg,var(--gold2),var(--gold3))" }}/>
           </Reveal>
           <div className="contact-grid">

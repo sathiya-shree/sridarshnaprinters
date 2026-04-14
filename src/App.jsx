@@ -529,8 +529,7 @@ export default function SriDarshna() {
   const navUp = scrollY > 50;
 
   const CSS=`
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Nunito:wght@700;800;900&family=Rubik:wght@500;600;700;900&family=DM+Mono:wght@400;500&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;600&display=swap');
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
 
@@ -675,50 +674,72 @@ export default function SriDarshna() {
       <a href="https://wa.me/919842262124?text=Hi%2C%20I%27d%20like%20a%20quote%20from%20Sri%20Darshna%20Printers" target="_blank" rel="noopener noreferrer" className="wa-float">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       </a>
+{/* ══ NAVBAR ══ */}
+<nav className={`nav ${navUp ? "up" : ""}`}>
+  
+  {/* Left Section: Logo and Title */}
+  <div style={{ display: "flex", alignItems: "center", gap: 5, cursor: "pointer" }} onClick={() => go("home")}>
+    <div style={{ 
+      width: 41, 
+      height: 41, 
+      background: navUp ? "linear-gradient(135deg,#14204a,#b8922a)" : "rgba(255,255,255,.08)", 
+      border: navUp ? "none" : "1px solid rgba(255,255,255,.15)", 
+      display: "flex", 
+      alignItems: "center", 
+      justifyContent: "center", 
+      flexShrink: 0, 
+      transition: "background .4s" 
+    }}>
+      <div style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "40px",
+        width: "auto",
+        marginRight: "0.9px"
+      }}>
+        <img 
+          src={logo} 
+          alt="Logo" 
+          style={{
+            height: "100%",
+            width: "auto",
+            objectFit: "contain"
+          }} 
+        />
+      </div>
+    </div>
+    <div>
+      <div style={{ fontFamily: "'Nunito',serif", fontSize: 20, fontWeight: 900, color: navUp ? "var(--ink)" : "#fff", lineHeight: 1.1, transition: "color .4s", letterSpacing: ".02em" }}>
+        Sri Darshna Printers
+      </div>
+      <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 9, fontWeight: 500, letterSpacing: ".28em", textTransform: "uppercase", color: "var(--gold2)", marginTop: 2 }}>
+        Est. 1999 · Coimbatore
+      </div>
+    </div>
+  </div>
 
-      {/* ══ NAVBAR ══ */}
-      <nav className={`nav ${navUp?"up":""}`}>
-        <div style={{ display:"flex", alignItems:"center", gap:14, cursor:"pointer" }} onClick={() => go("home")}>
-          <div style={{ width:41, height:41, background:navUp?"linear-gradient(135deg,#14204a,#b8922a)":"rgba(255,255,255,.08)", border:navUp?"none":"1px solid rgba(255,255,255,.15)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0, transition:"background .4s" }}>
-<div style={{
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  height: "40px",      // Adjust this to match your header height
-  width: "auto",       // Let it expand based on the logo width
-  marginRight: "0.9px"  // Space between logo and "Sri Darshna Printers" text
-}}>
-  <img 
-    src={logo}         // Ensure 'logo' is imported from your assets
-    alt="Logo" 
-    style={{
-      height: "100%",  // Fills the container height
-      width: "auto",   // Keeps proportions correct
-      objectFit: "contain"
-    }} 
-  />
-</div>          </div>
-          <div>
-            <div style={{ fontFamily:"'Playfair Display',serif", fontSize:20, fontWeight:900, color:navUp?"var(--ink)":"#fff", lineHeight:1.1, transition:"color .4s", letterSpacing:".02em" }}>Sri Darshna Printers</div>
-            <div style={{ fontFamily:"'DM Mono',monospace", fontSize:9, fontWeight:500, letterSpacing:".28em", textTransform:"uppercase", color:"var(--gold2)", marginTop:2 }}>Est. 1999 · Coimbatore</div>
-          </div>
-        </div>
-        <div className="nd" style={{ display:"flex", gap:32 }}>
-          {NAV.map(n => (
-            <button key={n} className={`nl ${activeNav===n?"on":""}`}
-              style={{ color:navUp?(activeNav===n?"var(--gold)":"var(--muted)"):(activeNav===n?"var(--gold2)":"rgba(255,255,255,.7)") }}
-              onClick={() => go(n)}>{n}</button>
-          ))}
-        </div>
-        <div style={{ display:"flex", gap:10 }}>
-          <button className="btn ghost nd" style={{ fontSize:11, padding:"11px 22px", borderColor:navUp?"var(--line)":"rgba(255,255,255,.22)", color:navUp?"var(--ink)":"rgba(255,255,255,.85)" }} onClick={() => go("contact")}>Contact</button>
-          <a href="tel:+919842262124" className="nd" style={{ display:"inline-flex", alignItems:"center", gap:7, fontFamily:"'Rubik',sans-serif", fontSize:15, fontWeight:700, color:"var(--gold2)", textDecoration:"none" }}>
-            <svg width="18" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.01 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-            9842262124 & 98427 35737
-          </a>
+  {/* Middle Section: Navigation Links */}
+  <div className="nd" style={{ display: "flex", gap: 32 }}>
+    {NAV.map(n => (
+      <button 
+        key={n} 
+        className={`nl ${activeNav === n ? "on" : ""}`}
+        style={{ color: navUp ? (activeNav === n ? "var(--gold)" : "var(--muted)") : (activeNav === n ? "var(--gold2)" : "rgba(255,255,255,.7)") }}
+        onClick={() => go(n)}
+      >
+        {n}
+      </button>
+    ))}
+  </div>
+  <div id="nav-right" style={{ width: "100px" }}></div>
+
+  {/* Right Section: Empty (Numbers Removed) */}
+  <div style={{ width: 41 }}></div> 
+</nav>
+
           
-        </div>
-      </nav>
+      
 
       {/* ══ HERO ══ */}
       <section id="home">
@@ -729,7 +750,7 @@ export default function SriDarshna() {
               <span style={{ display:"inline-flex", alignItems:"center", gap:8, fontFamily:"'DM Mono',monospace", fontSize:11, fontWeight:500, letterSpacing:".22em", textTransform:"uppercase", color:"rgba(255,255,255,.55)", padding:"7px 16px", border:"1px solid rgba(255,255,255,.12)" }}>★★★★★ 5.0 · 20 Reviews</span>
               <span style={{ display:"inline-flex", alignItems:"center", gap:8, fontFamily:"'DM Mono',monospace", fontSize:11, fontWeight:500, letterSpacing:".22em", textTransform:"uppercase", color:"var(--gold2)", padding:"7px 16px", border:"1px solid rgba(212,170,74,.32)" }}>Est. 1999</span>
             </div>
-            <h1 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(60px,9vw,132px)", fontWeight:900, color:"#fff", lineHeight:.88, letterSpacing:"-1px", animation:"hup .95s .2s both" }}>
+            <h1 style={{ fontFamily:"'Nunito',serif", fontSize:"clamp(50px,9vw,132px)", fontWeight:700, color:"#fff", lineHeight:.88, letterSpacing:"-1px", animation:"hup .95s .2s both" }}>
               Sri Darshna<br /><span style={{ color:"var(--gold2)" }}>Printers</span>
             </h1>
             <div style={{ animation:"hup .85s .45s both", paddingTop:40, marginTop:44, borderTop:"1px solid rgba(255,255,255,.1)" }}>
@@ -794,10 +815,41 @@ export default function SriDarshna() {
 </div>
 
                 </div>
-                <div style={{ textAlign:"center" }}>
-                  <div style={{ fontFamily:"'Playfair Display',serif", fontSize:21, fontWeight:900, color:"#fff", letterSpacing:".02em" }}>Sri Darshna Printers</div>
-                  <div style={{ fontFamily:"'DM Mono',monospace", fontSize:9, fontWeight:500, letterSpacing:".28em", textTransform:"uppercase", color:"var(--gold2)", marginTop:4 }}>Coimbatore</div>
-                </div>
+                {/* Parent container: Height set to auto to allow expansion */}
+<div style={{ 
+  display: "flex", 
+  flexDirection: "column", 
+  alignItems: "center", 
+  justifyContent: "center", 
+  padding: "15px 10px", // Use padding instead of fixed height
+  minHeight: "60px",    // Optional: sets a minimum size
+  width: "auto" 
+}}>
+  
+ 
+
+  {/* Text Section */}
+  <div style={{ textAlign: "center" }}>
+    <div style={{ fontFamily: "'Nunito',serif", fontSize: 21, fontWeight: 900, color: "#fff", letterSpacing: ".02em", lineHeight: 1.1 }}>
+      Sri Darshna Printers
+    </div>
+    <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, fontWeight: 500, letterSpacing: ".28em", textTransform: "uppercase", color: "var(--gold2)", marginTop: 4 }}>
+      Coimbatore
+    </div>
+    
+    {/* Phone Numbers: Using a slightly smaller font to save space */}
+    <div style={{ 
+      fontFamily: "'DM Mono',monospace", 
+      fontSize: "20px", 
+      fontWeight: 600, 
+      color: "#dfd7d7", 
+      marginTop: 6,
+      lineHeight: 1.2
+    }}>
+      98422 62124<br/>98427 35737
+    </div>
+  </div>
+</div>
               </div>
             </div>
             <div className="hero-r-bot">
@@ -1018,7 +1070,7 @@ export default function SriDarshna() {
         <div className="wrap">
           <Reveal style={{ textAlign:"center", marginBottom:60 }}>
             <div className="ey" style={{ justifyContent:"center" }}>Why Choose Us</div>
-            <h2 style={{ fontFamily:"'Rubik',sans-serif", fontSize:"clamp(32px,4vw,54px)", fontWeight:900, lineHeight:1.1, color:"var(--ink)" }}>
+            <h2 style={{ fontFamily:"'Rubik',sans-serif", fontSize:"clamp(32px,4vw,54px)", fontWeight:1000, lineHeight:1.1, color:"var(--ink)" }}>
               Sri Darshna Printers <span style={{ color:"var(--gold)" }}>Standard</span>
             </h2>
             <div className="divg" style={{ margin:"18px auto" }}/>

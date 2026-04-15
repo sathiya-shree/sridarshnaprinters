@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import './App.css';
 import logo from "./assets/lgos.png";
 import digital from "./assets/digital-printing-machine.jpg";
 import offset from "./assets/offset.png";
@@ -111,7 +112,29 @@ import b69 from "./assets/IMG-20260321-WA0122.jpg";
 import b70 from "./assets/IMG-20260321-WA0119.jpg";
 import b71 from "./assets/IMG-20260321-WA0118.jpg";
 
-
+const TICK = [
+  "Business Cards",
+  "Invitations",
+  "Brochures",
+  "Flex Boards",
+  "Stickers & Labels",
+  "Letter Pads",
+  "ID Cards",
+  "Rubber Stamps",
+  "DTP Design",
+  "Screen Printing",
+  "Offset Printing",
+  "Digital Printing",
+  "Name Plates",
+  "Badges",
+  "Standees",
+  "Posters",
+  "Calendars",
+  "Menu Cards",
+  "Since 1999",
+  "Gandhipuram CBE",
+  "5-Star Rated"
+];
 
 /* ─── PRINTING TYPES (new section below Services) ─── */
 const HERO_IMGS = [];
@@ -239,6 +262,7 @@ function Reveal({ children, d = 0, style = {} }) {
   );
 }
 
+
 /* ─── GALLERY CARD ─── */
 export function GalCard({ cat, onClick }) {
   const [hov, setHov] = useState(false);
@@ -255,11 +279,7 @@ export function GalCard({ cat, onClick }) {
         cursor: "pointer",
         aspectRatio: "4/3",
         overflow: "hidden",
-        background: cat.color || "#1a1a1a",
-        borderRadius: "12px",
-        transition: "transform .5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .5s",
-        boxShadow: hov ? "0 20px 40px rgba(0,0,0,0.25)" : "0 10px 20px rgba(0,0,0,0.1)",
-        transform: hov ? "translateY(-5px)" : "none",
+        background: cat.color
       }}
     >
       {/* ✅ IMAGE */}
@@ -272,22 +292,19 @@ export function GalCard({ cat, onClick }) {
             inset: 0,
             width: "100%",
             height: "100%",
-            objectFit: "cover",
-            transform: hov ? "scale(1.1)" : "scale(1)",
-            transition: "transform .8s cubic-bezier(0.16, 1, 0.3, 1)",
+            objectFit: "cover"
           }}
         />
       )}
 
-      {/* overlay grid (Modern Tech Touch) */}
+      {/* overlay grid */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px)",
-          backgroundSize: "24px 24px",
-          pointerEvents: "none"
+            "linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px)",
+          backgroundSize: "24px 24px"
         }}
       />
 
@@ -300,65 +317,46 @@ export function GalCard({ cat, onClick }) {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          transform: hov ? "scale(0.8)" : "scale(1)",
-          opacity: hov ? 0 : 1,
-          transition: "all .4s"
+          transform: hov ? "scale(1.06)" : "none",
+          transition: "transform .4s"
         }}
       >
-        <div style={{ fontSize: 44, opacity: 0.8, filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.3))" }}>
+        <div style={{ fontSize: 40, opacity: hov ? 0.9 : 0.6 }}>
           {cat.icon}
         </div>
       </div>
 
-      {/* hover overlay (Glassmorphism) */}
+      {/* hover overlay */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          background: "rgba(15, 20, 30, 0.75)",
-          backdropFilter: "blur(10px)",
-          WebkitBackdropFilter: "blur(10px)",
+          background: "rgba(0,0,0,.65)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           opacity: hov ? 1 : 0,
-          transition: "opacity .4s",
-          padding: 24,
+          transition: "opacity .3s",
+          padding: 20,
           textAlign: "center"
         }}
       >
-        <div style={{ 
-          fontSize: 18, 
-          fontWeight: 800, 
-          color: "#fff",
-          transform: hov ? "translateY(0)" : "translateY(10px)",
-          transition: "transform .4s cubic-bezier(0.16, 1, 0.3, 1)"
-        }}>
+        <div style={{ fontSize: 18, fontWeight: 800, color: "#fff" }}>
           {cat.label}
         </div>
 
-        <div style={{ 
-          fontSize: 13, 
-          color: "rgba(255,255,255,.7)", 
-          margin: "12px 0",
-          transform: hov ? "translateY(0)" : "translateY(15px)",
-          transition: "transform .4s .05s cubic-bezier(0.16, 1, 0.3, 1)"
-        }}>
+        <div style={{ fontSize: 14, color: "rgba(255,255,255,.7)", margin: "10px 0" }}>
           {cat.desc}
         </div>
 
         <div
           style={{
-            fontSize: 11,
-            fontWeight: 800,
+            fontSize: 13,
+            fontWeight: 700,
             color: "#d4aa4a",
             border: "1px solid rgba(212,170,74,.5)",
-            padding: "8px 18px",
-            textTransform: "uppercase",
-            letterSpacing: "1.5px",
-            transform: hov ? "translateY(0)" : "translateY(20px)",
-            transition: "transform .4s .1s cubic-bezier(0.16, 1, 0.3, 1)"
+            padding: "6px 16px"
           }}
         >
           View All →
@@ -372,13 +370,11 @@ export function GalCard({ cat, onClick }) {
           bottom: 0,
           left: 0,
           right: 0,
-          background: "linear-gradient(transparent, rgba(0,0,0,0.8))",
-          padding: "20px 15px 12px",
-          opacity: hov ? 0 : 1,
-          transition: "opacity .3s"
+          background: "rgba(0,0,0,.6)",
+          padding: "10px"
         }}
       >
-        <div style={{ color: "#fff", fontWeight: 700, fontSize: 14 }}>
+        <div style={{ color: "#fff", fontWeight: 700 }}>
           {cat.label}
         </div>
       </div>
@@ -397,12 +393,11 @@ export function ModalImg({ src, label, idx, onClick }) {
       onMouseLeave={() => setHov(false)}
       style={{
         position: "relative",
-        aspectRatio: "1/1",
+        aspectRatio: "4/3",
         overflow: "hidden",
         cursor: "pointer",
-        borderRadius: "8px",
-        background: "#000",
-        transition: "transform .4s cubic-bezier(0.16, 1, 0.3, 1)"
+        transform: hov ? "scale(1.04)" : "none",
+        transition: "transform .3s"
       }}
     >
       {/* ✅ IMAGE */}
@@ -415,10 +410,7 @@ export function ModalImg({ src, label, idx, onClick }) {
             inset: 0,
             width: "100%",
             height: "100%",
-            objectFit: "cover",
-            opacity: hov ? 0.7 : 1,
-            transform: hov ? "scale(1.08)" : "scale(1)",
-            transition: "all .6s cubic-bezier(0.16, 1, 0.3, 1)"
+            objectFit: "cover"
           }}
         />
       )}
@@ -428,25 +420,20 @@ export function ModalImg({ src, label, idx, onClick }) {
         style={{
           position: "absolute",
           inset: 0,
-          background: "rgba(184, 146, 42, 0.25)",
+          background: "rgba(0,0,0,.5)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           opacity: hov ? 1 : 0,
-          transition: "opacity .3s",
-          backdropFilter: hov ? "blur(3px)" : "none"
+          transition: "opacity .3s"
         }}
       >
         <div
           style={{
             color: "#fff",
-            background: "rgba(0,0,0,0.6)",
-            border: "1px solid rgba(255,255,255,.3)",
-            padding: "8px 16px",
-            fontSize: 11,
-            fontWeight: 700,
-            textTransform: "uppercase",
-            letterSpacing: "1px"
+            border: "1px solid rgba(255,255,255,.5)",
+            padding: "6px 14px",
+            fontSize: 12
           }}
         >
           Enlarge
@@ -457,23 +444,19 @@ export function ModalImg({ src, label, idx, onClick }) {
       <div
         style={{
           position: "absolute",
-          bottom: 10,
-          right: 12,
+          bottom: 8,
+          right: 10,
           color: "#fff",
-          fontSize: 10,
-          fontWeight: 700,
-          opacity: 0.8,
-          fontFamily: "monospace"
+          fontSize: 11
         }}
       >
-        [{String(idx + 1).padStart(2, '0')}]
+        #{idx + 1}
       </div>
     </div>
   );
 }
 
-/* ─── FULLSCREEN VIEWER ─── */
-export function FullscreenViewer({ src, onClose }) {
+function FullscreenViewer({ src, onClose }) {
   if (!src) return null;
 
   return (
@@ -482,14 +465,11 @@ export function FullscreenViewer({ src, onClose }) {
       style={{
         position: "fixed",
         inset: 0,
-        background: "rgba(10, 12, 18, 0.96)",
-        backdropFilter: "blur(15px)",
-        WebkitBackdropFilter: "blur(15px)",
+        background: "rgba(0,0,0,0.9)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        zIndex: 9999,
-        padding: "40px"
+        zIndex: 9999
       }}
     >
       <img
@@ -497,11 +477,9 @@ export function FullscreenViewer({ src, onClose }) {
         alt="preview"
         onClick={(e) => e.stopPropagation()}
         style={{
-          maxWidth: "100%",
-          maxHeight: "100%",
-          objectFit: "contain",
-          boxShadow: "0 40px 100px rgba(0,0,0,0.6)",
-          borderRadius: "4px"
+          maxWidth: "90%",
+          maxHeight: "90%",
+          objectFit: "contain"
         }}
       />
 
@@ -509,22 +487,12 @@ export function FullscreenViewer({ src, onClose }) {
         onClick={onClose}
         style={{
           position: "absolute",
-          top: 30,
-          right: 40,
-          fontSize: "24px",
+          top: 20,
+          right: 30,
+          fontSize: 28,
           color: "#fff",
-          cursor: "pointer",
-          width: "44px",
-          height: "44px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "rgba(255,255,255,0.1)",
-          borderRadius: "50%",
-          transition: "background .3s"
+          cursor: "pointer"
         }}
-        onMouseEnter={(e) => e.currentTarget.style.background = "rgba(255,255,255,0.2)"}
-        onMouseLeave={(e) => e.currentTarget.style.background = "rgba(255,255,255,0.1)"}
       >
         ✕
       </div>
@@ -583,326 +551,7 @@ export default function SriDarshna() {
   const go = s => { document.getElementById(s.toLowerCase())?.scrollIntoView({ behavior:"smooth" }); };
   const navUp = scrollY > 50;
 
-  const CSS=`
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;500;600&display=swap');
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;}
-
-    :root{
-      --ink:   #0f0e0c;
-      --ink2:  #2c2820;
-      --muted: #5a5550;
-      --gold:  #b8922a;
-      --gold2: #d4aa4a;
-      --navy:  #14204a;
-      --cream: #faf8f4;
-      --cream2:#f3ede4;
-      --cream3:#ebe3d8;
-      --line:  rgba(15,14,12,.12);
-    }
-
-    body{background:var(--cream);color:var(--ink);font-family:'Nunito',sans-serif;font-weight:700;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-    ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px;}
-
-    /* ── NAV ── */
-    .nav{position:fixed;top:0;left:0;right:0;z-index:300;height:72px;display:flex;align-items:center;padding:0 52px;justify-content:space-between;transition:background .4s,border-color .4s,backdrop-filter .4s;border-bottom:1px solid transparent;}
-    .nav.up{background:rgba(250,248,244,.97);border-color:var(--line);backdrop-filter:blur(20px);}
-    .nl{font-family:'Rubik',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;padding-bottom:3px;cursor:pointer;transition:color .22s,border-color .22s;}
-    .nl:hover,.nl.on{color:var(--gold);border-color:var(--gold);}
-
-    /* ── SECTIONS ── */
-    .sec{padding:108px 52px;border-top:1px solid var(--line);}
-    .sec.bg2{background:var(--cream2);}
-    .sec.bg3{background:var(--cream3);}
-    .wrap{max-width:1180px;margin:0 auto;}
-
-    /* eyebrow */
-    .ey{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;gap:14px;}
-    .ey::before{content:'';display:block;width:28px;height:2px;background:var(--gold);}
-    .divg{width:52px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));margin-top:18px;}
-
-    /* ── HERO ── */
-    .hero{min-height:100vh;display:grid;grid-template-columns:1fr 400px;background:var(--navy);position:relative;overflow:hidden;}
-    .hero-l{display:flex;flex-direction:column;justify-content:flex-end;padding:100px 60px 72px;position:relative;z-index:1;}
-    .hero-r{border-left:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;}
-    .hero-r-top{flex:1;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.08);}
-    .hero-r-bot{padding:28px 32px 36px;display:flex;flex-direction:column;gap:16px;}
-
-    /* ── SERVICE CARDS ── */
-    .scard{border:1.5px solid var(--line);padding:30px 24px 26px;background:var(--cream);position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .35s,background .35s;cursor:default;}
-    .scard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1);}
-    .scard:hover{transform:translateY(-7px);box-shadow:0 24px 56px rgba(0,0,0,.1);border-color:rgba(184,146,42,.3);background:#fff;}
-    .scard:hover::after{transform:scaleX(1);}
-
-    /* ── PRINT TYPE CARDS ── */
-    /* ── UPDATED PRINT TYPE CARDS ── */
-.ptcard {
-  overflow: hidden;
-  position: relative;
-  cursor: default;
-  transition: 
-    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-    box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  background: var(--cream);
-  z-index: 1;
-}
-
-/* 1. Subtle lifting effect and shadow depth */
-.ptcard:hover {
-  transform: translateY(-10px);
-  box-shadow: 
-    0 30px 60px -12px rgba(20, 32, 74, 0.15), 
-    0 18px 36px -18px rgba(0, 0, 0, 0.2);
-}
-
-.ptcard-img {
-  position: relative;
-  height: 260px; /* Slightly taller for elegance */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: var(--cream2); /* Fallback color */
-}
-
-/* 2. Image overlay/shimmer effect */
-.ptcard-img::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    45deg, 
-    rgba(255,255,255,0) 0%, 
-    rgba(255,255,255,0.2) 50%, 
-    rgba(255,255,255,0) 100%
-  );
-  transform: translateX(-100%);
-  transition: transform 0.8s ease;
-}
-
-.ptcard:hover .ptcard-img::after {
-  transform: translateX(100%);
-}
-
-.ptcard-img-inner {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.ptcard:hover .ptcard-img-inner {
-  transform: scale(1.1); /* Slightly more dramatic zoom */
-}
-
-/* 3. Refined Body & Borders */
-.ptcard-body {
-  padding: 32px;
-  background: #fff; /* Solid white for clarity */
-  border: 1.5px solid var(--line);
-  border-top: none;
-  position: relative;
-  transition: border-color 0.4s ease;
-}
-
-/* 4. The "Gold Reveal" Bottom Border */
-.ptcard-body::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, var(--gold), var(--gold2));
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.ptcard:hover .ptcard-body::before {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-/* 5. Typography transitions */
-.ptcard h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  margin-bottom: 12px;
-  transition: color 0.3s ease;
-}
-
-.ptcard:hover h3 {
-  color: var(--gold);
-}
-
-.ptcard p {
-  font-family: 'Manrope', sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--muted);
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-}
-
-.ptcard:hover p {
-  opacity: 1;
-}
-
-    /* ── GAL GRID ── */
-    .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-
-    /* ── WHY CARDS: BOUTIQUE TECH OVERHAUL ── */
-/* ── WHY CARDS: BOUTIQUE TECH OVERHAUL ── */
-.wcard {
-  position: relative;
-  border: 1.5px solid var(--line);
-  padding: 40px 28px; /* Increased padding for luxury feel */
-  background: var(--cream);
-  overflow: hidden; /* Important for the shimmer effect */
-  transition: 
-    transform 0.4s cubic-bezier(.16,1,.3,1),
-    box-shadow 0.4s cubic-bezier(.16,1,.3,1),
-    border-color 0.3s;
-  z-index: 1;
-}
-
-/* 1. Subtle Paper Texture */
-.wcard::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
-  opacity: 0.05;
-  pointer-events: none;
-}
-
-/* 2. Tech "Scanner" Line (The Shimmer) */
-.wcard::after {
-  content: "";
-  position: absolute;
-  top: 0; left: -100%;
-  width: 50%; height: 100%;
-  background: linear-gradient(
-    90deg, 
-    transparent, 
-    rgba(184, 146, 42, 0.08), 
-    transparent
-  );
-  transform: skewX(-20deg);
-  transition: 0s;
-}
-
-.wcard:hover::after {
-  left: 150%;
-  transition: 0.8s cubic-bezier(.16,1,.3,1);
-}
-
-/* 3. Hover State Adjustments */
-.wcard:hover {
-  transform: translateY(-8px); /* Slightly higher lift */
-  background: #ffffff; /* Contrast change on hover */
-  box-shadow: 
-    0 25px 50px -12px rgba(20, 32, 74, 0.1),
-    0 15px 30px -15px rgba(184, 146, 42, 0.2);
-  border-color: var(--gold);
-}
-
-/* 4. Icon Interaction - UPDATED: Box effect removed */
-.wcard div:first-child { 
-  transition: transform 0.5s cubic-bezier(.16,1,.3,1), color 0.3s;
-  background: transparent !important; /* Force transparent background */
-  box-shadow: none !important; /* Ensure no shadow box appears */
-}
-
-.wcard:hover div:first-child {
-  transform: scale(1.15); /* Slightly larger scale since box is gone */
-  background: transparent !important; /* Keep it transparent on hover */
-  color: var(--gold) !important; /* Change icon color instead of box color */
-}
-
-/* 5. Typography Polish */
-.wcard h3 {
-  transition: transform 0.3s ease;
-}
-
-.wcard:hover h3 {
-  transform: translateX(4px); /* Moves title slightly to lead the eye */
-  color: var(--gold);
-}
-    /* ── REVIEW ── */
-    @keyframes revIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
-    .rev-enter{animation:revIn .5s cubic-bezier(.16,1,.3,1) both;}
-
-    /* ── FAQ ── */
-    .faq-row{border-bottom:1.5px solid var(--line);}
-    .faq-btn{width:100%;display:flex;justify-content:space-between;align-items:center;padding:22px 28px;background:none;border:none;cursor:pointer;gap:24px;text-align:left;}
-
-    /* ── BTNS ── */
-    .btn{font-family:'Rubik',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:15px 32px;background:var(--gold);color:#fff;border:none;cursor:pointer;transition:background .22s,transform .18s;}
-    .btn:hover{background:#9a7820;transform:translateY(-1px);}
-    .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line);}
-    .btn.ghost:hover{border-color:var(--gold);color:var(--gold);}
-    .btn.inv{background:transparent;color:rgba(255,255,255,.88);border:2px solid rgba(255,255,255,.22);}
-    .btn.inv:hover{border-color:var(--gold2);color:var(--gold2);}
-
-    /* ── INPUT ── */
-    .inp{width:100%;padding:14px 18px;background:var(--cream3);border:1.5px solid var(--line);color:var(--ink);font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;outline:none;resize:none;transition:border-color .22s;}
-    .inp::placeholder{color:#a09890;font-size:14px;font-weight:700;}
-    .inp:focus{border-color:var(--gold);}
-
-    /* ── TICKER ── */
-    .ticker{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;background:var(--cream);}
-    .tick-t{display:inline-flex;animation:tick 28s linear infinite;white-space:nowrap;}
-    .tick-t:hover{animation-play-state:paused;}
-    .tick-i{font-family:'Rubik',sans-serif;font-size:15px;font-weight:600;color:var(--muted);padding:0 36px;display:inline-flex;align-items:center;gap:20px;}
-    .tick-d{width:5px;height:5px;border-radius:50%;background:var(--gold);}
-    @keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-
-    /* ── PROGRESS ── */
-    .prog{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:999;pointer-events:none;}
-
-    /* ── MODAL ── */
-    .modal-bg{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:20px;}
-    .modal-box{background:var(--cream);width:100%;max-width:1040px;max-height:90vh;overflow-y:auto;position:relative;}
-    .modal-hdr{padding:28px 36px 22px;border-bottom:1.5px solid var(--line);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--cream);z-index:2;}
-    .modal-close{width:40px;height:40px;border:1.5px solid var(--line);background:none;cursor:pointer;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .22s;flex-shrink:0;font-family:'Nunito',sans-serif;}
-    .modal-close:hover{border-color:var(--gold);color:var(--gold);}
-    .modal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:24px 36px 32px;}
-
-    /* ── LIGHTBOX ── */
-    .lb-bg{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.95);display:flex;align-items:center;justify-content:center;}
-    .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);color:#fff;font-size:22px;font-family:'Nunito',sans-serif;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
-    .lb-nav:hover{background:rgba(255,255,255,.18);}
-    .lb-close{position:absolute;top:20px;right:20px;width:44px;height:44px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);color:#fff;font-size:18px;font-family:'Nunito',sans-serif;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;}
-
-    /* ── WA FLOAT ── */
-    .wa-float{position:fixed;bottom:28px;right:28px;width:58px;height:58px;border-radius:50%;background:#22c55e;display:flex;align-items:center;justify-content:center;z-index:400;box-shadow:0 8px 28px rgba(34,197,94,.4);transition:transform .2s,box-shadow .2s;text-decoration:none;}
-    .wa-float:hover{transform:scale(1.1);box-shadow:0 14px 38px rgba(34,197,94,.55);}
-
-    @keyframes hup{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
-
-    @media(max-width:900px){
-      .nav{padding:0 20px;}
-      .nd{display:none!important;}
-      .sec{padding:80px 20px;}
-      .hero{grid-template-columns:1fr;min-height:auto;}
-      .hero-l{padding:96px 20px 52px;}
-      .hero-r{border-left:none;border-top:1px solid rgba(255,255,255,.08);}
-      .gal-grid{grid-template-columns:1fr 1fr!important;}
-      .svc-grid{grid-template-columns:1fr 1fr!important;}
-      .pt-grid{grid-template-columns:1fr 1fr!important;}
-      .modal-grid{grid-template-columns:1fr 1fr!important;}
-      .two{grid-template-columns:1fr!important;gap:48px!important;}
-    }
-`;
-
   
-  const TICK = ["Business Cards","Invitations","Brochures","Flex Boards","Stickers & Labels","Letter Pads","ID Cards","Rubber Stamps","DTP Design","Screen Printing","Offset Printing","Digital Printing","Name Plates","Badges","Standees","Posters","Calendars","Menu Cards","Since 1999","Gandhipuram CBE","5-Star Rated"];
-
-  return (
-    <div style={{ background:"var(--cream)", color:"var(--ink)", minHeight:"100vh" }}>
-      <style>{CSS}</style>
 
       <div className="prog" style={{ width:`${pct}%` }} />
 
@@ -916,8 +565,8 @@ export default function SriDarshna() {
   {/* Left Section: Logo and Title */}
   <div style={{ display: "flex", alignItems: "center", gap: 5, cursor: "pointer" }} onClick={() => go("home")}>
     <div style={{ 
-      width: 39, 
-      height: 39, 
+      width: 41, 
+      height: 41, 
       background: navUp ? "linear-gradient(135deg,#14204a,#b8922a)" : "rgba(255,255,255,.08)", 
       border: navUp ? "none" : "1px solid rgba(255,255,255,.15)", 
       display: "flex", 
@@ -993,7 +642,7 @@ export default function SriDarshna() {
               <p style={{ fontFamily:"'DM Mono',monospace", fontSize:11, fontWeight:500, letterSpacing:".22em", textTransform:"uppercase", color:"rgba(255,255,255,.38)", marginBottom:14 }}>Gandhipuram, Coimbatore · Tamil Nadu</p>
               <p style={{ fontFamily:"'Nunito',sans-serif", fontSize:17, fontWeight:700, color:"rgba(255,255,255,.6)", lineHeight:1.85, maxWidth:480, marginBottom:40 }}>Premium printing for every need — from visiting cards to giant flex boards. Quality you can see, prices you will love.</p>
               <div style={{ display:"flex", gap:14, flexWrap:"wrap" }}>
-                <button className="btn" style={{ fontSize:13 }} onClick={() => go("contact")}>Place Your Order</button>
+                <button className="btn" style={{ fontSize:13 }} onClick={() => go("contact")}>Get in touch</button>
                 <button className="btn inv" style={{ fontSize:13 }} onClick={() => go("gallery")}>View Gallery</button>
               </div>
               <div style={{ display:"flex", gap:36, marginTop:44, flexWrap:"wrap" }}>
@@ -1302,147 +951,89 @@ export default function SriDarshna() {
       </section>
 
       {/* ══ WHY US ══ */}
-<section className="sec bg3">
-  <div className="wrap">
-    <Reveal style={{ textAlign: "center", marginBottom: 60 }}>
-      <div className="ey" style={{ justifyContent: "center" }}>Why Choose Us</div>
-      <h2 style={{ 
-        fontFamily: "'Rubik',sans-serif", 
-        fontSize: "clamp(32px, 4vw, 54px)", 
-        fontWeight: 1000, 
-        lineHeight: 1.1, 
-        color: "var(--ink)" 
-      }}>
-        Sri Darshna Printers <span style={{ color: "var(--gold)" }}>Standard</span>
-      </h2>
-      <div className="divg" style={{ margin: "18px auto" }} />
-      <p style={{ 
-        fontFamily: "'Nunito',sans-serif", 
-        fontSize: 17, 
-        fontWeight: 700, 
-        color: "var(--muted)", 
-        maxWidth: 460, 
-        margin: "16px auto 0", 
-        lineHeight: 1.85 
-      }}>
-        25+ years of trusted printing. Our work has spoken for us since 1999.
-      </p>
-    </Reveal>
-
-   <div 
-  style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 14 }} 
-  className="svc-grid"
->
-  {WHY_US.map((w, i) => (
-    <Reveal key={w.title} d={i * .07}>
-      <div className="wcard">
-        {/* The container for the icon - we will remove the box style in CSS */}
-        <div className="wcard-icon">
-          {w.icon}
+      <section className="sec bg3">
+        <div className="wrap">
+          <Reveal style={{ textAlign:"center", marginBottom:60 }}>
+            <div className="ey" style={{ justifyContent:"center" }}>Why Choose Us</div>
+            <h2 style={{ fontFamily:"'Rubik',sans-serif", fontSize:"clamp(32px,4vw,54px)", fontWeight:1000, lineHeight:1.1, color:"var(--ink)" }}>
+              Sri Darshna Printers <span style={{ color:"var(--gold)" }}>Standard</span>
+            </h2>
+            <div className="divg" style={{ margin:"18px auto" }}/>
+            <p style={{ fontFamily:"'Nunito',sans-serif", fontSize:17, fontWeight:700, color:"var(--muted)", maxWidth:460, margin:"16px auto 0", lineHeight:1.85 }}>25+ years of trusted printing. Our work has spoken for us since 1999.</p>
+          </Reveal>
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:14 }} className="svc-grid">
+            {WHY_US.map((w,i) => (
+              <Reveal key={w.title} d={i*.07}>
+                <div className="wcard">
+                  <div style={{ width:52, height:52, background:"var(--cream2)", border:"1.5px solid var(--line)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:24, marginBottom:18 }}>{w.icon}</div>
+                  <h3 style={{ fontFamily:"'Rubik',sans-serif", fontSize:21, fontWeight:800, color:"var(--ink)", marginBottom:10 }}>{w.title}</h3>
+                  <p style={{ fontFamily:"'Nunito',sans-serif", fontSize:15, fontWeight:700, color:"var(--muted)", lineHeight:1.82 }}>{w.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
-
-        <h3 style={{ 
-          fontFamily: "'Rubik',sans-serif", 
-          fontSize: 21, 
-          fontWeight: 800, 
-          color: "var(--ink)", 
-          marginBottom: 10 
-        }}>
-          {w.title}
-        </h3>
-        
-        <p style={{ 
-          fontFamily: "'Nunito',sans-serif", 
-          fontSize: 15, 
-          fontWeight: 700, 
-          color: "var(--muted)", 
-          lineHeight: 1.82 
-        }}>
-          {w.desc}
-        </p>
-      </div>
-    </Reveal>
-  ))}
-</div>
-  </div>
-</section>
-
+      </section>
 
       {/* ══ ABOUT ══ */}
-<section id="about" className="sec">
-  <div className="wrap">
-    <div className="two" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
-      <Reveal>
-        <div style={{ background: "var(--navy)", padding: "52px 44px", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", top: 0, right: 0, width: 120, height: 120, border: "1px solid rgba(212,170,74,.1)", borderRadius: "0 0 0 100%", pointerEvents: "none" }} />
-          
-          {/* ✅ LOGO REPLACED SVG */}
-          <div style={{ 
-            width: 62, 
-            height: 60, 
-            border: "2px solid rgba(212,170,74,.32)", 
-            display: "flex", 
-            alignItems: "center", 
-            justifyContent: "center", 
-            marginBottom: 22,
-            background: "rgba(255,255,255,0.03)" // Subtle background to make logo pop
-          }}>
-            <img 
-              src={logo} 
-              alt="Sri Darshna Printers Logo" 
-              style={{ maxWidth: "100%", maxHeight: "800%", objectFit: "contain" }} 
-            />
-          </div>
-
-          <div style={{ fontFamily: "'Rubik',sans-serif", fontSize: 56, fontWeight: 900, color: "var(--gold2)", lineHeight: 1, marginBottom: 6 }}>5.0</div>
-          <div style={{ fontFamily: "'Nunito',sans-serif", fontSize: 13, fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", color: "rgba(255,255,255,.38)", marginBottom: 32 }}>Google Rating · 20 Reviews</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            {[
-              ["📍", `530, 7th Street Ext\nGandhipuram, Coimbatore 641012`],
-              ["📞", "9842262124 & 98427 35737"],
-              ["⏰", "Opens 10 AM · Mon–Sat"],
-              ["📅", "Established 1999"]
-            ].map(([ic, tx]) => (
-              <div key={tx} style={{ display: "flex", gap: 13, alignItems: "flex-start" }}>
-                <span style={{ fontSize: 17, marginTop: 1, flexShrink: 0 }}>{ic}</span>
-                <span style={{ fontFamily: "'Nunito',sans-serif", fontSize: 17, fontWeight: 700, color: "rgba(255, 255, 255, 0.48)", lineHeight: 1.65, whiteSpace: "pre-line" }}>{tx}</span>
+      <section id="about" className="sec">
+        <div className="wrap">
+          <div className="two" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:80, alignItems:"center" }}>
+            <Reveal>
+              <div style={{ background:"var(--navy)", padding:"52px 44px", position:"relative", overflow:"hidden" }}>
+                <div style={{ position:"absolute", top:0, right:0, width:120, height:120, border:"1px solid rgba(212,170,74,.1)", borderRadius:"0 0 0 100%", pointerEvents:"none" }}/>
+                <div style={{ width:72, height:72, border:"2px solid rgba(212,170,74,.32)", display:"flex", alignItems:"center", justifyContent:"center", marginBottom:22 }}>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(212,170,74,.65)" strokeWidth="1.2" strokeLinecap="round"><rect x="3" y="7" width="18" height="11" rx="1"/><path d="M7 7V4a1 1 0 011-1h8a1 1 0 011 1v3"/><path d="M7 14h10v5a1 1 0 01-1 1H8a1 1 0 01-1-1v-5z"/></svg>
+                </div>
+                <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:56, fontWeight:900, color:"var(--gold2)", lineHeight:1, marginBottom:6 }}>5.0</div>
+                <div style={{ fontFamily:"'Nunito',sans-serif", fontSize:13, fontWeight:700, letterSpacing:".18em", textTransform:"uppercase", color:"rgba(255,255,255,.38)", marginBottom:32 }}>Google Rating · 20 Reviews</div>
+                <div style={{ display:"flex", flexDirection:"column", gap:16 }}>
+                  {[
+  ["📍", `530, 7th Street Ext
+Gandhipuram, Coimbatore 641012`],
+  ["📞","9842262124 & 98427 35737"],
+  ["⏰","Opens 10 AM · Mon–Sat"],
+  ["📅","Established 1999"]
+].map(([ic,tx]) => (
+                    <div key={tx} style={{ display:"flex", gap:13, alignItems:"flex-start" }}>
+                      <span style={{ fontSize:17, marginTop:1, flexShrink:0 }}>{ic}</span>
+                      <span style={{ fontFamily:"'Nunito',sans-serif", fontSize:17, fontWeight:700, color:"rgba(255, 255, 255, 0.48)", lineHeight:1.65, whiteSpace:"pre-line" }}>{tx}</span>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ marginTop:32, display:"flex", gap:10, flexWrap:"wrap" }}>
+                  {[{l:"Facebook",h:"https://facebook.com"},{l:"Instagram",h:"https://instagram.com"}].map(s => (
+                    <a key={s.l} href={s.h} target="_blank" rel="noopener noreferrer"
+                      style={{ fontFamily:"'Rubik',sans-serif", fontSize:11, fontWeight:700, letterSpacing:".14em", textTransform:"uppercase", padding:"10px 18px", border:"1.5px solid rgba(255,255,255,.18)", color:"rgba(255,255,255,.6)", textDecoration:"none", transition:"all .22s" }}
+                      onMouseOver={e => { e.currentTarget.style.borderColor="var(--gold2)"; e.currentTarget.style.color="var(--gold2)"; }}
+                      onMouseOut={e  => { e.currentTarget.style.borderColor="rgba(255,255,255,.18)"; e.currentTarget.style.color="rgba(255,255,255,.6)"; }}>{s.l}</a>
+                  ))}
+                </div>
               </div>
-            ))}
-          </div>
-          <div style={{ marginTop: 32, display: "flex", gap: 10, flexWrap: "wrap" }}>
-            {[{ l: "Facebook", h: "https://facebook.com/people/Sri-Darshna-Printers" }, { l: "Instagram", h: "https://www.instagram.com/sri_darshna_printers/" }].map(s => (
-              <a key={s.l} href={s.h} target="_blank" rel="noopener noreferrer"
-                style={{ fontFamily: "'Rubik',sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", padding: "10px 18px", border: "1.5px solid rgba(255,255,255,.18)", color: "rgba(255,255,255,.6)", textDecoration: "none", transition: "all .22s" }}
-                onMouseOver={e => { e.currentTarget.style.borderColor = "var(--gold2)"; e.currentTarget.style.color = "var(--gold2)"; }}
-                onMouseOut={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,.18)"; e.currentTarget.style.color = "rgba(255,255,255,.6)"; }}>{s.l}</a>
-            ))}
+            </Reveal>
+            <div>
+              <Reveal>
+                <div className="ey">Our Story</div>
+                <h2 style={{ fontFamily:"'Rubik',sans-serif", fontSize:"clamp(28px,3.5vw,48px)", fontWeight:900, lineHeight:1.15, color:"var(--ink)", marginBottom:18 }}>Gandhipuram's Most<br/><span style={{ color:"var(--gold)" }}>Trusted Print Shop</span></h2>
+                <div className="divg"/>
+              </Reveal>
+              <Reveal d={.1}>
+                <p style={{ fontFamily:"'Nunito',sans-serif", fontSize:16, fontWeight:700, color:"var(--muted)", lineHeight:1.95, marginTop:20, marginBottom:18 }}>Sri Darshna Printers has been the go-to printing destination for residents, businesses and institutions across Coimbatore since 1999. Located in the heart of Gandhipuram, we have built our reputation on exceptional quality at the lowest prices.</p>
+                <p style={{ fontFamily:"'Nunito',sans-serif", fontSize:16, fontWeight:700, color:"var(--muted)", lineHeight:1.95, marginBottom:40 }}>Whether it is a single visiting card or a bulk calendar order, our experienced team ensures every job is completed with precision and care — with in-house DTP and design support for every client.</p>
+                <div style={{ display:"flex", gap:44, flexWrap:"wrap", marginBottom:40 }}>
+                  {[["25+","Years"],["18+","Products"],["20","Reviews"],["5★","Rated"]].map(([n,l]) => (
+                    <div key={l}>
+                      <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:46, fontWeight:900, color:"var(--navy)", lineHeight:1 }}>{n}</div>
+                      <div style={{ fontFamily:"'Nunito',sans-serif", fontSize:12, fontWeight:700, letterSpacing:".18em", textTransform:"uppercase", color:"var(--muted)", marginTop:6 }}>{l}</div>
+                    </div>
+                  ))}
+                </div>
+                <button className="btn" style={{ fontSize:13 }} onClick={() => go("contact")}>Get in touch</button>
+              </Reveal>
+            </div>
           </div>
         </div>
-      </Reveal>
-
-      <div>
-        <Reveal>
-          <div className="ey">Our Story</div>
-          <h2 style={{ fontFamily: "'Rubik',sans-serif", fontSize: "clamp(28px,3.5vw,48px)", fontWeight: 900, lineHeight: 1.15, color: "var(--ink)", marginBottom: 18 }}>Gandhipuram's Most<br /><span style={{ color: "var(--gold)" }}>Trusted Print Shop</span></h2>
-          <div className="divg" />
-        </Reveal>
-        <Reveal d={.1}>
-          <p style={{ fontFamily: "'Nunito',sans-serif", fontSize: 16, fontWeight: 700, color: "var(--muted)", lineHeight: 1.95, marginTop: 20, marginBottom: 18 }}>Sri Darshna Printers has been the go-to printing destination for residents, businesses and institutions across Coimbatore since 1999. Located in the heart of Gandhipuram, we have built our reputation on exceptional quality at the lowest prices.</p>
-          <p style={{ fontFamily: "'Nunito',sans-serif", fontSize: 16, fontWeight: 700, color: "var(--muted)", lineHeight: 1.95, marginBottom: 40 }}>Whether it is a single visiting card or a bulk calendar order, our experienced team ensures every job is completed with precision and care — with in-house DTP and design support for every client.</p>
-          <div style={{ display: "flex", gap: 44, flexWrap: "wrap", marginBottom: 40 }}>
-            {[["25+", "Years"], ["18+", "Products"], ["20", "Reviews"], ["5★", "Rated"]].map(([n, l]) => (
-              <div key={l}>
-                <div style={{ fontFamily: "'Rubik',sans-serif", fontSize: 46, fontWeight: 900, color: "var(--navy)", lineHeight: 1 }}>{n}</div>
-                <div style={{ fontFamily: "'Nunito',sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--muted)", marginTop: 6 }}>{l}</div>
-              </div>
-            ))}
-          </div>
-          <button className="btn" style={{ fontSize: 13 }} onClick={() => go("contact")}>Place Your Order</button>
-        </Reveal>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* ══ REVIEWS ══ */}
       <section className="sec bg2">
@@ -1506,7 +1097,7 @@ export default function SriDarshna() {
       <section id="contact" className="sec bg2">
         <div className="wrap">
           <Reveal style={{ textAlign:"center", marginBottom:60 }}>
-            <div className="ey" style={{ justifyContent:"center" }}>Place Your Order</div>
+            <div className="ey" style={{ justifyContent:"center" }}>Get in Touch</div>
             <h2 style={{ fontFamily:"'Rubik',sans-serif", fontSize:"clamp(28px,4vw,54px)", fontWeight:900, color:"var(--ink)" }}><span style={{ color:"var(--gold)" }}>Contact us</span></h2>
             <div className="divg" style={{ margin:"18px auto" }}/>
           </Reveal>
@@ -1529,7 +1120,7 @@ export default function SriDarshna() {
                     {[...PRINT_TYPES.map(p=>({name:p.name,icon:p.icon})),...GALLERY_CATS.map(g=>({name:g.label,icon:g.icon}))].map(s => <option key={s.name}>{s.icon} {s.name}</option>)}
                   </select>
                   <textarea className="inp" rows={5} placeholder="Describe your requirement — quantity, size, material..." value={form.message} onChange={e => setForm({...form,message:e.target.value})} style={{ resize:"vertical" }}/>
-                  <button className="btn" style={{ width:"100%", padding:16, fontSize:13 }} onClick={() => { if(form.name&&form.phone) setSent(true); }}>Place Your Order →</button>
+                  <button className="btn" style={{ width:"100%", padding:16, fontSize:13 }} onClick={() => { if(form.name&&form.phone) setSent(true); }}>Send Enquiry →</button>
                   <a href="https://wa.me/919842262124?text=Hi%2C%20I%27d%20like%20a%20printing%20quote" target="_blank" rel="noopener noreferrer"
                     style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:10, padding:"15px", background:"#22c55e", color:"#fff", textDecoration:"none", fontFamily:"'Rubik',sans-serif", fontSize:13, fontWeight:700, letterSpacing:".1em", textTransform:"uppercase", transition:"background .22s" }}
                     onMouseOver={e => e.currentTarget.style.background="#16a34a"}
@@ -1575,103 +1166,29 @@ export default function SriDarshna() {
         </div>
       </section>
 
-     {/* ══ FOOTER ══ */}
-<footer style={{ background: "var(--navy)", padding: "60px 52px 28px" }}>
-  <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-    <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr 1fr 1fr", gap: 44, marginBottom: 48 }}>
-      <div>
-        <div style={{ display: "flex", alignItems: "center", gap: 13, marginBottom: 18 }}>
-          
-          {/* ✅ UPDATED LOGO CONTAINER */}
-          <div style={{ 
-            width: 50, // Slightly wider for the real logo
-            height: 50, 
-            display: "flex", 
-            alignItems: "center", 
-            justifyContent: "center",
-            overflow: "hidden"
-          }}>
-            {/* Replace with your actual logo source path */}
-            <img 
-              src={logo }
-              alt="Sri Darshna Printers Logo"
-              style={{
-                maxWidth: "100%",
-                maxHeight: "100%",
-                objectFit: "contain" // Ensures the logo isn't stretched
-              }}
-            />
-          </div>
-
-          <div>
-            <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 18, fontWeight: 900, color: "#fff", letterSpacing: ".02em" }}>Sri Darshna Printers</div>
-            <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 8.5, fontWeight: 500, letterSpacing: ".28em", color: "var(--gold2)", textTransform: "uppercase", marginTop: 3 }}>Est. 1999 · Coimbatore</div>
-          </div>
-        </div>
-        <p style={{ 
-          fontFamily: "'Nunito',sans-serif", 
-          fontSize: 13, 
-          fontWeight: 700, 
-          color: "rgba(255,255,255,.42)", 
-          lineHeight: 1.85, 
-          marginBottom: 18 
-        }}>
-          Premium printing for every need at the most competitive prices in Coimbatore since 1999.
-        </p>
-  
-
-<div style={{ display: "flex", gap: 10 }}>
-  {[
-    {
-      l: "FB",
-      h: "https://www.facebook.com/people/Sri-Darshna-Printers",
-      // Facebook SVG Path
-      icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-    },
-    {
-      l: "IG",
-      h: "https://www.instagram.com/sri_darshna_printers/",
-      // Instagram SVG Path
-      icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-    }
-  ].map(s => (
-    <a 
-      key={s.l} 
-      href={s.h} 
-      target="_blank" 
-      rel="noopener noreferrer"
-      style={{ 
-        width: 40, 
-        height: 40, 
-        background: "rgba(255,255,255,.06)", 
-        border: "1px solid rgba(255,255,255,.12)", 
-        display: "flex", 
-        alignItems: "center", 
-        justifyContent: "center", 
-        color: "rgba(255,255,255,.55)", 
-        textDecoration: "none", 
-        transition: "all .3s cubic-bezier(0.16, 1, 0.3, 1)",
-        borderRadius: "4px" 
-      }}
-      onMouseOver={e => { 
-        e.currentTarget.style.background = "rgba(184,146,42,.25)"; 
-        e.currentTarget.style.color = "var(--gold2)";
-        e.currentTarget.style.transform = "translateY(-3px)";
-        e.currentTarget.style.borderColor = "rgba(184,146,42,0.4)";
-        e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.2)";
-      }}
-      onMouseOut={e => { 
-        e.currentTarget.style.background = "rgba(255,255,255,.06)"; 
-        e.currentTarget.style.color = "rgba(255,255,255,.55)"; 
-        e.currentTarget.style.transform = "translateY(0)";
-        e.currentTarget.style.borderColor = "rgba(255,255,255,.12)";
-        e.currentTarget.style.boxShadow = "none";
-      }}
-    >
-      {s.icon}
-    </a>
-  ))}
-</div>
+      {/* ══ FOOTER ══ */}
+      <footer style={{ background:"var(--navy)", padding:"60px 52px 28px" }}>
+        <div style={{ maxWidth:1100, margin:"0 auto" }}>
+          <div style={{ display:"grid", gridTemplateColumns:"1.2fr 1fr 1fr 1fr", gap:44, marginBottom:48 }}>
+            <div>
+              <div style={{ display:"flex", alignItems:"center", gap:13, marginBottom:18 }}>
+                <div style={{ width:44, height:44, border:"2px solid rgba(212,170,74,.32)", display:"flex", alignItems:"center", justifyContent:"center" }}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(212,170,74,.7)" strokeWidth="1.4" strokeLinecap="round"><rect x="3" y="7" width="18" height="11" rx="1"/><path d="M7 7V4a1 1 0 011-1h8a1 1 0 011 1v3"/><path d="M7 14h10v5a1 1 0 01-1 1H8a1 1 0 01-1-1v-5z"/></svg>
+                </div>
+                <div>
+                  <div style={{ fontFamily:"'Playfair Display',serif", fontSize:18, fontWeight:900, color:"#fff", letterSpacing:".02em" }}>Sri Darshna Printers</div>
+                  <div style={{ fontFamily:"'DM Mono',monospace", fontSize:8.5, fontWeight:500, letterSpacing:".28em", color:"var(--gold2)", textTransform:"uppercase", marginTop:3 }}>Est. 1999 · Coimbatore</div>
+                </div>
+              </div>
+              <p style={{ fontFamily:"'Nunito',sans-serif", fontSize:13, fontWeight:700, color:"rgba(255,255,255,.42)", lineHeight:1.85, marginBottom:18 }}>Premium printing for every need at the most competitive prices in Coimbatore since 1999.</p>
+              <div style={{ display:"flex", gap:8 }}>
+                {[{l:"FB",h:"https://www.facebook.com/people/Sri-Darshna-Printers"},{l:"IG",h:"https://www.instagram.com/sri_darshna_printers/"}].map(s => (
+                  <a key={s.l} href={s.h} target="_blank" rel="noopener noreferrer"
+                    style={{ width:36, height:36, background:"rgba(255,255,255,.06)", border:"1px solid rgba(255,255,255,.12)", display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"'Rubik',sans-serif", fontSize:11, fontWeight:700, color:"rgba(255,255,255,.55)", textDecoration:"none", transition:"all .22s" }}
+                    onMouseOver={e => { e.currentTarget.style.background="rgba(184,146,42,.2)"; e.currentTarget.style.color="var(--gold2)"; }}
+                    onMouseOut={e  => { e.currentTarget.style.background="rgba(255,255,255,.06)"; e.currentTarget.style.color="rgba(255,255,255,.55)"; }}>{s.l}</a>
+                ))}
+              </div>
             </div>
             <div>
               <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:11, fontWeight:700, letterSpacing:".28em", textTransform:"uppercase", color:"var(--gold)", marginBottom:18 }}>Services</div>
@@ -1833,6 +1350,5 @@ export default function SriDarshna() {
     </div>
   </div>
 )}
-    </div>
-  );
+
 }

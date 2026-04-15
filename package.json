@@ -5,13 +5,13 @@
   "homepage": "https://sathiya-shree.github.io/sridarshnaprinters",
   "type": "module",
   "scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist",
-  "lint": "eslint .",
-  "preview": "vite preview"
-},
+    "dev": "vite",
+    "build": "vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "react": "^19.2.4",
     "react-dom": "^19.2.4"

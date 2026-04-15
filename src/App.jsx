@@ -753,82 +753,184 @@ export default function SriDarshna() {
     .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
 
     /* ── WHY CARDS: BOUTIQUE TECH OVERHAUL ── */
-/* ── WHY CARDS: BOUTIQUE TECH OVERHAUL ── */
+/* ── COMPACT LUXURY REFINEMENT ── */
 .wcard {
   position: relative;
   border: 1.5px solid var(--line);
-  padding: 40px 28px; /* Increased padding for luxury feel */
+  padding: 40px 28px;
   background: var(--cream);
-  overflow: hidden; /* Important for the shimmer effect */
-  transition: 
-    transform 0.4s cubic-bezier(.16,1,.3,1),
-    box-shadow 0.4s cubic-bezier(.16,1,.3,1),
-    border-color 0.3s;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
   z-index: 1;
 }
 
-/* 1. Subtle Paper Texture */
+/* 1. Internal "Expanding" Border */
+/* This creates a second gold border that grows from the corners */
 .wcard::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
-  opacity: 0.05;
-  pointer-events: none;
+  border: 1.5px solid var(--gold);
+  margin: -1.5px; /* Aligns perfectly over the original border */
+  clip-path: inset(0 100% 100% 0); /* Hidden at start (top-left corner) */
+  transition: clip-path 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+  z-index: 2;
 }
 
-/* 2. Tech "Scanner" Line (The Shimmer) */
+.wcard:hover::before {
+  clip-path: inset(0 0 0 0); /* Expands to wrap the whole box */
+}
+
+/* 2. The "Silk" Shimmer */
+/* A much softer, more sophisticated light sweep than a standard tech-scan */
 .wcard::after {
   content: "";
   position: absolute;
-  top: 0; left: -100%;
-  width: 50%; height: 100%;
+  top: 0; left: -150%;
+  width: 100%; height: 100%;
   background: linear-gradient(
-    90deg, 
+    120deg, 
     transparent, 
-    rgba(184, 146, 42, 0.08), 
+    rgba(255, 255, 255, 0.6), 
     transparent
   );
-  transform: skewX(-20deg);
-  transition: 0s;
+  transition: 0.8s;
+  z-index: 3;
 }
 
 .wcard:hover::after {
   left: 150%;
-  transition: 0.8s cubic-bezier(.16,1,.3,1);
 }
 
-/* 3. Hover State Adjustments */
+/* 3. The Subtle "Floating" Content */
+/* Moves the text up while the shadow expands downwards */
 .wcard:hover {
-  transform: translateY(-8px); /* Slightly higher lift */
-  background: #ffffff; /* Contrast change on hover */
+  transform: translateY(-5px);
+  background: #ffffff;
   box-shadow: 
-    0 25px 50px -12px rgba(20, 32, 74, 0.1),
-    0 15px 30px -15px rgba(184, 146, 42, 0.2);
-  border-color: var(--gold);
+    0 15px 35px -10px rgba(20, 32, 74, 0.1);
 }
 
-/* 4. Icon Interaction - UPDATED: Box effect removed */
-.wcard div:first-child { 
-  transition: transform 0.5s cubic-bezier(.16,1,.3,1), color 0.3s;
-  background: transparent !important; /* Force transparent background */
-  box-shadow: none !important; /* Ensure no shadow box appears */
+/* 4. Gold Bar Accent */
+/* A tiny 2px line that appears at the top to anchor the luxury feel */
+.wcard-accent {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: var(--gold);
+  transition: all 0.4s ease;
+  transform: translateX(-50%);
+  z-index: 4;
 }
 
-.wcard:hover div:first-child {
-  transform: scale(1.15); /* Slightly larger scale since box is gone */
-  background: transparent !important; /* Keep it transparent on hover */
-  color: var(--gold) !important; /* Change icon color instead of box color */
+.wcard:hover .wcard-accent {
+  width: 40%; /* Grows outward from the center */
 }
 
-/* 5. Typography Polish */
+/* 5. Typography */
 .wcard h3 {
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1), color 0.3s;
 }
 
 .wcard:hover h3 {
-  transform: translateX(4px); /* Moves title slightly to lead the eye */
   color: var(--gold);
+  transform: translateY(-2px); /* Subtle lift */
+}
+
+.wcard p {
+  transition: opacity 0.4s ease;
+}
+
+.wcard:hover p {
+  opacity: 0.9;
+}
+
+
+/* ── THE HERITAGE VAULT (NAVY BOX) ── */
+.heritage-card {
+  background: var(--navy);
+  padding: 52px 44px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 40px 100px -20px rgba(10, 15, 30, 0.5);
+}
+
+/* Sub-layer: Subtle Grain Texture */
+.heritage-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* Animated Ambient Glow */
+.heritage-glow {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(
+    circle at 50% 0%, 
+    rgba(212, 170, 74, 0.15) 0%, 
+    transparent 70%
+  );
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.heritage-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(212, 170, 74, 0.2);
+  box-shadow: 0 50px 120px -30px rgba(10, 15, 30, 0.7);
+}
+
+/* Floating Glass Shimmer */
+.heritage-card::after {
+  content: "";
+  position: absolute;
+  top: -90%; left: -100%;
+  width: 200%; height: 200%;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.02) 45%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.02) 55%,
+    transparent 100%
+  );
+  transform: rotate(-10deg);
+  transition: all 0.8s ease;
+  pointer-events: none;
+}
+
+.heritage-card:hover::after {
+  top: -20%;
+  left: -20%;
+}
+
+/* Logo Box Enhancement */
+.logo-container {
+  width: 55px;
+  height: 55px;
+  border: 1px solid rgba(212, 170, 74, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(4px);
+  transition: all 0.4s ease;
+}
+
+.heritage-card:hover .logo-container {
+  border-color: var(--gold2);
+  background: rgba(255, 255, 255, 0.07);
+  transform: scale(1.05);
 }
     /* ── REVIEW ── */
     @keyframes revIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
@@ -1164,6 +1266,7 @@ export default function SriDarshna() {
         marginTop: 52
       }}
     >
+      
       {PRINT_TYPES.map((pt, i) => (
         <Reveal key={pt.id} d={i * 0.07}>
           <div className="ptcard">
@@ -1336,6 +1439,7 @@ export default function SriDarshna() {
   {WHY_US.map((w, i) => (
     <Reveal key={w.title} d={i * .07}>
       <div className="wcard">
+        <div class="wcard-accent"></div>
         {/* The container for the icon - we will remove the box style in CSS */}
         <div className="wcard-icon">
           {w.icon}
@@ -1368,76 +1472,134 @@ export default function SriDarshna() {
 </section>
 
 
-      {/* ══ ABOUT ══ */}
+{/* ══ ABOUT SECTION ══ */}
 <section id="about" className="sec">
   <div className="wrap">
     <div className="two" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
+      
+      {/* ── LEFT COLUMN: THE HERITAGE VAULT ── */}
       <Reveal>
-        <div style={{ background: "var(--navy)", padding: "52px 44px", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", top: 0, right: 0, width: 120, height: 120, border: "1px solid rgba(212,170,74,.1)", borderRadius: "0 0 0 100%", pointerEvents: "none" }} />
+        <div className="heritage-card">
+          <div className="heritage-glow" />
           
-          {/* ✅ LOGO REPLACED SVG */}
+          {/* Decorative Corner Arc */}
           <div style={{ 
-            width: 62, 
-            height: 60, 
-            border: "2px solid rgba(212,170,74,.32)", 
-            display: "flex", 
-            alignItems: "center", 
-            justifyContent: "center", 
-            marginBottom: 22,
-            background: "rgba(255,255,255,0.03)" // Subtle background to make logo pop
-          }}>
+            position: "absolute", 
+            top: 0, 
+            right: 0, 
+            width: 140, 
+            height: 140, 
+            border: "1px solid rgba(212,170,74,.15)", 
+            borderRadius: "0 0 0 100%", 
+            pointerEvents: "none" 
+          }} />
+          
+          {/* ✅ Logo Container */}
+          <div className="logo-container">
             <img 
               src={logo} 
-              alt="Sri Darshna Printers Logo" 
-              style={{ maxWidth: "100%", maxHeight: "800%", objectFit: "contain" }} 
+              alt="Logo" 
+              style={{ maxWidth: "110%", maxHeight: "110%", objectFit: "contain" }} 
             />
           </div>
 
-          <div style={{ fontFamily: "'Rubik',sans-serif", fontSize: 56, fontWeight: 900, color: "var(--gold2)", lineHeight: 1, marginBottom: 6 }}>5.0</div>
-          <div style={{ fontFamily: "'Nunito',sans-serif", fontSize: 13, fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", color: "rgba(255,255,255,.38)", marginBottom: 32 }}>Google Rating · 20 Reviews</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          {/* Rating Section */}
+          <div style={{ position: "relative", zIndex: 2 }}>
+            <div style={{ fontFamily: "'Rubik',sans-serif", fontSize: 56, fontWeight: 900, color: "var(--gold2)", lineHeight: 1, marginBottom: 6 }}>
+              5.0
+            </div>
+            <div style={{ fontFamily: "'Nunito',sans-serif", fontSize: 13, fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", color: "rgba(255,255,255,.38)", marginBottom: 32 }}>
+              Google Rating · 20 Reviews
+            </div>
+          </div>
+
+          {/* Contact Details List */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 20, position: "relative", zIndex: 2 }}>
             {[
               ["📍", `530, 7th Street Ext\nGandhipuram, Coimbatore 641012`],
               ["📞", "9842262124 & 98427 35737"],
               ["⏰", "Opens 10 AM · Mon–Sat"],
               ["📅", "Established 1999"]
             ].map(([ic, tx]) => (
-              <div key={tx} style={{ display: "flex", gap: 13, alignItems: "flex-start" }}>
-                <span style={{ fontSize: 17, marginTop: 1, flexShrink: 0 }}>{ic}</span>
-                <span style={{ fontFamily: "'Nunito',sans-serif", fontSize: 17, fontWeight: 700, color: "rgba(255, 255, 255, 0.48)", lineHeight: 1.65, whiteSpace: "pre-line" }}>{tx}</span>
+              <div key={tx} style={{ display: "flex", gap: 13, alignItems: "flex-start", group: "true" }}>
+                <span style={{ fontSize: 18, marginTop: 1, flexShrink: 0, filter: "drop-shadow(0 0 8px rgba(212,170,74,0.3))" }}>{ic}</span>
+                <span style={{ 
+                  fontFamily: "'Nunito',sans-serif", 
+                  fontSize: 16, 
+                  fontWeight: 700, 
+                  color: "rgba(255, 255, 255, 0.55)", 
+                  lineHeight: 1.6, 
+                  whiteSpace: "pre-line",
+                  transition: "color 0.3s ease"
+                }}
+                className="detail-text">
+                  {tx}
+                </span>
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 32, display: "flex", gap: 10, flexWrap: "wrap" }}>
+
+          {/* Social Links */}
+          <div style={{ marginTop: 40, display: "flex", gap: 12, flexWrap: "wrap", position: "relative", zIndex: 2 }}>
             {[{ l: "Facebook", h: "https://facebook.com/people/Sri-Darshna-Printers" }, { l: "Instagram", h: "https://www.instagram.com/sri_darshna_printers/" }].map(s => (
               <a key={s.l} href={s.h} target="_blank" rel="noopener noreferrer"
-                style={{ fontFamily: "'Rubik',sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: ".14em", textTransform: "uppercase", padding: "10px 18px", border: "1.5px solid rgba(255,255,255,.18)", color: "rgba(255,255,255,.6)", textDecoration: "none", transition: "all .22s" }}
-                onMouseOver={e => { e.currentTarget.style.borderColor = "var(--gold2)"; e.currentTarget.style.color = "var(--gold2)"; }}
-                onMouseOut={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,.18)"; e.currentTarget.style.color = "rgba(255,255,255,.6)"; }}>{s.l}</a>
+                style={{ 
+                  fontFamily: "'Rubik',sans-serif", 
+                  fontSize: 11, 
+                  fontWeight: 700, 
+                  letterSpacing: ".14em", 
+                  textTransform: "uppercase", 
+                  padding: "12px 22px", 
+                  border: "1.5px solid rgba(255,255,255,.12)", 
+                  color: "rgba(255,255,255,.5)", 
+                  textDecoration: "none", 
+                  transition: "all .3s ease",
+                  background: "rgba(255,255,255,0.02)"
+                }}
+                onMouseOver={e => { 
+                  e.currentTarget.style.borderColor = "var(--gold2)"; 
+                  e.currentTarget.style.color = "var(--gold2)";
+                  e.currentTarget.style.background = "rgba(212,170,74,0.05)";
+                }}
+                onMouseOut={e => { 
+                  e.currentTarget.style.borderColor = "rgba(255,255,255,.12)"; 
+                  e.currentTarget.style.color = "rgba(255,255,255,.5)";
+                  e.currentTarget.style.background = "rgba(255,255,255,0.02)";
+                }}>
+                {s.l}
+              </a>
             ))}
           </div>
         </div>
       </Reveal>
 
+      {/* ── RIGHT COLUMN: OUR STORY ── */}
       <div>
         <Reveal>
           <div className="ey">Our Story</div>
-          <h2 style={{ fontFamily: "'Rubik',sans-serif", fontSize: "clamp(28px,3.5vw,48px)", fontWeight: 900, lineHeight: 1.15, color: "var(--ink)", marginBottom: 18 }}>Gandhipuram's Most<br /><span style={{ color: "var(--gold)" }}>Trusted Print Shop</span></h2>
+          <h2 style={{ fontFamily: "'Rubik',sans-serif", fontSize: "clamp(28px,3.5vw,48px)", fontWeight: 900, lineHeight: 1.15, color: "var(--ink)", marginBottom: 18 }}>
+            Gandhipuram's Most<br /><span style={{ color: "var(--gold)" }}>Trusted Print Shop</span>
+          </h2>
           <div className="divg" />
         </Reveal>
+        
         <Reveal d={.1}>
-          <p style={{ fontFamily: "'Nunito',sans-serif", fontSize: 16, fontWeight: 700, color: "var(--muted)", lineHeight: 1.95, marginTop: 20, marginBottom: 18 }}>Sri Darshna Printers has been the go-to printing destination for residents, businesses and institutions across Coimbatore since 1999. Located in the heart of Gandhipuram, we have built our reputation on exceptional quality at the lowest prices.</p>
-          <p style={{ fontFamily: "'Nunito',sans-serif", fontSize: 16, fontWeight: 700, color: "var(--muted)", lineHeight: 1.95, marginBottom: 40 }}>Whether it is a single visiting card or a bulk calendar order, our experienced team ensures every job is completed with precision and care — with in-house DTP and design support for every client.</p>
-          <div style={{ display: "flex", gap: 44, flexWrap: "wrap", marginBottom: 40 }}>
+          <p style={{ fontFamily: "'Nunito',sans-serif", fontSize: 16, fontWeight: 700, color: "var(--muted)", lineHeight: 1.95, marginTop: 25, marginBottom: 18 }}>
+            Sri Darshna Printers has been the go-to printing destination for residents, businesses and institutions across Coimbatore since 1999.
+          </p>
+          
+          <div style={{ display: "flex", gap: 44, flexWrap: "wrap", margin: "40px 0" }}>
             {[["25+", "Years"], ["18+", "Products"], ["20", "Reviews"], ["5★", "Rated"]].map(([n, l]) => (
               <div key={l}>
-                <div style={{ fontFamily: "'Rubik',sans-serif", fontSize: 46, fontWeight: 900, color: "var(--navy)", lineHeight: 1 }}>{n}</div>
-                <div style={{ fontFamily: "'Nunito',sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", color: "var(--muted)", marginTop: 6 }}>{l}</div>
+                <div style={{ fontFamily: "'Rubik',sans-serif", fontSize: 44, fontWeight: 900, color: "var(--navy)", lineHeight: 1 }}>{n}</div>
+                <div style={{ fontFamily: "'Nunito',sans-serif", fontSize: 11, fontWeight: 800, letterSpacing: ".15em", textTransform: "uppercase", color: "var(--muted)", marginTop: 8 }}>{l}</div>
               </div>
             ))}
           </div>
-          <button className="btn" style={{ fontSize: 13 }} onClick={() => go("contact")}>Place Your Order</button>
+          
+          <button className="btn" style={{ fontSize: 13 }} onClick={() => go("contact")}>
+            Place Your Order
+          </button>
         </Reveal>
       </div>
     </div>
@@ -1584,7 +1746,7 @@ export default function SriDarshna() {
           
           {/* ✅ UPDATED LOGO CONTAINER */}
           <div style={{ 
-            width: 50, // Slightly wider for the real logo
+            width: 70, // Slightly wider for the real logo
             height: 50, 
             display: "flex", 
             alignItems: "center", 

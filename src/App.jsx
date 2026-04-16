@@ -196,11 +196,11 @@ const GALLERY_CATS = [
 
 
 const REVIEWS = [
-  { name:"Bharath Gowda",      initial:"B", text:"Best Printing Service. Friendly staff and lowest prices in Coimbatore!", ago:"4 months ago" },
-  { name:"Subramaniam",        initial:"S", text:"Quality was excellent. Highly recommend Sri Darshna Printers.",          ago:"4 months ago" },
-  { name:"Jothi Prakash S",    initial:"J", text:"Superb work at very low cost! Thank you for your amazing service.",      ago:"6 years ago"  },
-  { name:"Sagunthala Senthil", initial:"S", text:"Best printing in Gandhipuram. Clean output and professional staff.",     ago:"4 months ago" },
-  { name:"Gokul Kumar",        initial:"G", text:"Great response from the team. Work delivered on time and looked great.",  ago:"6 years ago"  },
+  { name:"Bharath Gowda",      initial:"B", text:"Best Printing Service. Friendly staff and lowest prices in Coimbatore!", ago:"4 months ago", stars:5 },
+  { name:"Subramaniam",        initial:"S", text:"Quality was excellent. Highly recommend Sri Darshna Printers.",          ago:"4 months ago", stars:5 },
+  { name:"Jothi Prakash S",    initial:"J", text:"Superb work at very low cost! Thank you for your amazing service.",      ago:"6 years ago", stars:5  },
+  { name:"Sagunthala Senthil", initial:"S", text:"Best printing in Gandhipuram. Clean output and professional staff.",     ago:"4 months ago", stars:5 },
+  { name:"Gokul Kumar",        initial:"G", text:"Great response from the team. Work delivered on time and looked great.",  ago:"6 years ago", stars:5  },
 ];
 
 const WHY_US = [
@@ -221,6 +221,340 @@ const FAQS = [
 ];
 
 const NAV = ["Home","Services","Gallery","About","Contact"];
+
+/* ─── CUSTOM CURSOR ─── */
+function CustomCursor() {
+  const cursorRef = useRef(null);
+  const dotRef = useRef(null);
+  const posRef = useRef({ x: -100, y: -100 });
+  const dotPosRef = useRef({ x: -100, y: -100 });
+  const [visible, setVisible] = useState(false);
+  const [clicked, setClicked] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const rafRef = useRef(null);
+
+  useEffect(() => {
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+    if (isTouchDevice) return;
+
+    const move = (e) => {
+      posRef.current = { x: e.clientX, y: e.clientY };
+      if (!visible) setVisible(true);
+    };
+
+    const down = () => setClicked(true);
+    const up = () => setClicked(false);
+
+    const checkHover = (e) => {
+      const el = e.target;
+      const isHoverable = el.closest("button,a,.scard,.ptcard,.gal-card,.wcard,.faq-btn,[data-cursor-hover]");
+      setHovered(!!isHoverable);
+    };
+
+    const animate = () => {
+      dotPosRef.current.x += (posRef.current.x - dotPosRef.current.x) * 0.12;
+      dotPosRef.current.y += (posRef.current.y - dotPosRef.current.y) * 0.12;
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate(${dotPosRef.current.x - 20}px, ${dotPosRef.current.y - 20}px)`;
+      }
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate(${posRef.current.x - 4}px, ${posRef.current.y - 4}px)`;
+      }
+      rafRef.current = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener("mousemove", move, { passive: true });
+    window.addEventListener("mousemove", checkHover, { passive: true });
+    window.addEventListener("mousedown", down);
+    window.addEventListener("mouseup", up);
+    rafRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener("mousemove", move);
+      window.removeEventListener("mousemove", checkHover);
+      window.removeEventListener("mousedown", down);
+      window.removeEventListener("mouseup", up);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [visible]);
+
+  if (!visible) return null;
+
+  return (
+    <>
+      <div ref={cursorRef} style={{
+        position: "fixed", top: 0, left: 0, width: 8, height: 8, borderRadius: "50%",
+        background: "var(--gold)", zIndex: 9999, pointerEvents: "none",
+        transition: "width .2s, height .2s, background .2s",
+        willChange: "transform",
+      }} />
+      <div ref={dotRef} style={{
+        position: "fixed", top: 0, left: 0, width: 40, height: 40, borderRadius: "50%",
+        border: `1.5px solid ${hovered ? "var(--gold)" : "rgba(184,146,42,0.45)"}`,
+        zIndex: 9998, pointerEvents: "none",
+        transition: "border-color .3s, width .3s, height .3s",
+        willChange: "transform",
+        transform: clicked ? "scale(0.85)" : "scale(1)",
+      }} />
+    </>
+  );
+}
+
+/* ─── 3D COMPUTER (CSS/SVG inline) ─── */
+function Computer3D() {
+  const [angle, setAngle] = useState(0);
+  const [screenText, setScreenText] = useState(0);
+  const screenTexts = ["✦ Digital Print", "✦ Offset Print", "✦ Screen Print", "✦ DTP Design", "✦ Business Cards", "✦ Flex Boards", "✦ Invitaions", "✦ Standee", "✦ Brochure"];
+
+  useEffect(() => {
+    let frame = 0;
+    const id = setInterval(() => {
+      frame++;
+      setAngle(Math.sin(frame * 0.025) * 8);
+    }, 50);
+    const sid = setInterval(() => setScreenText(t => (t + 1) % screenTexts.length), 2800);
+    return () => { clearInterval(id); clearInterval(sid); };
+  }, []);
+
+  return (
+    <div style={{ perspective: "800px", width: "100%", display: "flex", justifyContent: "center", alignItems: "center", padding: "20px 0" }}>
+      <div style={{
+        transform: `rotateY(${angle}deg) rotateX(5deg)`,
+        transition: "transform 0.1s linear",
+        transformStyle: "preserve-3d",
+        width: 220, position: "relative"
+      }}>
+        {/* Monitor */}
+        <div style={{
+          width: 220, height: 150, background: "linear-gradient(145deg,#1a2240,#0d1530)",
+          border: "3px solid rgba(212,170,74,0.5)", borderRadius: 10,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          boxShadow: "0 0 30px rgba(212,170,74,0.15), inset 0 0 20px rgba(0,0,0,0.5)",
+          position: "relative", overflow: "hidden"
+        }}>
+          {/* Screen glow */}
+          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, rgba(212,170,74,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
+          {/* Scanlines */}
+          <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px)", pointerEvents: "none" }} />
+          {/* Screen content */}
+          <div style={{ textAlign: "center", zIndex: 1, padding: 12 }}>
+            <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 9, letterSpacing: ".22em", textTransform: "uppercase", color: "rgba(212,170,74,0.5)", marginBottom: 8 }}>Sri Darshna Printers</div>
+            <div style={{ fontFamily: "'Rubik',sans-serif", fontSize: 13, fontWeight: 700, color: "var(--gold2)", letterSpacing: 1, transition: "all 0.5s", animation: "screenFlip 2.8s infinite" }}>
+              {screenTexts[screenText]}
+            </div>
+            <div style={{ marginTop: 10, display: "flex", justifyContent: "center", gap: 4 }}>
+              {[...Array(3)].map((_, i) => (
+                <div key={i} style={{ width: 6, height: 6, borderRadius: "50%", background: i === (screenText % 3) ? "var(--gold)" : "rgba(212,170,74,0.3)", transition: "background .3s" }} />
+              ))}
+            </div>
+          </div>
+          {/* Corner decorations */}
+          {[["top","left"],["top","right"],["bottom","left"],["bottom","right"]].map(([v,h],i) => (
+            <div key={i} style={{ position:"absolute", [v]:6, [h]:6, width:10, height:10, [`border${v[0].toUpperCase()+v.slice(1)}`]:"1.5px solid rgba(212,170,74,0.6)", [`border${h[0].toUpperCase()+h.slice(1)}`]:"1.5px solid rgba(212,170,74,0.6)" }}/>
+          ))}
+        </div>
+        {/* Neck */}
+        <div style={{ width: 14, height: 22, background: "linear-gradient(180deg,#1a2240,#0d1530)", margin: "0 auto", borderBottom: "2px solid rgba(212,170,74,0.3)" }} />
+        {/* Base */}
+        <div style={{ width: 100, height: 12, background: "linear-gradient(135deg,#1a2240,#0d1530)", margin: "0 auto", border: "2px solid rgba(212,170,74,0.3)", borderRadius: 4 }} />
+        {/* Keyboard */}
+        <div style={{ width: 200, height: 55, background: "linear-gradient(135deg,#14204a,#0a1530)", border: "2px solid rgba(212,170,74,0.3)", borderRadius: 6, margin: "8px auto 0", padding: 6 }}>
+          {[4,5,5].map((count, row) => (
+            <div key={row} style={{ display: "flex", gap: 3, marginBottom: 3, justifyContent: "center" }}>
+              {[...Array(count)].map((_, i) => (
+                <div key={i} style={{ flex: 1, height: 10, background: "rgba(212,170,74,0.12)", border: "1px solid rgba(212,170,74,0.2)", borderRadius: 2 }} />
+              ))}
+            </div>
+          ))}
+        </div>
+        {/* Reflection */}
+        <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: 150, background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%)", borderRadius: 10, pointerEvents: "none" }} />
+      </div>
+      <style>{`@keyframes screenFlip { 0%,100%{opacity:1;} 40%{opacity:0;} 50%{opacity:1;} }`}</style>
+    </div>
+  );
+}
+
+/* ─── INTRO CARD REVEAL ─── */
+function IntroCard({ onDone }) {
+  const [phase, setPhase] = useState(0); // 0=enter, 1=show, 2=exit
+  const [sparkles, setSparkles] = useState([]);
+
+  useEffect(() => {
+    // Generate sparkle positions
+    setSparkles([...Array(14)].map((_, i) => ({
+      id: i, x: Math.random() * 100, y: Math.random() * 100,
+      size: Math.random() * 4 + 2, delay: Math.random() * 1.2, dur: Math.random() * 1 + 0.8
+    })));
+    const t1 = setTimeout(() => setPhase(1), 80);
+    const t2 = setTimeout(() => setPhase(2), 3200);
+    const t3 = setTimeout(() => onDone(), 3900);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+  }, []);
+
+  return (
+    <div onClick={() => { setPhase(2); setTimeout(onDone, 700); }} style={{
+      position: "fixed", inset: 0, zIndex: 2000,
+      background: "rgba(10,12,20,0.97)", backdropFilter: "blur(18px)",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      cursor: "pointer",
+      opacity: phase === 2 ? 0 : 1,
+      transition: "opacity .7s cubic-bezier(.16,1,.3,1)",
+    }}>
+      {/* Animated grid bg */}
+      <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(212,170,74,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(212,170,74,0.04) 1px,transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" }} />
+
+      {/* Sparkles */}
+      {sparkles.map(s => (
+        <div key={s.id} style={{
+          position: "absolute", left: `${s.x}%`, top: `${s.y}%`,
+          width: s.size, height: s.size, borderRadius: "50%",
+          background: "var(--gold2)", opacity: 0,
+          animation: `sparkle ${s.dur}s ${s.delay}s ease-in-out infinite alternate`,
+        }} />
+      ))}
+
+      {/* Card */}
+      <div style={{
+        background: "linear-gradient(145deg,#14204a,#0a1020)",
+        border: "1px solid rgba(212,170,74,0.35)",
+        padding: "52px 64px",
+        textAlign: "center",
+        position: "relative",
+        maxWidth: 480, width: "90%",
+        transform: phase === 0 ? "scale(0.82) translateY(40px)" : phase === 2 ? "scale(0.92) translateY(-20px)" : "scale(1) translateY(0)",
+        opacity: phase === 0 ? 0 : phase === 2 ? 0 : 1,
+        transition: "all .85s cubic-bezier(.16,1,.3,1)",
+        boxShadow: "0 40px 100px rgba(0,0,0,0.7), 0 0 60px rgba(212,170,74,0.08)",
+      }}>
+        {/* Corner deco */}
+        {[["top","left"],["top","right"],["bottom","left"],["bottom","right"]].map(([v,h],i) => (
+          <div key={i} style={{ position:"absolute",[v]:14,[h]:14,width:22,height:22,[`border${v[0].toUpperCase()+v.slice(1)}`]:"2px solid rgba(212,170,74,0.7)",[`border${h[0].toUpperCase()+h.slice(1)}`]:"2px solid rgba(212,170,74,0.7)" }}/>
+        ))}
+
+        {/* Logo */}
+        <div style={{ width: 72, height: 72, margin: "0 auto 24px", border: "1.5px solid rgba(212,170,74,0.3)", background: "rgba(255,255,255,0.04)", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: 8 }}>
+          <img src={logo} alt="Logo" style={{ maxWidth: "85%", maxHeight: "85%", objectFit: "contain" }} />
+        </div>
+
+        <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 500, letterSpacing: ".32em", textTransform: "uppercase", color: "rgba(212,170,74,0.55)", marginBottom: 16 }}>Est. 1999 · Coimbatore</div>
+
+        <h1 style={{ fontFamily: "'Nunito',serif", fontSize: "clamp(28px,5vw,42px)", fontWeight: 900, color: "#fff", lineHeight: 1.1, letterSpacing: "-.5px", marginBottom: 12 }}>
+          Sri Darshna<br /><span style={{ color: "var(--gold2)" }}>Printers</span>
+        </h1>
+
+        <div style={{ width: 52, height: 2, background: "linear-gradient(90deg,var(--gold),var(--gold2))", margin: "20px auto" }} />
+
+        <p style={{ fontFamily: "'Nunito',sans-serif", fontSize: 15, fontWeight: 700, color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: 28 }}>
+          Premium Printing · Gandhipuram<br />
+          <span style={{ color: "rgba(255,255,255,0.35)", fontSize: 13 }}>★★★★★ 5.0 · 20 Google Reviews</span>
+        </p>
+
+        <div style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap" }}>
+          {["Business Cards","Brochures","Flex Boards","ID Cards","Banners"].map(tag => (
+            <span key={tag} style={{ fontFamily: "'DM Mono',monospace", fontSize: 9, fontWeight: 500, letterSpacing: ".2em", textTransform: "uppercase", padding: "5px 12px", border: "1px solid rgba(212,170,74,0.25)", color: "rgba(212,170,74,0.55)", borderRadius: 3 }}>{tag}</span>
+          ))}
+        </div>
+
+        <div style={{ marginTop: 28, fontFamily: "'DM Mono',monospace", fontSize: 10, letterSpacing: ".2em", color: "rgba(255,255,255,0.25)", textTransform: "uppercase" }}>
+          tap anywhere to enter
+        </div>
+      </div>
+      <style>{`@keyframes sparkle { from{opacity:0;transform:scale(0.5);} to{opacity:0.8;transform:scale(1.4);} }`}</style>
+    </div>
+  );
+}
+
+/* ─── GOOGLE REVIEW CARDS ─── */
+function ReviewCards() {
+  const allReviews = [
+    {
+      name: "Arun K",
+      initial: "A",
+      col: "#1a2a6e",
+      text: "Really impressed with the print clarity and finishing. Everything was exactly as expected.",
+      ago: "2 weeks ago",
+      stars: 5
+    },
+    {
+      name: "Meena R",
+      initial: "M",
+      col: "#1a4a2e",
+      text: "Very professional service. They understood my requirement quickly and delivered on time.",
+      ago: "1 month ago",
+      stars: 5
+    },
+    {
+      name: "Karthik V",
+      initial: "K",
+      col: "#4a1a2e",
+      text: "Good quality prints at reasonable pricing. Will definitely come back for future work.",
+      ago: "3 weeks ago",
+      stars: 4
+    },
+    {
+      name: "Divya S",
+      initial: "D",
+      col: "#2e1a4a",
+      text: "Loved the finishing and paper quality. Staff were helpful throughout the process.",
+      ago: "2 months ago",
+      stars: 5
+    },
+    {
+      name: "Rahul M",
+      initial: "R",
+      col: "#1a4a4a",
+      text: "Quick turnaround and neat work. Communication was smooth and clear.",
+      ago: "10 days ago",
+      stars: 5
+    },
+  ];
+  const [hovIdx, setHovIdx] = useState(null);
+
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 16, marginTop: 40 }}>
+      {allReviews.map((r, i) => (
+        <div key={i}
+          onMouseEnter={() => setHovIdx(i)}
+          onMouseLeave={() => setHovIdx(null)}
+          style={{
+            background: "#fff",
+            border: "1.5px solid var(--line)",
+            padding: "28px 24px",
+            position: "relative",
+            transition: "transform .4s cubic-bezier(.16,1,.3,1), box-shadow .4s, border-color .3s",
+            transform: hovIdx === i ? "translateY(-6px)" : "none",
+            boxShadow: hovIdx === i ? "0 20px 48px rgba(0,0,0,0.1)" : "0 4px 12px rgba(0,0,0,0.04)",
+            borderColor: hovIdx === i ? "rgba(184,146,42,0.4)" : "var(--line)",
+          }}
+        >
+     
+          {/* Stars */}
+          <div style={{ color: "#FBBC04", fontSize: 14, letterSpacing: 2, marginBottom: 14 }}>{"★".repeat(r.stars)}</div>
+
+          {/* Quote */}
+          <p style={{ fontFamily: "'Nunito',sans-serif", fontSize: 14, fontWeight: 700, fontStyle: "italic", color: "var(--ink2)", lineHeight: 1.75, marginBottom: 20, minHeight: 60 }}>
+            "{r.text}"
+          </p>
+
+          {/* Divider */}
+          <div style={{ height: 1, background: "var(--line)", marginBottom: 16 }} />
+
+          {/* Author */}
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <div style={{ width: 40, height: 40, borderRadius: "50%", background: r.col, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Rubik',sans-serif", fontSize: 17, fontWeight: 900, color: "#fff", flexShrink: 0 }}>
+              {r.initial}
+            </div>
+            <div>
+              <div style={{ fontFamily: "'Rubik',sans-serif", fontSize: 14, fontWeight: 700, color: "var(--ink)" }}>{r.name}</div>
+              <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, letterSpacing: ".14em", color: "var(--muted)", marginTop: 2 }}> {r.ago}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 /* ─── SCROLL REVEAL ─── */
 function Reveal({ children, d = 0, style = {} }) {
@@ -262,7 +596,6 @@ export function GalCard({ cat, onClick }) {
         transform: hov ? "translateY(-5px)" : "none",
       }}
     >
-      {/* ✅ IMAGE */}
       {previewImg && (
         <img
           src={previewImg}
@@ -279,7 +612,6 @@ export function GalCard({ cat, onClick }) {
         />
       )}
 
-      {/* overlay grid (Modern Tech Touch) */}
       <div
         style={{
           position: "absolute",
@@ -291,7 +623,6 @@ export function GalCard({ cat, onClick }) {
         }}
       />
 
-      {/* center icon */}
       <div
         style={{
           position: "absolute",
@@ -310,7 +641,6 @@ export function GalCard({ cat, onClick }) {
         </div>
       </div>
 
-      {/* hover overlay (Glassmorphism) */}
       <div
         style={{
           position: "absolute",
@@ -365,7 +695,6 @@ export function GalCard({ cat, onClick }) {
         </div>
       </div>
 
-      {/* bottom label */}
       <div
         style={{
           position: "absolute",
@@ -405,7 +734,6 @@ export function ModalImg({ src, label, idx, onClick }) {
         transition: "transform .4s cubic-bezier(0.16, 1, 0.3, 1)"
       }}
     >
-      {/* ✅ IMAGE */}
       {src && (
         <img
           src={src}
@@ -423,7 +751,6 @@ export function ModalImg({ src, label, idx, onClick }) {
         />
       )}
 
-      {/* hover overlay */}
       <div
         style={{
           position: "absolute",
@@ -453,7 +780,6 @@ export function ModalImg({ src, label, idx, onClick }) {
         </div>
       </div>
 
-      {/* index */}
       <div
         style={{
           position: "absolute",
@@ -531,8 +857,10 @@ export function FullscreenViewer({ src, onClose }) {
     </div>
   );
 }
+
 /* ─── MAIN ─── */
 export default function SriDarshna() {
+  const [showIntro, setShowIntro]   = useState(true);
   const [scrollY,    setScrollY]    = useState(0);
   const [activeNav,  setActiveNav]  = useState("Home");
   const [revIdx,     setRevIdx]     = useState(0);
@@ -542,6 +870,7 @@ export default function SriDarshna() {
   const [pct,        setPct]        = useState(0);
   const [modalCat,   setModalCat]   = useState(null);
   const [lightbox,   setLightbox]   = useState(null);
+  const [mobileMenu, setMobileMenu] = useState(false);
 
   useEffect(() => {
     const fn = () => {
@@ -567,8 +896,8 @@ export default function SriDarshna() {
     const fn = e => {
       if (e.key === "Escape") { setLightbox(null); setModalCat(null); }
       if (lightbox) {
-        if (e.key === "ArrowRight") setLightbox(l => ({ ...l, idx:(l.idx+1)%l.cat.imgs }));
-        if (e.key === "ArrowLeft")  setLightbox(l => ({ ...l, idx:(l.idx-1+l.cat.imgs)%l.cat.imgs }));
+        if (e.key === "ArrowRight") setLightbox(l => ({ ...l, idx:(l.idx+1)%l.cat.imgs.length }));
+        if (e.key === "ArrowLeft")  setLightbox(l => ({ ...l, idx:(l.idx-1+l.cat.imgs.length)%l.cat.imgs.length }));
       }
     };
     window.addEventListener("keydown", fn);
@@ -576,11 +905,18 @@ export default function SriDarshna() {
   }, [lightbox]);
 
   useEffect(() => {
-    document.body.style.overflow = (modalCat || lightbox) ? "hidden" : "";
+    document.body.style.overflow = (modalCat || lightbox || showIntro) ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
-  }, [modalCat, lightbox]);
+  }, [modalCat, lightbox, showIntro]);
 
-  const go = s => { document.getElementById(s.toLowerCase())?.scrollIntoView({ behavior:"smooth" }); };
+  // Hide system cursor on desktop
+  useEffect(() => {
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+    if (!isTouchDevice) document.body.style.cursor = "none";
+    return () => { document.body.style.cursor = ""; };
+  }, []);
+
+  const go = s => { document.getElementById(s.toLowerCase())?.scrollIntoView({ behavior:"smooth" }); setMobileMenu(false); };
   const navUp = scrollY > 50;
 
   const CSS=`
@@ -607,7 +943,7 @@ export default function SriDarshna() {
     /* ── NAV ── */
     .nav{position:fixed;top:0;left:0;right:0;z-index:300;height:72px;display:flex;align-items:center;padding:0 52px;justify-content:space-between;transition:background .4s,border-color .4s,backdrop-filter .4s;border-bottom:1px solid transparent;}
     .nav.up{background:rgba(250,248,244,.97);border-color:var(--line);backdrop-filter:blur(20px);}
-    .nl{font-family:'Rubik',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;padding-bottom:3px;cursor:pointer;transition:color .22s,border-color .22s;}
+    .nl{font-family:'Rubik',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;padding-bottom:3px;cursor:none;transition:color .22s,border-color .22s;}
     .nl:hover,.nl.on{color:var(--gold);border-color:var(--gold);}
 
     /* ── SECTIONS ── */
@@ -629,17 +965,16 @@ export default function SriDarshna() {
     .hero-r-bot{padding:28px 32px 36px;display:flex;flex-direction:column;gap:16px;}
 
     /* ── SERVICE CARDS ── */
-    .scard{border:1.5px solid var(--line);padding:30px 24px 26px;background:var(--cream);position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .35s,background .35s;cursor:default;}
+    .scard{border:1.5px solid var(--line);padding:30px 24px 26px;background:var(--cream);position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .35s,background .35s;cursor:none;}
     .scard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1);}
     .scard:hover{transform:translateY(-7px);box-shadow:0 24px 56px rgba(0,0,0,.1);border-color:rgba(184,146,42,.3);background:#fff;}
     .scard:hover::after{transform:scaleX(1);}
 
     /* ── PRINT TYPE CARDS ── */
-    /* ── UPDATED PRINT TYPE CARDS ── */
 .ptcard {
   overflow: hidden;
   position: relative;
-  cursor: default;
+  cursor: none;
   transition: 
     transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
     box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -647,7 +982,6 @@ export default function SriDarshna() {
   z-index: 1;
 }
 
-/* 1. Subtle lifting effect and shadow depth */
 .ptcard:hover {
   transform: translateY(-10px);
   box-shadow: 
@@ -657,15 +991,14 @@ export default function SriDarshna() {
 
 .ptcard-img {
   position: relative;
-  height: 260px; /* Slightly taller for elegance */
+  height: 260px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--cream2); /* Fallback color */
+  background: var(--cream2);
 }
 
-/* 2. Image overlay/shimmer effect */
 .ptcard-img::after {
   content: "";
   position: absolute;
@@ -692,20 +1025,18 @@ export default function SriDarshna() {
 }
 
 .ptcard:hover .ptcard-img-inner {
-  transform: scale(1.1); /* Slightly more dramatic zoom */
+  transform: scale(1.1);
 }
 
-/* 3. Refined Body & Borders */
 .ptcard-body {
   padding: 32px;
-  background: #fff; /* Solid white for clarity */
+  background: #fff;
   border: 1.5px solid var(--line);
   border-top: none;
   position: relative;
   transition: border-color 0.4s ease;
 }
 
-/* 4. The "Gold Reveal" Bottom Border */
 .ptcard-body::before {
   content: "";
   position: absolute;
@@ -724,7 +1055,6 @@ export default function SriDarshna() {
   transform-origin: left;
 }
 
-/* 5. Typography transitions */
 .ptcard h3 {
   font-family: 'Playfair Display', serif;
   font-size: 1.4rem;
@@ -752,8 +1082,7 @@ export default function SriDarshna() {
     /* ── GAL GRID ── */
     .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
 
-    /* ── WHY CARDS: BOUTIQUE TECH OVERHAUL ── */
-/* ── COMPACT LUXURY REFINEMENT ── */
+    /* ── WHY CARDS ── */
 .wcard {
   position: relative;
   border: 1.5px solid var(--line);
@@ -764,25 +1093,21 @@ export default function SriDarshna() {
   z-index: 1;
 }
 
-/* 1. Internal "Expanding" Border */
-/* This creates a second gold border that grows from the corners */
 .wcard::before {
   content: "";
   position: absolute;
   inset: 0;
   border: 1.5px solid var(--gold);
-  margin: -1.5px; /* Aligns perfectly over the original border */
-  clip-path: inset(0 100% 100% 0); /* Hidden at start (top-left corner) */
+  margin: -1.5px;
+  clip-path: inset(0 100% 100% 0);
   transition: clip-path 0.6s cubic-bezier(0.2, 1, 0.3, 1);
   z-index: 2;
 }
 
 .wcard:hover::before {
-  clip-path: inset(0 0 0 0); /* Expands to wrap the whole box */
+  clip-path: inset(0 0 0 0);
 }
 
-/* 2. The "Silk" Shimmer */
-/* A much softer, more sophisticated light sweep than a standard tech-scan */
 .wcard::after {
   content: "";
   position: absolute;
@@ -802,17 +1127,12 @@ export default function SriDarshna() {
   left: 150%;
 }
 
-/* 3. The Subtle "Floating" Content */
-/* Moves the text up while the shadow expands downwards */
 .wcard:hover {
   transform: translateY(-5px);
   background: #ffffff;
-  box-shadow: 
-    0 15px 35px -10px rgba(20, 32, 74, 0.1);
+  box-shadow: 0 15px 35px -10px rgba(20, 32, 74, 0.1);
 }
 
-/* 4. Gold Bar Accent */
-/* A tiny 2px line that appears at the top to anchor the luxury feel */
 .wcard-accent {
   position: absolute;
   top: 0;
@@ -826,17 +1146,16 @@ export default function SriDarshna() {
 }
 
 .wcard:hover .wcard-accent {
-  width: 40%; /* Grows outward from the center */
+  width: 40%;
 }
 
-/* 5. Typography */
 .wcard h3 {
   transition: transform 0.4s cubic-bezier(0.2, 1, 0.3, 1), color 0.3s;
 }
 
 .wcard:hover h3 {
   color: var(--gold);
-  transform: translateY(-2px); /* Subtle lift */
+  transform: translateY(-2px);
 }
 
 .wcard p {
@@ -859,7 +1178,6 @@ export default function SriDarshna() {
   box-shadow: 0 40px 100px -20px rgba(10, 15, 30, 0.5);
 }
 
-/* Sub-layer: Subtle Grain Texture */
 .heritage-card::before {
   content: "";
   position: absolute;
@@ -869,7 +1187,6 @@ export default function SriDarshna() {
   pointer-events: none;
 }
 
-/* Animated Ambient Glow */
 .heritage-glow {
   position: absolute;
   top: 0; left: 0;
@@ -889,7 +1206,6 @@ export default function SriDarshna() {
   box-shadow: 0 50px 120px -30px rgba(10, 15, 30, 0.7);
 }
 
-/* Floating Glass Shimmer */
 .heritage-card::after {
   content: "";
   position: absolute;
@@ -913,10 +1229,9 @@ export default function SriDarshna() {
   left: -20%;
 }
 
-/* Logo Box Enhancement */
 .logo-container {
   width: 55px;
-  height: 55px;
+  height: 45px;
   border: 1px solid rgba(212, 170, 74, 0.2);
   display: flex;
   align-items: center;
@@ -932,16 +1247,21 @@ export default function SriDarshna() {
   background: rgba(255, 255, 255, 0.07);
   transform: scale(1.05);
 }
+
+.logo-container.logo-hero {
+  display: none;
+}
+
     /* ── REVIEW ── */
     @keyframes revIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
     .rev-enter{animation:revIn .5s cubic-bezier(.16,1,.3,1) both;}
 
     /* ── FAQ ── */
     .faq-row{border-bottom:1.5px solid var(--line);}
-    .faq-btn{width:100%;display:flex;justify-content:space-between;align-items:center;padding:22px 28px;background:none;border:none;cursor:pointer;gap:24px;text-align:left;}
+    .faq-btn{width:100%;display:flex;justify-content:space-between;align-items:center;padding:22px 28px;background:none;border:none;cursor:none;gap:24px;text-align:left;}
 
     /* ── BTNS ── */
-    .btn{font-family:'Rubik',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:15px 32px;background:var(--gold);color:#fff;border:none;cursor:pointer;transition:background .22s,transform .18s;}
+    .btn{font-family:'Rubik',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:15px 32px;background:var(--gold);color:#fff;border:none;cursor:none;transition:background .22s,transform .18s;}
     .btn:hover{background:#9a7820;transform:translateY(-1px);}
     .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line);}
     .btn.ghost:hover{border-color:var(--gold);color:var(--gold);}
@@ -968,26 +1288,31 @@ export default function SriDarshna() {
     .modal-bg{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:20px;}
     .modal-box{background:var(--cream);width:100%;max-width:1040px;max-height:90vh;overflow-y:auto;position:relative;}
     .modal-hdr{padding:28px 36px 22px;border-bottom:1.5px solid var(--line);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--cream);z-index:2;}
-    .modal-close{width:40px;height:40px;border:1.5px solid var(--line);background:none;cursor:pointer;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .22s;flex-shrink:0;font-family:'Nunito',sans-serif;}
+    .modal-close{width:40px;height:40px;border:1.5px solid var(--line);background:none;cursor:none;font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .22s;flex-shrink:0;font-family:'Nunito',sans-serif;}
     .modal-close:hover{border-color:var(--gold);color:var(--gold);}
     .modal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:24px 36px 32px;}
 
     /* ── LIGHTBOX ── */
     .lb-bg{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.95);display:flex;align-items:center;justify-content:center;}
-    .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);color:#fff;font-size:22px;font-family:'Nunito',sans-serif;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+    .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);color:#fff;font-size:22px;font-family:'Nunito',sans-serif;font-weight:900;cursor:none;display:flex;align-items:center;justify-content:center;transition:all .2s;}
     .lb-nav:hover{background:rgba(255,255,255,.18);}
-    .lb-close{position:absolute;top:20px;right:20px;width:44px;height:44px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);color:#fff;font-size:18px;font-family:'Nunito',sans-serif;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+    .lb-close{position:absolute;top:20px;right:20px;width:44px;height:44px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);color:#fff;font-size:18px;font-family:'Nunito',sans-serif;font-weight:900;cursor:none;display:flex;align-items:center;justify-content:center;}
 
     /* ── WA FLOAT ── */
     .wa-float{position:fixed;bottom:28px;right:28px;width:58px;height:58px;border-radius:50%;background:#22c55e;display:flex;align-items:center;justify-content:center;z-index:400;box-shadow:0 8px 28px rgba(34,197,94,.4);transition:transform .2s,box-shadow .2s;text-decoration:none;}
     .wa-float:hover{transform:scale(1.1);box-shadow:0 14px 38px rgba(34,197,94,.55);}
+
+    /* ── MOBILE MENU ── */
+    .mob-menu{position:fixed;inset:0;z-index:500;background:rgba(10,12,20,.97);backdrop-filter:blur(18px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+    .mob-nl{font-family:'Rubik',sans-serif;font-size:28px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;background:none;border:none;color:rgba(255,255,255,.7);cursor:pointer;transition:color .2s;}
+    .mob-nl:hover{color:var(--gold2);}
 
     @keyframes hup{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
 
     @media(max-width:900px){
       .nav{padding:0 20px;}
       .nd{display:none!important;}
-      .sec{padding:80px 20px;}
+      .sec{padding:72px 20px;}
       .hero{grid-template-columns:1fr;min-height:auto;}
       .hero-l{padding:96px 20px 52px;}
       .hero-r{border-left:none;border-top:1px solid rgba(255,255,255,.08);}
@@ -996,6 +1321,10 @@ export default function SriDarshna() {
       .pt-grid{grid-template-columns:1fr 1fr!important;}
       .modal-grid{grid-template-columns:1fr 1fr!important;}
       .two{grid-template-columns:1fr!important;gap:48px!important;}
+      .mob-ham{display:flex!important;}
+    }
+    @media(min-width:901px){
+      .mob-ham{display:none!important;}
     }
 `;
 
@@ -1006,17 +1335,33 @@ export default function SriDarshna() {
     <div style={{ background:"var(--cream)", color:"var(--ink)", minHeight:"100vh" }}>
       <style>{CSS}</style>
 
+      {/* ── CUSTOM CURSOR ── */}
+      <CustomCursor />
+
+      {/* ── INTRO CARD ── */}
+      {showIntro && <IntroCard onDone={() => setShowIntro(false)} />}
+
       <div className="prog" style={{ width:`${pct}%` }} />
 
       {/* WhatsApp float */}
       <a href="https://wa.me/919842262124?text=Hi%2C%20I%27d%20like%20a%20quote%20from%20Sri%20Darshna%20Printers" target="_blank" rel="noopener noreferrer" className="wa-float">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       </a>
+
+      {/* ── MOBILE MENU ── */}
+      {mobileMenu && (
+        <div className="mob-menu">
+          <div onClick={() => setMobileMenu(false)} style={{ position:"absolute", top:24, right:24, width:44, height:44, display:"flex", alignItems:"center", justifyContent:"center", border:"1.5px solid rgba(255,255,255,.15)", color:"#fff", cursor:"pointer", fontSize:20 }}>✕</div>
+          {NAV.map(n => <button key={n} className="mob-nl" onClick={() => go(n)}>{n}</button>)}
+          <a href="https://wa.me/919842262124" target="_blank" rel="noopener noreferrer" style={{ fontFamily:"'Rubik',sans-serif", fontSize:15, fontWeight:700, letterSpacing:".1em", textTransform:"uppercase", padding:"16px 36px", background:"#22c55e", color:"#fff", textDecoration:"none", borderRadius:4 }}>WhatsApp Us</a>
+        </div>
+      )}
+
 {/* ══ NAVBAR ══ */}
 <nav className={`nav ${navUp ? "up" : ""}`}>
   
   {/* Left Section: Logo and Title */}
-  <div style={{ display: "flex", alignItems: "center", gap: 5, cursor: "pointer" }} onClick={() => go("home")}>
+  <div style={{ display: "flex", alignItems: "center", gap: 5, cursor: "none" }} onClick={() => go("home")}>
     <div style={{ 
       width: 39, 
       height: 39, 
@@ -1070,10 +1415,14 @@ export default function SriDarshna() {
       </button>
     ))}
   </div>
-  <div id="nav-right" style={{ width: "100px" }}></div>
 
-  {/* Right Section: Empty (Numbers Removed) */}
-  <div style={{ width: 41 }}></div> 
+  {/* Hamburger for mobile */}
+  <button className="mob-ham" onClick={() => setMobileMenu(true)} style={{ background:"none", border:"none", cursor:"pointer", display:"flex", flexDirection:"column", gap:5, padding:8 }}>
+    {[0,1,2].map(i => <div key={i} style={{ width:26, height:2, background: navUp ? "var(--ink)" : "#fff", borderRadius:2, transition:"background .3s" }} />)}
+  </button>
+
+  {/* Right Section */}
+  <div className="nd" style={{ width: 41 }}></div> 
 </nav>
 
           
@@ -1110,12 +1459,9 @@ export default function SriDarshna() {
           </div>
           <div className="hero-r" style={{ animation:"hup .9s .38s both" }}>
             <div className="hero-r-top">
-              <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:22 }}>
-                <div style={{ width:164, height:164, border:"2px solid rgba(212,170,74,.32)", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", background:"rgba(255,255,255,.03)", position:"relative" }}>
-                  {[["top","left"],["top","right"],["bottom","left"],["bottom","right"]].map(([v,h],i) => (
-                    <div key={i} style={{ position:"absolute", [v]:-2, [h]:-2, width:18, height:18, [`border${v[0].toUpperCase()+v.slice(1)}`]:"3px solid var(--gold2)", [`border${h[0].toUpperCase()+h.slice(1)}`]:"3px solid var(--gold2)" }}/>
-                  ))}
-                  <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="rgba(212,170,74,.55)" strokeWidth="1" strokeLinecap="round"><rect x="3" y="7" width="18" height="11" rx="1"/><path d="M7 7V4a1 1 0 011-1h8a1 1 0 011 1v3"/><path d="M7 14h10v5a1 1 0 01-1 1H8a1 1 0 01-1-1v-5z"/><circle cx="17.5" cy="10.5" r=".5" fill="rgba(212,170,74,.55)"/></svg>
+              <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:22, width:"100%", padding:"0 20px" }}>
+                <div style={{ width:164, height:45,  display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center",  position:"relative" }}>
+                  
                   <div style={{
   fontFamily:"'Nunito',sans-serif",
   fontSize:11,
@@ -1123,65 +1469,49 @@ export default function SriDarshna() {
   letterSpacing:".2em",
   textTransform:"uppercase",
   color:"rgba(212,170,74,.4)",
-  marginTop:12
+  marginTop:70
 }}>
-  
- <div style={{
-  width: "100%",          // Changed from 102% to prevent horizontal scroll
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",    // Centers vertically if the parent has height
-  marginTop: "3.5px"
-}}>
-  
-  <div style={{
-    height: "500px",       // Control the size primarily here
-    width: "auto",         // Let width scale naturally
-    maxWidth: "90vw"       // Prevents it from breaking on mobile
-  }}>
-    <img
-      src={logo}
-      alt="Sri Darshna Logo"
-      style={{
-        height: "97%",
-        width: "101%",
-        objectFit: "contain"
-      }}
-    />
-  </div>
+  <div
+  style={{
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "7.5px"
+  }}
+>
+ 
 </div>
+
 </div>
 
                 </div>
-                {/* Parent container: Height set to auto to allow expansion */}
-<div style={{ 
+
+                {/* ── 3D COMPUTER ── */}
+                <Computer3D />
+
+                <div style={{ 
   display: "flex", 
   flexDirection: "column", 
   alignItems: "center", 
   justifyContent: "center", 
-  padding: "15px 10px", // Use padding instead of fixed height
-  minHeight: "60px",    // Optional: sets a minimum size
+  padding: "15px 10px",
+  minHeight: "70px",
   width: "auto" 
 }}>
-  
- 
-
-  {/* Text Section */}
   <div style={{ textAlign: "center" }}>
-    <div style={{ fontFamily: "'Nunito',serif", fontSize: 21, fontWeight: 900, color: "#fff", letterSpacing: ".02em", lineHeight: 1.1 }}>
+    <div style={{ fontFamily: "'Nunito',serif", fontSize: 21, fontWeight: 900, color: "#fff", marginTop:-25, letterSpacing: ".02em", lineHeight: 1.1 }}>
       Sri Darshna Printers
     </div>
     <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 11, fontWeight: 500, letterSpacing: ".28em", textTransform: "uppercase", color: "var(--gold2)", marginTop: 4 }}>
       Coimbatore
     </div>
-    
-    {/* Phone Numbers: Using a slightly smaller font to save space */}
     <div style={{ 
       fontFamily: "'DM Mono',monospace", 
       fontSize: "20px", 
       fontWeight: 600, 
       color: "#dfd7d7", 
-      marginTop: 6,
+      marginTop:8,
       lineHeight: 1.2
     }}>
       98422 62124<br/>98427 35737
@@ -1285,14 +1615,12 @@ export default function SriDarshna() {
                 overflow: "hidden"
               }}
             >
-              {/* OPTIONAL: soft gradient overlay */}
               <div style={{
                 position: "absolute",
                 inset: 0,
                 background: "linear-gradient(to top, rgba(0,0,0,0.5), transparent)"
               }} />
 
-              {/* CONTENT INSIDE IMAGE */}
               <div
                 className="ptcard-img-inner"
                 style={{
@@ -1306,7 +1634,6 @@ export default function SriDarshna() {
                   gap: 14
                 }}
               >
-                {/* ICON */}
                 <div style={{ fontSize: 52, opacity: 0.7 }}>
                   {pt.icon}
                 </div>
@@ -1439,8 +1766,7 @@ export default function SriDarshna() {
   {WHY_US.map((w, i) => (
     <Reveal key={w.title} d={i * .07}>
       <div className="wcard">
-        <div class="wcard-accent"></div>
-        {/* The container for the icon - we will remove the box style in CSS */}
+        <div className="wcard-accent"></div>
         <div className="wcard-icon">
           {w.icon}
         </div>
@@ -1482,7 +1808,6 @@ export default function SriDarshna() {
         <div className="heritage-card">
           <div className="heritage-glow" />
           
-          {/* Decorative Corner Arc */}
           <div style={{ 
             position: "absolute", 
             top: 0, 
@@ -1494,16 +1819,14 @@ export default function SriDarshna() {
             pointerEvents: "none" 
           }} />
           
-          {/* ✅ Logo Container */}
           <div className="logo-container">
             <img 
               src={logo} 
               alt="Logo" 
-              style={{ maxWidth: "110%", maxHeight: "110%", objectFit: "contain" }} 
+              style={{ maxWidth: "180%", maxHeight: "160%", objectFit: "auto" }} 
             />
           </div>
 
-          {/* Rating Section */}
           <div style={{ position: "relative", zIndex: 2 }}>
             <div style={{ fontFamily: "'Rubik',sans-serif", fontSize: 56, fontWeight: 900, color: "var(--gold2)", lineHeight: 1, marginBottom: 6 }}>
               5.0
@@ -1513,7 +1836,6 @@ export default function SriDarshna() {
             </div>
           </div>
 
-          {/* Contact Details List */}
           <div style={{ display: "flex", flexDirection: "column", gap: 20, position: "relative", zIndex: 2 }}>
             {[
               ["📍", `530, 7th Street Ext\nGandhipuram, Coimbatore 641012`],
@@ -1531,15 +1853,13 @@ export default function SriDarshna() {
                   lineHeight: 1.6, 
                   whiteSpace: "pre-line",
                   transition: "color 0.3s ease"
-                }}
-                className="detail-text">
+                }}>
                   {tx}
                 </span>
               </div>
             ))}
           </div>
 
-          {/* Social Links */}
           <div style={{ marginTop: 40, display: "flex", gap: 12, flexWrap: "wrap", position: "relative", zIndex: 2 }}>
             {[{ l: "Facebook", h: "https://facebook.com/people/Sri-Darshna-Printers" }, { l: "Instagram", h: "https://www.instagram.com/sri_darshna_printers/" }].map(s => (
               <a key={s.l} href={s.h} target="_blank" rel="noopener noreferrer"
@@ -1608,7 +1928,7 @@ export default function SriDarshna() {
 
       {/* ══ REVIEWS ══ */}
       <section className="sec bg2">
-        <div className="wrap" style={{ maxWidth:760 }}>
+        <div className="wrap">
           <Reveal style={{ textAlign:"center", marginBottom:52 }}>
             <div className="ey" style={{ justifyContent:"center" }}>Client Reviews</div>
             <h2 style={{ fontFamily:"'Rubik',sans-serif", fontSize:"clamp(28px,4vw,48px)", fontWeight:900, color:"var(--ink)" }}>What Our Customers <span style={{ color:"var(--gold)" }}>Say</span></h2>
@@ -1618,7 +1938,14 @@ export default function SriDarshna() {
               <span style={{ fontFamily:"'Nunito',sans-serif", fontSize:16, fontWeight:700, color:"var(--muted)" }}>· 20 Google Reviews</span>
             </div>
           </Reveal>
-          <div key={revIdx} className="rev-enter" style={{ background:"#fff", border:"1.5px solid var(--line)", padding:"44px 48px", marginBottom:24, position:"relative" }}>
+
+         
+
+          {/* Divider */}
+          <div style={{ margin:"52px 0 0", borderTop:"1.5px solid var(--line)" }} />
+
+          {/* Original animated single review */}
+          <div key={revIdx} className="rev-enter" style={{ background:"#fff", border:"1.5px solid var(--line)", padding:"44px 48px", marginTop:40, marginBottom:24, position:"relative" }}>
             <div style={{ position:"absolute", top:16, left:24, fontFamily:"serif", fontSize:72, color:"var(--gold)", opacity:.13, lineHeight:1 }}>"</div>
             <div style={{ color:"var(--gold)", fontSize:18, letterSpacing:3, marginBottom:18 }}>★★★★★</div>
             <p style={{ fontFamily:"'Nunito',sans-serif", fontSize:19, fontWeight:700, fontStyle:"italic", color:"var(--ink2)", lineHeight:1.72, marginBottom:26 }}>"{REVIEWS[revIdx].text}"</p>
@@ -1639,6 +1966,10 @@ export default function SriDarshna() {
           </div>
         </div>
       </section>
+       {/* ── GOOGLE REVIEW CARDS ── */}
+          <Reveal>
+            <ReviewCards />
+          </Reveal>
 
       {/* ══ FAQ ══ */}
       <section className="sec">
@@ -1682,9 +2013,9 @@ export default function SriDarshna() {
                 </div>
               ) : (
                 <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
-                  <div style={{ display:"flex", gap:10 }}>
-                    <input className="inp" placeholder="Full Name" value={form.name} onChange={e => setForm({...form,name:e.target.value})} style={{ flex:1 }}/>
-                    <input className="inp" placeholder="Phone Number" value={form.phone} onChange={e => setForm({...form,phone:e.target.value})} style={{ flex:1 }}/>
+                  <div style={{ display:"flex", gap:10, flexWrap:"wrap" }}>
+                    <input className="inp" placeholder="Full Name" value={form.name} onChange={e => setForm({...form,name:e.target.value})} style={{ flex:1, minWidth:140 }}/>
+                    <input className="inp" placeholder="Phone Number" value={form.phone} onChange={e => setForm({...form,phone:e.target.value})} style={{ flex:1, minWidth:140 }}/>
                   </div>
                   <select className="inp" value={form.service} onChange={e => setForm({...form,service:e.target.value})} style={{ color:form.service?"var(--ink)":"#a09890" }}>
                     <option value="" disabled>Select a Product / Service</option>
@@ -1744,23 +2075,21 @@ export default function SriDarshna() {
       <div>
         <div style={{ display: "flex", alignItems: "center", gap: 13, marginBottom: 18 }}>
           
-          {/* ✅ UPDATED LOGO CONTAINER */}
           <div style={{ 
-            width: 70, // Slightly wider for the real logo
+            width: 70,
             height: 50, 
             display: "flex", 
             alignItems: "center", 
             justifyContent: "center",
             overflow: "hidden"
           }}>
-            {/* Replace with your actual logo source path */}
             <img 
-              src={logo }
+              src={logo}
               alt="Sri Darshna Printers Logo"
               style={{
                 maxWidth: "100%",
                 maxHeight: "100%",
-                objectFit: "contain" // Ensures the logo isn't stretched
+                objectFit: "contain"
               }}
             />
           </div>
@@ -1780,20 +2109,17 @@ export default function SriDarshna() {
         }}>
           Premium printing for every need at the most competitive prices in Coimbatore since 1999.
         </p>
-  
 
 <div style={{ display: "flex", gap: 10 }}>
   {[
     {
       l: "FB",
       h: "https://www.facebook.com/people/Sri-Darshna-Printers",
-      // Facebook SVG Path
       icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
     },
     {
       l: "IG",
       h: "https://www.instagram.com/sri_darshna_printers/",
-      // Instagram SVG Path
       icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
     }
   ].map(s => (
@@ -1838,13 +2164,13 @@ export default function SriDarshna() {
             <div>
               <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:11, fontWeight:700, letterSpacing:".28em", textTransform:"uppercase", color:"var(--gold)", marginBottom:18 }}>Services</div>
               <div style={{ display:"flex", flexDirection:"column", gap:9 }}>
-                {GALLERY_CATS.slice(0,7).map(s => <span key={s.label} style={{ fontFamily:"'Nunito',sans-serif", fontSize:13, fontWeight:700, color:"rgba(255,255,255,.42)", cursor:"pointer", transition:"color .2s" }} onMouseOver={e=>e.target.style.color="#fff"} onMouseOut={e=>e.target.style.color="rgba(255,255,255,.42)"}>{s.label}</span>)}
+                {GALLERY_CATS.slice(0,7).map(s => <span key={s.label} style={{ fontFamily:"'Nunito',sans-serif", fontSize:13, fontWeight:700, color:"rgba(255,255,255,.42)", cursor:"none", transition:"color .2s" }} onMouseOver={e=>e.target.style.color="#fff"} onMouseOut={e=>e.target.style.color="rgba(255,255,255,.42)"}>{s.label}</span>)}
               </div>
             </div>
             <div>
               <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:11, fontWeight:700, letterSpacing:".28em", textTransform:"uppercase", color:"var(--gold)", marginBottom:18 }}>Navigate</div>
               <div style={{ display:"flex", flexDirection:"column", gap:9 }}>
-                {NAV.map(n => <span key={n} style={{ fontFamily:"'Nunito',sans-serif", fontSize:13, fontWeight:700, color:"rgba(255,255,255,.42)", cursor:"pointer", transition:"color .2s" }} onClick={() => go(n)} onMouseOver={e=>e.target.style.color="#fff"} onMouseOut={e=>e.target.style.color="rgba(255,255,255,.42)"}>{n}</span>)}
+                {NAV.map(n => <span key={n} style={{ fontFamily:"'Nunito',sans-serif", fontSize:13, fontWeight:700, color:"rgba(255,255,255,.42)", cursor:"none", transition:"color .2s" }} onClick={() => go(n)} onMouseOver={e=>e.target.style.color="#fff"} onMouseOut={e=>e.target.style.color="rgba(255,255,255,.42)"}>{n}</span>)}
               </div>
             </div>
             <div>
@@ -1887,10 +2213,10 @@ export default function SriDarshna() {
     onClick={() => setLightbox({ cat: modalCat, idx })}
     style={{
   width: "100%",
-  aspectRatio: "1 / 1",   // ✅ makes it square
+  aspectRatio: "1 / 1",
   objectFit: "cover",
   borderRadius: 12,
-  cursor: "pointer"
+  cursor: "none"
 }}
   />
 ))}
@@ -1912,10 +2238,8 @@ export default function SriDarshna() {
     className="lb-bg"
     onClick={e => { if (e.target === e.currentTarget) setLightbox(null); }}
   >
-    {/* CLOSE */}
     <button className="lb-close" onClick={() => setLightbox(null)}>✕</button>
 
-    {/* LEFT */}
     <button
       className="lb-nav"
       style={{ left: 24 }}
@@ -1929,7 +2253,6 @@ export default function SriDarshna() {
       ‹
     </button>
 
-    {/* ✅ REAL IMAGE (MAIN FIX) */}
     <img
       src={lightbox.cat.imgs[lightbox.idx]}
       alt="preview"
@@ -1941,7 +2264,6 @@ export default function SriDarshna() {
       }}
     />
 
-    {/* RIGHT */}
     <button
       className="lb-nav"
       style={{ right: 24 }}
@@ -1955,7 +2277,6 @@ export default function SriDarshna() {
       ›
     </button>
 
-    {/* DOTS */}
     <div
       style={{
         position: "absolute",
@@ -1980,7 +2301,6 @@ export default function SriDarshna() {
       ))}
     </div>
 
-    {/* COUNTER */}
     <div
       style={{
         position: "absolute",

@@ -563,11 +563,20 @@ function Reveal({ children, d = 0, style = {} }) {
   useEffect(() => {
     const el = ref.current; if (!el) return;
     if (el.getBoundingClientRect().top < window.innerHeight + 60) { setShow(true); return; }
-    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setShow(true); io.disconnect(); } }, { threshold: 0.06 });
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setShow(true); io.disconnect(); } }, { threshold: 0.1 });
     io.observe(el); return () => io.disconnect();
   }, []);
   return (
-    <div ref={ref} style={{ opacity:show?1:0, transform:show?"none":"translateY(32px)", transition:`opacity .85s ${d}s cubic-bezier(.16,1,.3,1),transform .85s ${d}s cubic-bezier(.16,1,.3,1)`, ...style }}>
+    <div
+      ref={ref}
+      style={{
+        opacity: show ? 1 : 0,
+        transform: show ? "none" : "translateY(16px) scale(0.985)",
+        transition: `opacity .6s ${d}s cubic-bezier(.22,1,.36,1), transform .6s ${d}s cubic-bezier(.22,1,.36,1)`,
+        willChange: "opacity, transform",
+        ...style
+      }}
+    >
       {children}
     </div>
   );

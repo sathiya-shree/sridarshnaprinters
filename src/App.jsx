@@ -113,10 +113,36 @@ import b71 from "./assets/IMG-20260321-WA0118.jpg";
 
 
 
+/* ─── ICON SET (replaces emoji for a consistent, premium line-icon system) ─── */
+const ICONS = {
+  pin: (p={}) => <svg width={p.size||16} height={p.size||16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>,
+  phone: (p={}) => <svg width={p.size||16} height={p.size||16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>,
+  clock: (p={}) => <svg width={p.size||16} height={p.size||16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>,
+  calendar: (p={}) => <svg width={p.size||16} height={p.size||16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>,
+  star: (p={}) => <svg width={p.size||16} height={p.size||16} viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2.5l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17.7l-6.1 3.3 1.5-6.8-5.2-4.7 6.9-.7Z"/></svg>,
+  price: (p={}) => <svg width={p.size||20} height={p.size||20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9c0-1.1 1.1-2 2.5-2s2.5.7 2.5 1.7-1 1.5-2.5 1.8-2.5.8-2.5 1.8S10.6 15 12 15s2.5-.9 2.5-2"/><path d="M12 6v1.2M12 15v1.8"/></svg>,
+  check: (p={}) => <svg width={p.size||20} height={p.size||20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.4 8 11 4.6-2.6 8-6 8-11V5Z"/><path d="M9 12l2 2 4-4"/></svg>,
+  box: (p={}) => <svg width={p.size||20} height={p.size||20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73Z"/><path d="M3.3 7 12 12l8.7-5M12 22V12"/></svg>,
+  palette: (p={}) => <svg width={p.size||20} height={p.size||20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a10 10 0 1 0 0 20c1.4 0 2-1 2-1.9 0-.5-.2-.9-.5-1.3-.3-.3-.4-.7-.4-1.1 0-.8.7-1.5 1.6-1.5H16a4 4 0 0 0 4-4c0-5.5-3.6-10.2-8-10.2Z"/><circle cx="7.2" cy="11" r="1.1"/><circle cx="10" cy="7.2" r="1.1"/><circle cx="15" cy="7.6" r="1.1"/><circle cx="17.2" cy="11.8" r="1.1"/></svg>,
+};
+
 /* ─── PRINTING TYPES (new section below Services) ─── */
 const HERO_IMGS = [];
 
 const PRINT_TYPES = [
+  { 
+    id:"dtp",
+    name:"DTP Designing",
+    desc:"Professional Desktop Publishing — from logos and brochures to full publication layouts.",
+    points:[
+      "Logo & Brand Design",
+      "Brochure & Flyer Layouts",
+      "Menu & Catalogue Design",
+      "Invitation & Card Design"
+    ],
+    cover: dtp
+  },
+
   { 
     id:"digital",
     name:"Digital Printing",
@@ -154,42 +180,29 @@ const PRINT_TYPES = [
       "Bulk Order Friendly"
     ],
     cover: screen
-  },
-
-  { 
-    id:"dtp",
-    name:"DTP Designing",
-    desc:"Professional Desktop Publishing — from logos and brochures to full publication layouts.",
-    points:[
-      "Logo & Brand Design",
-      "Brochure & Flyer Layouts",
-      "Menu & Catalogue Design",
-      "Invitation & Card Design"
-    ],
-    cover: dtp
   }
 ];
 
 /* ─── GALLERY ─── */
 const GALLERY_CATS = [
-  { id:"business-cards",  label:"Business Cards",  color:"#1a1f5e", imgs:[b1,b2,b3,b4,b5,b6], desc:"Premium matte, gloss & soft-touch finish" },
-  { id:"invitations",     label:"Invitations",       color:"#3d1040", imgs:[b7,b8,b9,b10,b11,b12], desc:"Wedding, event & corporate invitations" },
-  { id:"brochures",       label:"Brochures",         color:"#0a2540", imgs:[b14,b13,b15,b16,b17,b18], desc:"Tri-fold, bi-fold & custom formats" },
-  { id:"flex-boards",     label:"Flex Boards",       color:"#0d2e1a", imgs:[b19,b65,b66,b67], desc:"Large-format outdoor & indoor displays" },
-    { id:"standees",        label:"Standees",         color:"#2a0a2e", imgs:[b39,b40], desc:"Roll-up & cut-out standee displays" },
-  { id:"stickers-labels", label:"Stickers & Labels",color:"#2e1a0a", imgs:[b20,b53,b54,b21], desc:"Die-cut, roll & sheet stickers" },
-    { id:"menu-cards",      label:"Menu Cards",        color:"#0a1e2e", imgs:[b44,b63], desc:"Restaurant & café menu printing" },
-  { id:"letterheads",      label:"Letter Pads",       color:"#1a2e0a", imgs:[b47,b48,b49,b50,b51], desc:"Branded letterheads & notepads" },
-  { id:"id-cards",        label:"ID Cards",         color:"#0a1a2e", imgs:[b24,b25,b26,b27,b52], desc:"Employee, student & event ID cards" },
-    { id:"posters",         label:"Posters",          color:"#0a2e1a", imgs:[b43], desc:"A4 to A0 full-color poster printing" },
-  { id:"rubber-stamps",   label:"Rubber Stamps",    color:"#2e0a0a", imgs:[b30,b29,b28], desc:"Custom rubber & self-inking stamps" },
-  { id:"lamination",      label:"Lamination",        color:"#1a1a2e", imgs:[b31,b34,b33,b32], desc:"Gloss, matte & thermal lamination" },
-  { id:"badges",          label:"Badges",            color:"#0a2e2a", imgs:[b37,b38,b45,b46], desc:"Metal, plastic & custom event badges" },
-  { id:"sun-packs",       label:"Sun Packs",        color:"#2e1a00", imgs:[b57,b56,b55], desc:"UV-resistant sun pack board printing" },
-  { id:"vibuthi-covers",  label:"Vibuthi Covers",    color:"#1a0a2e", imgs:[b41,b42], desc:"Traditional vibuthi packet covers" },
-  { id:"calendars",       label:"Calendars",      color:"#2e0a1a", imgs:[b62,b59,b60,b61,b58], desc:"Wall, desk & customised calendars" },
-  { id:"dtp-design",      label:"DTP & Design",      color:"#1e0a2a", imgs:[b68,b69,b70,b71], desc:"Logos, layouts & desktop publishing" },
-  { id:"name-plates",     label:"Name Plates",       color:"#2e2a0a", imgs:[b35,b36], desc:"Acrylic, brass & engraved name plates" },
+  { id:"dtp-design",      label:"DTP & Design",      color:"#101c3c", imgs:[b68,b69,b70,b71], desc:"Logos, layouts & desktop publishing" },
+  { id:"business-cards",  label:"Business Cards",  color:"#152449", imgs:[b1,b2,b3,b4,b5,b6], desc:"Premium matte, gloss & soft-touch finish" },
+  { id:"invitations",     label:"Invitations",       color:"#1b2c56", imgs:[b7,b8,b9,b10,b11,b12], desc:"Wedding, event & corporate invitations" },
+  { id:"brochures",       label:"Brochures",         color:"#101c3c", imgs:[b14,b13,b15,b16,b17,b18], desc:"Tri-fold, bi-fold & custom formats" },
+  { id:"flex-boards",     label:"Flex Boards",       color:"#152449", imgs:[b19,b65,b66,b67], desc:"Large-format outdoor & indoor displays" },
+    { id:"standees",        label:"Standees",         color:"#1b2c56", imgs:[b39,b40], desc:"Roll-up & cut-out standee displays" },
+  { id:"stickers-labels", label:"Stickers & Labels",color:"#101c3c", imgs:[b20,b53,b54,b21], desc:"Die-cut, roll & sheet stickers" },
+    { id:"menu-cards",      label:"Menu Cards",        color:"#152449", imgs:[b44,b63], desc:"Restaurant & café menu printing" },
+  { id:"letterheads",      label:"Letter Pads",       color:"#1b2c56", imgs:[b47,b48,b49,b50,b51], desc:"Branded letterheads & notepads" },
+  { id:"id-cards",        label:"ID Cards",         color:"#101c3c", imgs:[b24,b25,b26,b27,b52], desc:"Employee, student & event ID cards" },
+    { id:"posters",         label:"Posters",          color:"#152449", imgs:[b43], desc:"A4 to A0 full-color poster printing" },
+  { id:"rubber-stamps",   label:"Rubber Stamps",    color:"#1b2c56", imgs:[b30,b29,b28], desc:"Custom rubber & self-inking stamps" },
+  { id:"lamination",      label:"Lamination",        color:"#101c3c", imgs:[b31,b34,b33,b32], desc:"Gloss, matte & thermal lamination" },
+  { id:"badges",          label:"Badges",            color:"#152449", imgs:[b37,b38,b45,b46], desc:"Metal, plastic & custom event badges" },
+  { id:"sun-packs",       label:"Sun Packs",        color:"#1b2c56", imgs:[b57,b56,b55], desc:"UV-resistant sun pack board printing" },
+  { id:"vibuthi-covers",  label:"Vibuthi Covers",    color:"#101c3c", imgs:[b41,b42], desc:"Traditional vibuthi packet covers" },
+  { id:"calendars",       label:"Calendars",      color:"#152449", imgs:[b62,b59,b60,b61,b58], desc:"Wall, desk & customised calendars" },
+  { id:"name-plates",     label:"Name Plates",       color:"#1b2c56", imgs:[b35,b36], desc:"Acrylic, brass & engraved name plates" },
 
 ];
 
@@ -204,12 +217,12 @@ const REVIEWS = [
 ];
 
 const WHY_US = [
-  { icon:"💰", title:"Lowest Prices",      desc:"Most competitive pricing in Coimbatore — no hidden charges ever." },
-  { icon:"✅", title:"100% Satisfaction",  desc:"Not happy? We reprint. Your satisfaction is our promise, every time." },
-  { icon:"📦", title:"All Under One Roof", desc:"From business cards to standees — everything in one shop." },
-  { icon:"⭐", title:"5-Star Rated",       desc:"20 verified Google reviews with a perfect 5.0 rating." },
-  { icon:"🎨", title:"DTP Support",        desc:"In-house design team helps with artwork at affordable rates." },
-  { icon:"📅", title:"Est. Since 1999",    desc:"25+ years of trusted printing for homes, businesses and institutions." },
+  { icon:"price", title:"Lowest Prices",      desc:"Most competitive pricing in Coimbatore — no hidden charges ever." },
+  { icon:"palette", title:"DTP Support",        desc:"In-house design team helps with artwork at affordable rates." },
+  { icon:"check", title:"100% Satisfaction",  desc:"Not happy? We reprint. Your satisfaction is our promise, every time." },
+  { icon:"box", title:"All Under One Roof", desc:"From business cards to standees — everything in one shop." },
+  { icon:"star", title:"5-Star Rated",       desc:"20 verified Google reviews with a perfect 5.0 rating." },
+  { icon:"calendar", title:"Est. Since 1999",    desc:"25+ years of trusted printing for homes, businesses and institutions." },
 ];
 
 const FAQS = [
@@ -303,164 +316,71 @@ function CustomCursor() {
 /* ─── 3D COMPUTER (CSS/SVG inline) ─── */
 function Computer3D() {
   const [angle, setAngle] = useState(0);
+  const [bob, setBob] = useState(0);
   const [screenText, setScreenText] = useState(0);
-  const screenTexts = ["✦ Digital Print", "✦ Offset Print", "✦ Screen Print", "✦ DTP Design", "✦ Business Cards", "✦ Flex Boards", "✦ Invitaions", "✦ Standee", "✦ Brochure"];
+  const screenTexts = ["✦ DTP Design", "✦ Digital Print", "✦ Offset Print", "✦ Screen Print", "✦ Business Cards", "✦ Flex Boards", "✦ Invitaions", "✦ Standee", "✦ Brochure"];
 
   useEffect(() => {
     let frame = 0;
     const id = setInterval(() => {
       frame++;
-      setAngle(Math.sin(frame * 0.025) * 8);
+      setAngle(Math.sin(frame * 0.02) * 10);
+      setBob(Math.sin(frame * 0.035) * 5);
     }, 50);
     const sid = setInterval(() => setScreenText(t => (t + 1) % screenTexts.length), 2800);
     return () => { clearInterval(id); clearInterval(sid); };
   }, []);
 
   return (
-    <div style={{ perspective: "800px", width: "100%", display: "flex", justifyContent: "center", alignItems: "center", padding: "20px 0" }}>
+    <div style={{ perspective: "900px", width: "100%", display: "flex", justifyContent: "center", alignItems: "center", padding: "26px 0 12px", position: "relative" }}>
+      {/* Ivory glow platform — light accent against the navy hero */}
       <div style={{
-        transform: `rotateY(${angle}deg) rotateX(5deg)`,
+        position: "absolute", bottom: 6, width: 190, height: 34, borderRadius: "50%",
+        background: "radial-gradient(ellipse at center, rgba(244,236,220,0.22) 0%, rgba(244,236,220,0.06) 55%, transparent 75%)",
+        filter: "blur(2px)", pointerEvents: "none"
+      }} />
+      <div style={{
+        transform: `translateY(${bob}px) rotateY(${angle}deg) rotateX(4deg)`,
         transition: "transform 0.1s linear",
         transformStyle: "preserve-3d",
-        width: 220, position: "relative"
+        width: 210, position: "relative"
       }}>
-        {/* Monitor */}
+        {/* Slim modern monitor */}
         <div style={{
-          width: 220, height: 150, background: "linear-gradient(145deg,#1a2240,#0d1530)",
-          border: "3px solid rgba(212,170,74,0.5)", borderRadius: 10,
+          width: 210, height: 138, background: "linear-gradient(150deg,#182652,#0a1330)",
+          border: "1px solid rgba(244,236,220,0.18)", borderRadius: 14,
           display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 0 30px rgba(212,170,74,0.15), inset 0 0 20px rgba(0,0,0,0.5)",
-          position: "relative", overflow: "hidden"
+          boxShadow: "0 24px 50px -14px rgba(4,8,22,0.65), 0 0 0 1px rgba(212,170,74,0.12), inset 0 0 24px rgba(0,0,0,0.35)",
+          position: "relative", overflow: "hidden", padding: 7
         }}>
-          {/* Screen glow */}
-          <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, rgba(212,170,74,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
-          {/* Scanlines */}
-          <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px)", pointerEvents: "none" }} />
-          {/* Screen content */}
-          <div style={{ textAlign: "center", zIndex: 1, padding: 12 }}>
-            <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 9, letterSpacing: ".22em", textTransform: "uppercase", color: "rgba(212,170,74,0.5)", marginBottom: 8 }}>Sri Darshna Printers</div>
-            <div style={{ fontFamily: "'Rubik',sans-serif", fontSize: 13, fontWeight: 700, color: "var(--gold2)", letterSpacing: 1, transition: "all 0.5s", animation: "screenFlip 2.8s infinite" }}>
-              {screenTexts[screenText]}
-            </div>
-            <div style={{ marginTop: 10, display: "flex", justifyContent: "center", gap: 4 }}>
-              {[...Array(3)].map((_, i) => (
-                <div key={i} style={{ width: 6, height: 6, borderRadius: "50%", background: i === (screenText % 3) ? "var(--gold)" : "rgba(212,170,74,0.3)", transition: "background .3s" }} />
-              ))}
+          {/* Inner bezel / screen glass */}
+          <div style={{ width: "100%", height: "100%", borderRadius: 8, background: "linear-gradient(165deg,#0d1836,#060c20)", position: "relative", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            {/* Screen glow */}
+            <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 50% 30%, rgba(212,170,74,0.14) 0%, transparent 65%)", pointerEvents: "none" }} />
+            {/* Camera dot */}
+            <div style={{ position: "absolute", top: 7, left: "50%", transform: "translateX(-50%)", width: 4, height: 4, borderRadius: "50%", background: "rgba(244,236,220,0.25)" }} />
+            {/* Screen content */}
+            <div style={{ textAlign: "center", zIndex: 1, padding: 12 }}>
+              <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 8.5, letterSpacing: ".22em", textTransform: "uppercase", color: "rgba(244,236,220,0.4)", marginBottom: 9 }}>Sri Darshna Printers</div>
+              <div style={{ fontFamily: "'Rubik',sans-serif", fontSize: 13, fontWeight: 700, color: "var(--gold2)", letterSpacing: .5, transition: "all 0.5s", animation: "screenFlip 2.8s infinite", minWidth: 130 }}>
+                {screenTexts[screenText]}
+              </div>
+              {/* Accurate progress indicator — one tick per title, matches screenTexts.length */}
+              <div style={{ marginTop: 12, display: "flex", justifyContent: "center", gap: 3 }}>
+                {screenTexts.map((_, i) => (
+                  <div key={i} style={{ width: i === screenText ? 12 : 3, height: 3, borderRadius: 2, background: i === screenText ? "var(--gold2)" : "rgba(244,236,220,0.2)", transition: "all .35s cubic-bezier(.16,1,.3,1)" }} />
+                ))}
+              </div>
             </div>
           </div>
-          {/* Corner decorations */}
-          {[["top","left"],["top","right"],["bottom","left"],["bottom","right"]].map(([v,h],i) => (
-            <div key={i} style={{ position:"absolute", [v]:6, [h]:6, width:10, height:10, [`border${v[0].toUpperCase()+v.slice(1)}`]:"1.5px solid rgba(212,170,74,0.6)", [`border${h[0].toUpperCase()+h.slice(1)}`]:"1.5px solid rgba(212,170,74,0.6)" }}/>
-          ))}
         </div>
-        {/* Neck */}
-        <div style={{ width: 14, height: 22, background: "linear-gradient(180deg,#1a2240,#0d1530)", margin: "0 auto", borderBottom: "2px solid rgba(212,170,74,0.3)" }} />
-        {/* Base */}
-        <div style={{ width: 100, height: 12, background: "linear-gradient(135deg,#1a2240,#0d1530)", margin: "0 auto", border: "2px solid rgba(212,170,74,0.3)", borderRadius: 4 }} />
-        {/* Keyboard */}
-        <div style={{ width: 200, height: 55, background: "linear-gradient(135deg,#14204a,#0a1530)", border: "2px solid rgba(212,170,74,0.3)", borderRadius: 6, margin: "8px auto 0", padding: 6 }}>
-          {[4,5,5].map((count, row) => (
-            <div key={row} style={{ display: "flex", gap: 3, marginBottom: 3, justifyContent: "center" }}>
-              {[...Array(count)].map((_, i) => (
-                <div key={i} style={{ flex: 1, height: 10, background: "rgba(212,170,74,0.12)", border: "1px solid rgba(212,170,74,0.2)", borderRadius: 2 }} />
-              ))}
-            </div>
-          ))}
-        </div>
-        {/* Reflection */}
-        <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: 150, background: "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%)", borderRadius: 10, pointerEvents: "none" }} />
+        {/* Slim neck + foot (minimal, no bulky base/keyboard) */}
+        <div style={{ width: 10, height: 20, background: "linear-gradient(180deg,#182652,#0a1330)", margin: "0 auto", borderLeft: "1px solid rgba(244,236,220,0.1)", borderRight: "1px solid rgba(244,236,220,0.1)" }} />
+        <div style={{ width: 74, height: 6, borderRadius: 3, background: "linear-gradient(90deg,transparent,rgba(212,170,74,0.55),transparent)", margin: "0 auto" }} />
+        {/* Reflection sheen */}
+        <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: 138, borderRadius: 14, background: "linear-gradient(135deg, rgba(244,236,220,0.06) 0%, transparent 45%)", pointerEvents: "none" }} />
       </div>
       <style>{`@keyframes screenFlip { 0%,100%{opacity:1;} 40%{opacity:0;} 50%{opacity:1;} }`}</style>
-    </div>
-  );
-}
-
-/* ─── INTRO CARD REVEAL ─── */
-function IntroCard({ onDone }) {
-  const [phase, setPhase] = useState(0); // 0=enter, 1=show, 2=exit
-  const [sparkles, setSparkles] = useState([]);
-
-  useEffect(() => {
-    // Generate sparkle positions
-    setSparkles([...Array(14)].map((_, i) => ({
-      id: i, x: Math.random() * 100, y: Math.random() * 100,
-      size: Math.random() * 4 + 2, delay: Math.random() * 1.2, dur: Math.random() * 1 + 0.8
-    })));
-    const t1 = setTimeout(() => setPhase(1), 80);
-    const t2 = setTimeout(() => setPhase(2), 3200);
-    const t3 = setTimeout(() => onDone(), 3900);
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
-  }, []);
-
-  return (
-    <div onClick={() => { setPhase(2); setTimeout(onDone, 700); }} style={{
-      position: "fixed", inset: 0, zIndex: 2000,
-      background: "rgba(10,12,20,0.97)", backdropFilter: "blur(18px)",
-      display: "flex", alignItems: "center", justifyContent: "center",
-      cursor: "pointer",
-      opacity: phase === 2 ? 0 : 1,
-      transition: "opacity .7s cubic-bezier(.16,1,.3,1)",
-    }}>
-      {/* Animated grid bg */}
-      <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(212,170,74,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(212,170,74,0.04) 1px,transparent 1px)", backgroundSize: "60px 60px", pointerEvents: "none" }} />
-
-      {/* Sparkles */}
-      {sparkles.map(s => (
-        <div key={s.id} style={{
-          position: "absolute", left: `${s.x}%`, top: `${s.y}%`,
-          width: s.size, height: s.size, borderRadius: "50%",
-          background: "var(--gold2)", opacity: 0,
-          animation: `sparkle ${s.dur}s ${s.delay}s ease-in-out infinite alternate`,
-        }} />
-      ))}
-
-      {/* Card */}
-      <div style={{
-        background: "linear-gradient(145deg,#14204a,#0a1020)",
-        border: "1px solid rgba(212,170,74,0.35)",
-        padding: "52px 64px",
-        textAlign: "center",
-        position: "relative",
-        maxWidth: 480, width: "90%",
-        transform: phase === 0 ? "scale(0.82) translateY(40px)" : phase === 2 ? "scale(0.92) translateY(-20px)" : "scale(1) translateY(0)",
-        opacity: phase === 0 ? 0 : phase === 2 ? 0 : 1,
-        transition: "all .85s cubic-bezier(.16,1,.3,1)",
-        boxShadow: "0 40px 100px rgba(0,0,0,0.7), 0 0 60px rgba(212,170,74,0.08)",
-      }}>
-        {/* Corner deco */}
-        {[["top","left"],["top","right"],["bottom","left"],["bottom","right"]].map(([v,h],i) => (
-          <div key={i} style={{ position:"absolute",[v]:14,[h]:14,width:22,height:22,[`border${v[0].toUpperCase()+v.slice(1)}`]:"2px solid rgba(212,170,74,0.7)",[`border${h[0].toUpperCase()+h.slice(1)}`]:"2px solid rgba(212,170,74,0.7)" }}/>
-        ))}
-
-        {/* Logo */}
-        <div style={{ width: 72, height: 72, margin: "0 auto 24px", border: "1.5px solid rgba(212,170,74,0.3)", background: "rgba(255,255,255,0.04)", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: 8 }}>
-          <img src={logo} alt="Logo" style={{ maxWidth: "85%", maxHeight: "85%", objectFit: "contain" }} />
-        </div>
-
-        <div style={{ fontFamily: "'DM Mono',monospace", fontSize: 10, fontWeight: 500, letterSpacing: ".32em", textTransform: "uppercase", color: "rgba(212,170,74,0.55)", marginBottom: 16 }}>Est. 1999 · Coimbatore</div>
-
-        <h1 style={{ fontFamily: "'Nunito',serif", fontSize: "clamp(28px,5vw,42px)", fontWeight: 900, color: "#fff", lineHeight: 1.1, letterSpacing: "-.5px", marginBottom: 12 }}>
-          Sri Darshna<br /><span style={{ color: "var(--gold2)" }}>Printers</span>
-        </h1>
-
-        <div style={{ width: 52, height: 2, background: "linear-gradient(90deg,var(--gold),var(--gold2))", margin: "20px auto" }} />
-
-        <p style={{ fontFamily: "'Nunito',sans-serif", fontSize: 15, fontWeight: 700, color: "rgba(255,255,255,0.55)", lineHeight: 1.7, marginBottom: 28 }}>
-          Premium Printing · Gandhipuram<br />
-          <span style={{ color: "rgba(255,255,255,0.35)", fontSize: 13 }}>★★★★★ 5.0 · 20 Google Reviews</span>
-        </p>
-
-        <div style={{ display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap" }}>
-          {["Business Cards","Brochures","Flex Boards","ID Cards","Banners"].map(tag => (
-            <span key={tag} style={{ fontFamily: "'DM Mono',monospace", fontSize: 9, fontWeight: 500, letterSpacing: ".2em", textTransform: "uppercase", padding: "5px 12px", border: "1px solid rgba(212,170,74,0.25)", color: "rgba(212,170,74,0.55)", borderRadius: 3 }}>{tag}</span>
-          ))}
-        </div>
-
-        <div style={{ marginTop: 28, fontFamily: "'DM Mono',monospace", fontSize: 10, letterSpacing: ".2em", color: "rgba(255,255,255,0.25)", textTransform: "uppercase" }}>
-          tap anywhere to enter
-        </div>
-      </div>
-      <style>{`@keyframes sparkle { from{opacity:0;transform:scale(0.5);} to{opacity:0.8;transform:scale(1.4);} }`}</style>
     </div>
   );
 }
@@ -609,6 +529,7 @@ export function GalCard({ cat, onClick }) {
         <img
           src={previewImg}
           alt={cat.label}
+          loading="lazy"
           style={{
             position: "absolute",
             inset: 0,
@@ -747,6 +668,7 @@ export function ModalImg({ src, label, idx, onClick }) {
         <img
           src={src}
           alt={label}
+          loading="lazy"
           style={{
             position: "absolute",
             inset: 0,
@@ -830,6 +752,7 @@ export function FullscreenViewer({ src, onClose }) {
       <img
         src={src}
         alt="preview"
+        loading="lazy"
         onClick={(e) => e.stopPropagation()}
         style={{
           maxWidth: "100%",
@@ -869,7 +792,6 @@ export function FullscreenViewer({ src, onClose }) {
 
 /* ─── MAIN ─── */
 export default function SriDarshna() {
-  const [showIntro, setShowIntro]   = useState(true);
   const [scrollY,    setScrollY]    = useState(0);
   const [activeNav,  setActiveNav]  = useState("Home");
   const [revIdx,     setRevIdx]     = useState(0);
@@ -914,9 +836,9 @@ export default function SriDarshna() {
   }, [lightbox]);
 
   useEffect(() => {
-    document.body.style.overflow = (modalCat || lightbox || showIntro) ? "hidden" : "";
+    document.body.style.overflow = (modalCat || lightbox) ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
-  }, [modalCat, lightbox, showIntro]);
+  }, [modalCat, lightbox]);
 
   // Hide system cursor on desktop
   useEffect(() => {
@@ -943,17 +865,25 @@ export default function SriDarshna() {
       --cream: #101c3c;
       --cream2:#15244a;
       --cream3:#1b2c56;
+      --ivory: #f4ecdc;
       --line:  rgba(255,255,255,.12);
     }
 
-    body{background:var(--cream);color:var(--ink);font-family:'Nunito',sans-serif;font-weight:700;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-    ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px;}
+    body{background:var(--cream);color:var(--ink);font-family:'Nunito',sans-serif;font-weight:700;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;}
+    body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.035;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+    #root,.nav,.mob-menu,.modal-bg,.lb-bg{position:relative;z-index:2;}
+    ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--cream);}::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold),var(--gold2));border-radius:3px;}
 
     /* ── NAV ── */
     .nav{position:fixed;top:0;left:0;right:0;z-index:300;height:72px;display:flex;align-items:center;padding:0 52px;justify-content:space-between;transition:background .4s,border-color .4s,backdrop-filter .4s;border-bottom:1px solid transparent;}
     .nav.up{background:rgba(16,28,60,.92);border-color:var(--line);backdrop-filter:blur(20px);}
     .nl{font-family:'Rubik',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;padding-bottom:3px;cursor:none;transition:color .22s,border-color .22s;}
     .nl:hover,.nl.on{color:var(--gold);border-color:var(--gold);}
+
+    /* ── GLASSMORPHISM ── */
+    .glass-tile{position:relative;background:rgba(255,255,255,.05);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.14);transition:background .3s,border-color .3s,transform .3s cubic-bezier(.16,1,.3,1);}
+    .glass-tile::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,170,74,.5),transparent);}
+    .glass-tile:hover{background:rgba(255,255,255,.08);border-color:rgba(212,170,74,.3);transform:translateY(-3px);}
 
     /* ── SECTIONS ── */
     .sec{padding:108px 52px;border-top:1px solid var(--line);}
@@ -976,7 +906,7 @@ export default function SriDarshna() {
     /* ── SERVICE CARDS ── */
     .scard{border:1.5px solid var(--line);padding:30px 24px 26px;background:var(--cream);position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .35s,background .35s;cursor:none;}
     .scard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1);}
-    .scard:hover{transform:translateY(-7px);box-shadow:0 24px 56px rgba(0,0,0,.1);border-color:rgba(184,146,42,.3);background:var(--cream);}
+    .scard:hover{transform:translateY(-7px);box-shadow:0 24px 56px rgba(4,8,22,.35);border-color:rgba(184,146,42,.4);background:var(--cream);}
     .scard:hover::after{transform:scaleX(1);}
 
     /* ── PRINT TYPE CARDS ── */
@@ -1191,8 +1121,9 @@ export default function SriDarshna() {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
-  opacity: 0.1;
+  background-image: radial-gradient(rgba(212,170,74,0.18) 1px, transparent 1px);
+  background-size: 14px 14px;
+  opacity: 0.35;
   pointer-events: none;
 }
 
@@ -1270,8 +1201,8 @@ export default function SriDarshna() {
     .faq-btn{width:100%;display:flex;justify-content:space-between;align-items:center;padding:22px 28px;background:none;border:none;cursor:none;gap:24px;text-align:left;}
 
     /* ── BTNS ── */
-    .btn{font-family:'Rubik',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:15px 32px;background:var(--gold);color:#fff;border:none;cursor:none;transition:background .22s,transform .18s;}
-    .btn:hover{background:#9a7820;transform:translateY(-1px);}
+    .btn{font-family:'Rubik',sans-serif;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:16px 34px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#fff;border:none;cursor:none;transition:box-shadow .3s,transform .25s cubic-bezier(.16,1,.3,1),background .3s;box-shadow:0 8px 24px -8px rgba(184,146,42,.5);}
+    .btn:hover{background:linear-gradient(135deg,var(--gold),#9a7820);transform:translateY(-2px);box-shadow:0 14px 32px -8px rgba(184,146,42,.65);}
     .btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line);}
     .btn.ghost:hover{border-color:var(--gold);color:var(--gold);}
     .btn.inv{background:transparent;color:rgba(255,255,255,.88);border:2px solid rgba(255,255,255,.22);}
@@ -1317,6 +1248,9 @@ export default function SriDarshna() {
     .mob-nl:hover{color:var(--gold2);}
 
     @keyframes hup{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
+    @keyframes auroraA{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(6%,8%) scale(1.15);}}
+    @keyframes auroraB{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-8%,-6%) scale(1.1);}}
+    @keyframes auroraC{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-5%,10%) scale(1.2);}}
 
     @media(max-width:900px){
       .nav{padding:0 20px;}
@@ -1326,7 +1260,8 @@ export default function SriDarshna() {
       .hero-l{padding:96px 20px 52px;}
       .hero-r{border-left:none;border-top:1px solid rgba(255,255,255,.08);}
       .gal-grid{grid-template-columns:1fr 1fr!important;}
-      .svc-grid{grid-template-columns:1fr 1fr!important;}
+      .svc-grid{grid-template-columns:1fr!important;}
+      .svc-grid>div{grid-column:1/-1!important;}
       .pt-grid{grid-template-columns:1fr 1fr!important;}
       .modal-grid{grid-template-columns:1fr 1fr!important;}
       .two{grid-template-columns:1fr!important;gap:48px!important;}
@@ -1338,7 +1273,7 @@ export default function SriDarshna() {
 `;
 
   
-  const TICK = ["Business Cards","Invitations","Brochures","Flex Boards","Stickers & Labels","Letter Pads","ID Cards","Rubber Stamps","DTP Design","Screen Printing","Offset Printing","Digital Printing","Name Plates","Badges","Standees","Posters","Calendars","Menu Cards","Since 1999","Gandhipuram CBE","5-Star Rated"];
+  const TICK = ["DTP Design","Business Cards","Invitations","Brochures","Flex Boards","Stickers & Labels","Letter Pads","ID Cards","Rubber Stamps","Screen Printing","Offset Printing","Digital Printing","Name Plates","Badges","Standees","Posters","Calendars","Menu Cards","Since 1999","Gandhipuram CBE","5-Star Rated"];
 
   return (
     <div style={{ background:"var(--cream)", color:"var(--ink)", minHeight:"100vh" }}>
@@ -1348,7 +1283,6 @@ export default function SriDarshna() {
       <CustomCursor />
 
       {/* ── INTRO CARD ── */}
-      {showIntro && <IntroCard onDone={() => setShowIntro(false)} />}
 
       <div className="prog" style={{ width:`${pct}%` }} />
 
@@ -1441,12 +1375,18 @@ export default function SriDarshna() {
       <section id="home">
         <div className="hero">
           <div style={{ position:"absolute", inset:0, opacity:.025, backgroundImage:"linear-gradient(rgba(212,170,74,1) 1px,transparent 1px),linear-gradient(90deg,rgba(212,170,74,1) 1px,transparent 1px)", backgroundSize:"72px 72px", pointerEvents:"none" }}/>
+          {/* Ambient aurora blobs */}
+          <div style={{ position:"absolute", inset:0, overflow:"hidden", pointerEvents:"none" }}>
+            <div style={{ position:"absolute", top:"-15%", left:"-10%", width:"55%", height:"70%", borderRadius:"50%", background:"radial-gradient(circle,rgba(212,170,74,0.16) 0%,transparent 68%)", filter:"blur(10px)", animation:"auroraA 22s ease-in-out infinite" }}/>
+            <div style={{ position:"absolute", bottom:"-20%", right:"-8%", width:"50%", height:"65%", borderRadius:"50%", background:"radial-gradient(circle,rgba(244,236,220,0.10) 0%,transparent 70%)", filter:"blur(10px)", animation:"auroraB 26s ease-in-out infinite" }}/>
+            <div style={{ position:"absolute", top:"30%", left:"55%", width:"38%", height:"45%", borderRadius:"50%", background:"radial-gradient(circle,rgba(184,146,42,0.14) 0%,transparent 70%)", filter:"blur(10px)", animation:"auroraC 30s ease-in-out infinite" }}/>
+          </div>
           <div className="hero-l">
             <div style={{ animation:"hup .8s .1s both", marginBottom:40, display:"flex", gap:12, flexWrap:"wrap" }}>
-              <span style={{ display:"inline-flex", alignItems:"center", gap:8, fontFamily:"'DM Mono',monospace", fontSize:11, fontWeight:500, letterSpacing:".22em", textTransform:"uppercase", color:"rgba(255,255,255,.55)", padding:"7px 16px", border:"1px solid rgba(255,255,255,.12)" }}>★★★★★ 5.0 · 20 Reviews</span>
-              <span style={{ display:"inline-flex", alignItems:"center", gap:8, fontFamily:"'DM Mono',monospace", fontSize:11, fontWeight:500, letterSpacing:".22em", textTransform:"uppercase", color:"var(--gold2)", padding:"7px 16px", border:"1px solid rgba(212,170,74,.32)" }}>Est. 1999</span>
+              <span className="glass-tile" style={{ display:"inline-flex", alignItems:"center", gap:8, fontFamily:"'DM Mono',monospace", fontSize:11, fontWeight:500, letterSpacing:".22em", textTransform:"uppercase", color:"rgba(255,255,255,.75)", padding:"7px 16px" }}>★★★★★ 5.0 · 20 Reviews</span>
+              <span style={{ display:"inline-flex", alignItems:"center", gap:8, fontFamily:"'DM Mono',monospace", fontSize:11, fontWeight:700, letterSpacing:".22em", textTransform:"uppercase", color:"var(--navy)", padding:"7px 16px", background:"var(--ivory)", border:"1px solid var(--ivory)" }}>Est. 1999</span>
             </div>
-            <h1 style={{ fontFamily:"'Nunito',serif", fontSize:"clamp(50px,9vw,132px)", fontWeight:700, color:"#fff", lineHeight:.88, letterSpacing:"-1px", animation:"hup .95s .2s both" }}>
+            <h1 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(50px,9vw,132px)", fontWeight:700, color:"#fff", lineHeight:.9, letterSpacing:"-2px", animation:"hup .95s .2s both" }}>
               Sri Darshna<br /><span style={{ color:"var(--gold2)" }}>Printers</span>
             </h1>
             <div style={{ animation:"hup .85s .45s both", paddingTop:40, marginTop:44, borderTop:"1px solid rgba(255,255,255,.1)" }}>
@@ -1457,9 +1397,9 @@ export default function SriDarshna() {
                 <button className="btn inv" style={{ fontSize:13 }} onClick={() => go("gallery")}>View Gallery</button>
               </div>
               <div style={{ display:"flex", gap:36, marginTop:44, flexWrap:"wrap" }}>
-                {[["📍","Gandhipuram, CBE"],["⏰","Opens 10 AM"],["📞","9842262124 & 98427 35737"]].map(([ic,tx]) => (
+                {[["pin","Gandhipuram, CBE"],["clock","Opens 10 AM"],["phone","9842262124 & 98427 35737"]].map(([ic,tx]) => (
                   <div key={tx} style={{ display:"flex", alignItems:"center", gap:8 }}>
-                    <span style={{ fontSize:16 }}>{ic}</span>
+                    <span style={{ color:"var(--gold2)", display:"inline-flex" }}>{ICONS[ic]({size:16})}</span>
                     <span style={{ fontFamily:"'Nunito',sans-serif", fontSize:17, fontWeight:700, color:"#fff" }}>{tx}</span>
                   </div>
                 ))}
@@ -1532,7 +1472,7 @@ export default function SriDarshna() {
             <div className="hero-r-bot">
               <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
                 {[["18+","Products"],["25+","Yrs Exp"],["20+","Reviews"],["5★","Rated"]].map(([n,l]) => (
-                  <div key={l} style={{ border:"1px solid rgba(255,255,255,.1)", padding:"16px 14px", background:"rgba(255,255,255,.04)" }}>
+                  <div key={l} className="glass-tile" style={{ padding:"16px 14px" }}>
                     <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:28, fontWeight:900, color:"var(--gold2)", lineHeight:1 }}>{n}</div>
                     <div style={{ fontFamily:"'Nunito',sans-serif", fontSize:12, fontWeight:700, letterSpacing:".14em", textTransform:"uppercase", color:"rgba(255,255,255,.35)", marginTop:5 }}>{l}</div>
                   </div>
@@ -1551,7 +1491,7 @@ export default function SriDarshna() {
       {/* Trust strip */}
       <div style={{ background:"var(--gold)", padding:"15px 52px" }}>
         <div style={{ maxWidth:1100, margin:"0 auto", display:"flex", justifyContent:"space-around", flexWrap:"wrap", gap:8 }}>
-          {["✦ Lowest Prices in CBE","✦ 18+ Print Products","✦ 5-Star Rated","✦ Est. 1999","✦ DTP & Design Support"].map(t => (
+          {["✦ Lowest Prices in CBE","✦ DTP & Design Support","✦ 18+ Print Products","✦ 5-Star Rated","✦ Est. 1999"].map(t => (
             <span key={t} style={{ fontFamily:"'Rubik',sans-serif", fontSize:13, fontWeight:700, color:"#fff", letterSpacing:".08em" }}>{t}</span>
           ))}
         </div>
@@ -1571,13 +1511,13 @@ export default function SriDarshna() {
       <div className="ey">Our Services</div>
 
       <h2 style={{
-        fontFamily: "'Rubik',sans-serif",
+        fontFamily: "'Playfair Display',serif",
         fontSize: "clamp(32px,4vw,54px)",
-        fontWeight: 900,
-        lineHeight: 1.1,
+        fontWeight: 700,
+        lineHeight: 1.15,
         color: "var(--ink)"
       }}>
-        How We <span style={{ color: "var(--gold)" }}>Print</span>
+        How We <span style={{ color: "var(--gold)", fontStyle:"italic" }}>Print</span>
       </h2>
 
       <div className="divg" />
@@ -1651,6 +1591,7 @@ export default function SriDarshna() {
   <img 
     src={pt.cover}
     alt={pt.name}
+    loading="lazy"
     style={{
       width: "100%",
       height: "100%",
@@ -1724,7 +1665,7 @@ export default function SriDarshna() {
         <div className="wrap">
           <Reveal style={{ marginBottom:52 }}>
             <div className="ey">Our Work</div>
-            <h2 style={{ fontFamily:"'Rubik',sans-serif", fontSize:"clamp(32px,4vw,54px)", fontWeight:900, lineHeight:1.1, color:"var(--ink)" }}>
+            <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(32px,4vw,54px)", fontWeight:700, lineHeight:1.15, color:"var(--ink)" }}>
               Product <span style={{ color:"var(--gold)" }}>Gallery</span>
             </h2>
             <div className="divg"/>
@@ -1746,13 +1687,13 @@ export default function SriDarshna() {
     <Reveal style={{ textAlign: "center", marginBottom: 60 }}>
       <div className="ey" style={{ justifyContent: "center" }}>Why Choose Us</div>
       <h2 style={{ 
-        fontFamily: "'Rubik',sans-serif", 
+        fontFamily: "'Playfair Display',serif", 
         fontSize: "clamp(32px, 4vw, 54px)", 
-        fontWeight: 1000, 
-        lineHeight: 1.1, 
+        fontWeight: 700, 
+        lineHeight: 1.15, 
         color: "var(--ink)" 
       }}>
-        Sri Darshna Printers <span style={{ color: "var(--gold)" }}>Standard</span>
+        Sri Darshna Printers <span style={{ color: "var(--gold)", fontStyle:"italic" }}>Standard</span>
       </h2>
       <div className="divg" style={{ margin: "18px auto" }} />
       <p style={{ 
@@ -1769,20 +1710,24 @@ export default function SriDarshna() {
     </Reveal>
 
    <div 
-  style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 14 }} 
+  style={{ display: "grid", gridTemplateColumns: "repeat(6,1fr)", gap: 14 }} 
   className="svc-grid"
 >
-  {WHY_US.map((w, i) => (
-    <Reveal key={w.title} d={i * .07}>
-      <div className="wcard">
+  {WHY_US.map((w, i) => {
+    const spans = [4,2,2,2,2,6];
+    const featured = i === 0 || i === 5;
+    return (
+    <Reveal key={w.title} d={i * .07} style={{ gridColumn: `span ${spans[i]}` }}>
+      <div className="wcard" style={featured ? { display:"flex", alignItems:"center", gap:24, padding: i===5 ? "32px 36px" : "40px 28px" } : undefined}>
         <div className="wcard-accent"></div>
-        <div className="wcard-icon">
-          {w.icon}
+        <div className="wcard-icon" style={{ width:i===0?58:46, height:i===0?58:46, display:"flex", alignItems:"center", justifyContent:"center", border:"1.5px solid rgba(184,146,42,.35)", background:"rgba(184,146,42,.08)", color:"var(--gold)", marginBottom: featured ? 0 : 18, flexShrink:0 }}>
+          {ICONS[w.icon]({ size: i===0?26:20 })}
         </div>
 
+        <div>
         <h3 style={{ 
           fontFamily: "'Rubik',sans-serif", 
-          fontSize: 21, 
+          fontSize: i===0?25:21, 
           fontWeight: 800, 
           color: "var(--ink)", 
           marginBottom: 10 
@@ -1795,13 +1740,16 @@ export default function SriDarshna() {
           fontSize: 15, 
           fontWeight: 700, 
           color: "var(--muted)", 
-          lineHeight: 1.82 
+          lineHeight: 1.82,
+          marginBottom: 0
         }}>
           {w.desc}
         </p>
+        </div>
       </div>
     </Reveal>
-  ))}
+    );
+  })}
 </div>
   </div>
 </section>
@@ -1832,6 +1780,7 @@ export default function SriDarshna() {
             <img 
               src={logo} 
               alt="Logo" 
+              loading="lazy"
               style={{ maxWidth: "180%", maxHeight: "160%", objectFit: "auto" }} 
             />
           </div>
@@ -1847,13 +1796,13 @@ export default function SriDarshna() {
 
           <div style={{ display: "flex", flexDirection: "column", gap: 20, position: "relative", zIndex: 2 }}>
             {[
-              ["📍", `530, 7th Street Ext\nGandhipuram, Coimbatore 641012`],
-              ["📞", "9842262124 & 98427 35737"],
-              ["⏰", "Opens 10 AM · Mon–Sat"],
-              ["📅", "Established 1999"]
+              ["pin", `530, 7th Street Ext\nGandhipuram, Coimbatore 641012`],
+              ["phone", "9842262124 & 98427 35737"],
+              ["clock", "Opens 10 AM · Mon–Sat"],
+              ["calendar", "Established 1999"]
             ].map(([ic, tx]) => (
               <div key={tx} style={{ display: "flex", gap: 13, alignItems: "flex-start", group: "true" }}>
-                <span style={{ fontSize: 18, marginTop: 1, flexShrink: 0, filter: "drop-shadow(0 0 8px rgba(212,170,74,0.3))" }}>{ic}</span>
+                <span style={{ color: "var(--gold2)", marginTop: 2, flexShrink: 0, display:"inline-flex", filter: "drop-shadow(0 0 8px rgba(212,170,74,0.3))" }}>{ICONS[ic]({size:17})}</span>
                 <span style={{ 
                   fontFamily: "'Nunito',sans-serif", 
                   fontSize: 16, 
@@ -1940,7 +1889,7 @@ export default function SriDarshna() {
         <div className="wrap">
           <Reveal style={{ textAlign:"center", marginBottom:52 }}>
             <div className="ey" style={{ justifyContent:"center" }}>Client Reviews</div>
-            <h2 style={{ fontFamily:"'Rubik',sans-serif", fontSize:"clamp(28px,4vw,48px)", fontWeight:900, color:"var(--ink)" }}>What Our Customers <span style={{ color:"var(--gold)" }}>Say</span></h2>
+            <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(28px,4vw,48px)", fontWeight:700, color:"var(--ink)" }}>What Our Customers <span style={{ color:"var(--gold)", fontStyle:"italic" }}>Say</span></h2>
             <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:10, marginTop:16 }}>
               <span style={{ color:"var(--gold)", fontSize:18, letterSpacing:3 }}>★★★★★</span>
               <span style={{ fontFamily:"'Rubik',sans-serif", fontSize:18, fontWeight:900, color:"var(--navy)" }}>5.0</span>
@@ -1985,7 +1934,7 @@ export default function SriDarshna() {
         <div className="wrap" style={{ maxWidth:780 }}>
           <Reveal style={{ textAlign:"center", marginBottom:56 }}>
             <div className="ey" style={{ justifyContent:"center" }}>FAQ</div>
-            <h2 style={{ fontFamily:"'Rubik',sans-serif", fontSize:"clamp(28px,4vw,48px)", fontWeight:900, color:"var(--ink)" }}>Frequently Asked <span style={{ color:"var(--gold)" }}>Questions</span></h2>
+            <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(28px,4vw,48px)", fontWeight:700, color:"var(--ink)" }}>Frequently Asked <span style={{ color:"var(--gold)", fontStyle:"italic" }}>Questions</span></h2>
             <div className="divg" style={{ margin:"18px auto" }}/>
           </Reveal>
           <div style={{ border:"1.5px solid var(--line)", background:"var(--cream)" }}>
@@ -2009,14 +1958,14 @@ export default function SriDarshna() {
         <div className="wrap">
           <Reveal style={{ textAlign:"center", marginBottom:60 }}>
             <div className="ey" style={{ justifyContent:"center" }}>Place Your Order</div>
-            <h2 style={{ fontFamily:"'Rubik',sans-serif", fontSize:"clamp(28px,4vw,54px)", fontWeight:900, color:"var(--ink)" }}><span style={{ color:"var(--gold)" }}>Contact us</span></h2>
+            <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(28px,4vw,54px)", fontWeight:700, color:"var(--ink)" }}><span style={{ color:"var(--gold)", fontStyle:"italic" }}>Contact us</span></h2>
             <div className="divg" style={{ margin:"18px auto" }}/>
           </Reveal>
           <div className="two" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:64, alignItems:"start" }}>
             <Reveal>
               {sent ? (
                 <div style={{ border:"1.5px solid var(--line)", padding:"52px 36px", textAlign:"center", background:"var(--cream)" }}>
-                  <div style={{ fontSize:52, marginBottom:18 }}>✅</div>
+                  <div style={{ width:64, height:64, borderRadius:"50%", background:"rgba(184,146,42,.12)", border:"1.5px solid rgba(184,146,42,.35)", color:"var(--gold)", display:"flex", alignItems:"center", justifyContent:"center", margin:"0 auto 18px" }}>{ICONS.check({size:30})}</div>
                   <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:30, fontWeight:900, color:"var(--navy)", marginBottom:12 }}>Thank You!</div>
                   <p style={{ fontFamily:"'Nunito',sans-serif", fontSize:16, fontWeight:700, color:"var(--muted)" }}>We have received your enquiry and will respond shortly.</p>
                 </div>
@@ -2046,16 +1995,16 @@ export default function SriDarshna() {
               <div style={{ display:"flex", flexDirection:"column", gap:18 }}>
 {[
   {
-    ic:"📍",
+    ic:"pin",
     l:"Address",
     v:<>530, 7th Street Extension<br/>Gandhipuram, Coimbatore — 641012</>
   },
-  {ic:"📞",l:"Phone",v:"9842262124 & 98427 35737"},
-  {ic:"⏰",l:"Hours",v:"Opens at 10 AM · Monday – Saturday"},
-  {ic:"📅",l:"Since",v:"Established 1999 — 25+ Years of Trust"},
-  {ic:"⭐",l:"Rating",v:"5.0 · 20 Verified Google Reviews"}
+  {ic:"phone",l:"Phone",v:"9842262124 & 98427 35737"},
+  {ic:"clock",l:"Hours",v:"Opens at 10 AM · Monday – Saturday"},
+  {ic:"calendar",l:"Since",v:"Established 1999 — 25+ Years of Trust"},
+  {ic:"star",l:"Rating",v:"5.0 · 20 Verified Google Reviews"}
 ].map(({ic,l,v}) => (                  <div key={l} style={{ display:"flex", gap:16 }}>
-                    <div style={{ width:46, height:46, background:"var(--cream)", border:"1.5px solid var(--line)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:20, flexShrink:0 }}>{ic}</div>
+                    <div style={{ width:46, height:46, background:"var(--cream)", border:"1.5px solid var(--line)", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--gold)", flexShrink:0 }}>{ICONS[ic]({size:19})}</div>
                     <div>
                       <div style={{ fontFamily:"'DM Mono',monospace", fontSize:10, fontWeight:500, letterSpacing:".28em", textTransform:"uppercase", color:"var(--gold)", marginBottom:5 }}>{l}</div>
                       <div style={{ fontFamily:"'Nunito',sans-serif", fontSize:15, fontWeight:700, color:"var(--ink2)", lineHeight:1.65, whiteSpace:"pre-line" }}>{v}</div>
@@ -2068,7 +2017,7 @@ export default function SriDarshna() {
                     allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"/>
                   <a href="https://maps.google.com/?q=Sri+Darshna+Printers+Gandhipuram+Coimbatore" target="_blank" rel="noopener noreferrer"
                     style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:8, padding:"13px", background:"var(--navy)", color:"var(--gold2)", textDecoration:"none", fontFamily:"'Rubik',sans-serif", fontSize:12, fontWeight:700, letterSpacing:".18em", textTransform:"uppercase" }}>
-                    📍 Get Directions →
+                    <span style={{display:"inline-flex"}}>{ICONS.pin({size:15})}</span> Get Directions →
                   </a>
                 </div>
               </div>
@@ -2095,6 +2044,7 @@ export default function SriDarshna() {
             <img 
               src={logo}
               alt="Sri Darshna Printers Logo"
+              loading="lazy"
               style={{
                 maxWidth: "100%",
                 maxHeight: "100%",
@@ -2185,9 +2135,9 @@ export default function SriDarshna() {
             <div>
               <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:11, fontWeight:700, letterSpacing:".28em", textTransform:"uppercase", color:"var(--gold)", marginBottom:18 }}>Find Us</div>
               <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
-                {[["📍","Gandhipuram, Coimbatore"],["📞","9842262124 & 98427 35737"],["⏰","Opens 10 AM"],["📅","Est. 1999"]].map(([ic,tx]) => (
+                {[["pin","Gandhipuram, Coimbatore"],["phone","9842262124 & 98427 35737"],["clock","Opens 10 AM"],["calendar","Est. 1999"]].map(([ic,tx]) => (
                   <div key={tx} style={{ display:"flex", gap:10 }}>
-                    <span style={{ fontSize:15 }}>{ic}</span>
+                    <span style={{ color:"var(--gold)", display:"inline-flex", marginTop:2 }}>{ICONS[ic]({size:14})}</span>
                     <span style={{ fontFamily:"'Nunito',sans-serif", fontSize:13, fontWeight:700, color:"rgba(255,255,255,.42)" }}>{tx}</span>
                   </div>
                 ))}
@@ -2208,7 +2158,7 @@ export default function SriDarshna() {
             <div className="modal-hdr">
               <div>
                 <div style={{ fontFamily:"'DM Mono',monospace", fontSize:10, fontWeight:500, letterSpacing:".28em", textTransform:"uppercase", color:"var(--gold)", marginBottom:8 }}>Gallery</div>
-                <h3 style={{ fontFamily:"'Rubik',sans-serif", fontSize:28, fontWeight:900, color:"var(--ink)" }}>{modalCat.label}</h3>
+                <h3 style={{ fontFamily:"'Playfair Display',serif", fontSize:28, fontWeight:700, color:"var(--ink)" }}>{modalCat.label}</h3>
                 <p style={{ fontFamily:"'Nunito',sans-serif", fontSize:15, fontWeight:700, color:"var(--muted)", marginTop:5 }}>{modalCat.desc} — click any image to enlarge</p>
               </div>
               <button className="modal-close" onClick={() => setModalCat(null)}>✕</button>
@@ -2219,6 +2169,7 @@ export default function SriDarshna() {
     key={idx}
     src={img}
     alt={modalCat.label}
+    loading="lazy"
     onClick={() => setLightbox({ cat: modalCat, idx })}
     style={{
   width: "100%",
@@ -2265,6 +2216,7 @@ export default function SriDarshna() {
     <img
       src={lightbox.cat.imgs[lightbox.idx]}
       alt="preview"
+      loading="lazy"
       style={{
         maxWidth: "90vw",
         maxHeight: "85vh",

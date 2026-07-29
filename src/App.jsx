@@ -518,7 +518,7 @@ function ReviewCards() {
           onMouseEnter={() => setHovIdx(i)}
           onMouseLeave={() => setHovIdx(null)}
           style={{
-            background: "#fff",
+            background: "var(--cream)",
             border: "1.5px solid var(--line)",
             padding: "28px 24px",
             position: "relative",
@@ -934,16 +934,16 @@ export default function SriDarshna() {
     html{scroll-behavior:smooth;}
 
     :root{
-      --ink:   #0f0e0c;
-      --ink2:  #2c2820;
-      --muted: #5a5550;
+      --ink:   #f2efe6;
+      --ink2:  #cfc9ba;
+      --muted: #98a3b8;
       --gold:  #b8922a;
       --gold2: #d4aa4a;
       --navy:  #14204a;
-      --cream: #faf8f4;
-      --cream2:#f3ede4;
-      --cream3:#ebe3d8;
-      --line:  rgba(15,14,12,.12);
+      --cream: #101c3c;
+      --cream2:#15244a;
+      --cream3:#1b2c56;
+      --line:  rgba(255,255,255,.12);
     }
 
     body{background:var(--cream);color:var(--ink);font-family:'Nunito',sans-serif;font-weight:700;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
@@ -951,7 +951,7 @@ export default function SriDarshna() {
 
     /* ── NAV ── */
     .nav{position:fixed;top:0;left:0;right:0;z-index:300;height:72px;display:flex;align-items:center;padding:0 52px;justify-content:space-between;transition:background .4s,border-color .4s,backdrop-filter .4s;border-bottom:1px solid transparent;}
-    .nav.up{background:rgba(250,248,244,.97);border-color:var(--line);backdrop-filter:blur(20px);}
+    .nav.up{background:rgba(16,28,60,.92);border-color:var(--line);backdrop-filter:blur(20px);}
     .nl{font-family:'Rubik',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;padding-bottom:3px;cursor:none;transition:color .22s,border-color .22s;}
     .nl:hover,.nl.on{color:var(--gold);border-color:var(--gold);}
 
@@ -976,7 +976,7 @@ export default function SriDarshna() {
     /* ── SERVICE CARDS ── */
     .scard{border:1.5px solid var(--line);padding:30px 24px 26px;background:var(--cream);position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .35s,background .35s;cursor:none;}
     .scard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1);}
-    .scard:hover{transform:translateY(-7px);box-shadow:0 24px 56px rgba(0,0,0,.1);border-color:rgba(184,146,42,.3);background:#fff;}
+    .scard:hover{transform:translateY(-7px);box-shadow:0 24px 56px rgba(0,0,0,.1);border-color:rgba(184,146,42,.3);background:var(--cream);}
     .scard:hover::after{transform:scaleX(1);}
 
     /* ── PRINT TYPE CARDS ── */
@@ -1039,7 +1039,7 @@ export default function SriDarshna() {
 
 .ptcard-body {
   padding: 32px;
-  background: #fff;
+  background: var(--cream);
   border: 1.5px solid var(--line);
   border-top: none;
   position: relative;
@@ -1138,7 +1138,7 @@ export default function SriDarshna() {
 
 .wcard:hover {
   transform: translateY(-5px);
-  background: #ffffff;
+  background: var(--cream);
   box-shadow: 0 15px 35px -10px rgba(20, 32, 74, 0.1);
 }
 
@@ -1954,7 +1954,7 @@ export default function SriDarshna() {
           <div style={{ margin:"52px 0 0", borderTop:"1.5px solid var(--line)" }} />
 
           {/* Original animated single review */}
-          <div key={revIdx} className="rev-enter" style={{ background:"#fff", border:"1.5px solid var(--line)", padding:"44px 48px", marginTop:40, marginBottom:24, position:"relative" }}>
+          <div key={revIdx} className="rev-enter" style={{ background:"var(--cream)", border:"1.5px solid var(--line)", padding:"44px 48px", marginTop:40, marginBottom:24, position:"relative" }}>
             <div style={{ position:"absolute", top:16, left:24, fontFamily:"serif", fontSize:72, color:"var(--gold)", opacity:.13, lineHeight:1 }}>"</div>
             <div style={{ color:"var(--gold)", fontSize:18, letterSpacing:3, marginBottom:18 }}>★★★★★</div>
             <p style={{ fontFamily:"'Nunito',sans-serif", fontSize:19, fontWeight:700, fontStyle:"italic", color:"var(--ink2)", lineHeight:1.72, marginBottom:26 }}>"{REVIEWS[revIdx].text}"</p>
@@ -1988,7 +1988,7 @@ export default function SriDarshna() {
             <h2 style={{ fontFamily:"'Rubik',sans-serif", fontSize:"clamp(28px,4vw,48px)", fontWeight:900, color:"var(--ink)" }}>Frequently Asked <span style={{ color:"var(--gold)" }}>Questions</span></h2>
             <div className="divg" style={{ margin:"18px auto" }}/>
           </Reveal>
-          <div style={{ border:"1.5px solid var(--line)", background:"#fff" }}>
+          <div style={{ border:"1.5px solid var(--line)", background:"var(--cream)" }}>
             {FAQS.map((f,i) => (
               <div key={i} className="faq-row">
                 <button className="faq-btn" onClick={() => setOpenFaq(openFaq===i?null:i)}>
@@ -2015,7 +2015,7 @@ export default function SriDarshna() {
           <div className="two" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:64, alignItems:"start" }}>
             <Reveal>
               {sent ? (
-                <div style={{ border:"1.5px solid var(--line)", padding:"52px 36px", textAlign:"center", background:"#fff" }}>
+                <div style={{ border:"1.5px solid var(--line)", padding:"52px 36px", textAlign:"center", background:"var(--cream)" }}>
                   <div style={{ fontSize:52, marginBottom:18 }}>✅</div>
                   <div style={{ fontFamily:"'Rubik',sans-serif", fontSize:30, fontWeight:900, color:"var(--navy)", marginBottom:12 }}>Thank You!</div>
                   <p style={{ fontFamily:"'Nunito',sans-serif", fontSize:16, fontWeight:700, color:"var(--muted)" }}>We have received your enquiry and will respond shortly.</p>
@@ -2055,7 +2055,7 @@ export default function SriDarshna() {
   {ic:"📅",l:"Since",v:"Established 1999 — 25+ Years of Trust"},
   {ic:"⭐",l:"Rating",v:"5.0 · 20 Verified Google Reviews"}
 ].map(({ic,l,v}) => (                  <div key={l} style={{ display:"flex", gap:16 }}>
-                    <div style={{ width:46, height:46, background:"#fff", border:"1.5px solid var(--line)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:20, flexShrink:0 }}>{ic}</div>
+                    <div style={{ width:46, height:46, background:"var(--cream)", border:"1.5px solid var(--line)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:20, flexShrink:0 }}>{ic}</div>
                     <div>
                       <div style={{ fontFamily:"'DM Mono',monospace", fontSize:10, fontWeight:500, letterSpacing:".28em", textTransform:"uppercase", color:"var(--gold)", marginBottom:5 }}>{l}</div>
                       <div style={{ fontFamily:"'Nunito',sans-serif", fontSize:15, fontWeight:700, color:"var(--ink2)", lineHeight:1.65, whiteSpace:"pre-line" }}>{v}</div>
